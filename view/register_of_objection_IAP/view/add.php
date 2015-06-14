@@ -171,7 +171,7 @@ $column=4;                //  Value For Check Page Permission
                 
             
                 <td>PAN NO.</td>
-                <td><input type="text"   id="pan" name="pan" maxlength="10"></td>
+                <td><input type="text"   id="pan" name="pan" maxlength="10" ><div id="errormsg"></div></td>
                 
                 
            

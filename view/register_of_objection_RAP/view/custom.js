@@ -253,15 +253,42 @@ function printDiv(divName)  //print document
  function validation(){
 	 
 	  var lar=$('#lar').val();
-      
+	  var c=$('#pan').val();
+      //alert(c);
   if (lar==null || lar.trim()=="" )   
     { 
        alert('LAR No. Is Blank ');
         $('#lar').focus();
        return false; 
-	}
-	
+	}if(c==null || c==""){
+		alert("Pan NO Is Blank")
+		$('#pan').focus();
+        return false;
+		}
+	else if (c != "") {
+			//alert()
+            ObjVal = c;
+            var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+            var code = /([C,P,H,F,A,T,B,L,J,G])/;
+            var code_chk = ObjVal.substring(3,4);
+            if (ObjVal.search(panPat) == -1) {
+                alert("Invalid Pan No");
+                $('#pan').focus();
+                return false;
+            }else {
+				return true;
+				}
+            if (code.test(code_chk) == false) {
+                alert("Invaild PAN Card No.");
+                return false;
+            }else {
+				return true;
+				}
+        }else{
    return true; 
+		}
+	
+ //  return true; 
  }
  
  
@@ -278,14 +305,7 @@ function printDiv(divName)  //print document
    });
 }
    
-  $("#amt").keypress(function (e) {
-     //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        $("#errmsg").html("Digits Only").show().fadeOut("slow");
-               return false;
-    }
-   });
+ $("#amt").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#amt").val().indexOf(".")||!(a.which<48||a.which>57)?($("#errmsg").hide(),0):($("#errmsg").html("Enter Only Digits With one desimal point").show(1000),!1)})
 
 function add(){
 	document.location="add.php";

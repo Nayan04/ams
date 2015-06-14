@@ -1,4 +1,4 @@
-$("#te").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#te").val().indexOf(".")||!(a.which<48||a.which>57)?void 0:($("#errmsg").html("Enter Only Digits With one desimal point").show(500).fadeOut("slow"),!1)})// JavaScript Document
+$("#te").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#te").val().indexOf(".")||!(a.which<48||a.which>57)?($("#errmsg").hide(),0):($("#errmsg").html("Enter Only Digits With one desimal point").show(1000),!1)})// JavaScript Document
  function add_draft(){
  
                 var sno=$("#sno").val();
@@ -442,6 +442,7 @@ ui =$.trim(ui);
 	  var dpno=$('#dpno').val();
 	    var assname=$('#assname').val();
 	   	 var pan=$('#panno').val();
+		 var c=pan;
 	 
 	 if (cit=="..." || cit.trim()=="" )   
     { 
@@ -469,7 +470,27 @@ ui =$.trim(ui);
         $('#panno').focus();
        return false; 
 	}
-	
+	else if (c != "") {
+			//alert()
+            ObjVal = c;
+            var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+            var code = /([C,P,H,F,A,T,B,L,J,G])/;
+            var code_chk = ObjVal.substring(3,4);
+            if (ObjVal.search(panPat) == -1) {
+                alert("Invalid Pan No");
+                $('#panno').focus();
+                return false;
+            }else{
+				return true;
+				}
+            if (code.test(code_chk) == false) {
+                alert("Invaild PAN Card No.");
+                return false;
+            }else {
+				return true;
+				}
+        }else{
    return true; 
+		}
  } 
 	

@@ -272,6 +272,7 @@ function printDiv(divName)  //print document
 	   var doo_date=$('#doo_date').val();
 	  var assessee=$('#assessee').val();
 	  var pan=$('#pan').val();
+	  var c=pan;
 	    var aps=$('#aps').val();
 	   	 var range=$('#range').val();
 	  var des_ao=$('#des_ao').val();
@@ -312,11 +313,32 @@ function printDiv(divName)  //print document
        alert('Pan Number Is Blank');
         $('#pan').focus();
        return false; 
-	}
-	
+	}else if (c != "") {
+			//alert()
+            ObjVal = c;
+            var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+            var code = /([C,P,H,F,A,T,B,L,J,G])/;
+            var code_chk = ObjVal.substring(3,4);
+            if (ObjVal.search(panPat) == -1) {
+                alert("Invalid Pan No");
+                $('#panno').focus();
+                return false;
+            }else {
+				return true;
+				}
+            if (code.test(code_chk) == false) {
+                alert("Invaild PAN Card No.");
+                return false;
+            }else {
+				return true;
+				}
+        }else{
    return true; 
+		}
+	
+   
  } 
- $("#amt").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#amt").val().indexOf(".")||!(a.which<48||a.which>57)?void 0:($("#errmsg").html("Enter Only Digits With one desimal point").show(500).fadeOut("slow"),!1)})
+ $("#amt").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#amt").val().indexOf(".")||!(a.which<48||a.which>57)?($("#errmsg").hide(),0):($("#errmsg").html("Enter Only Digits With one desimal point").show(1000),!1)});
  function isNumber() // number validation
  {
    //called when key is pressed in textbox
