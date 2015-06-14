@@ -102,7 +102,7 @@
 					                $toc=mysql_fetch_array($t);
 								    $a_o=$db->get_cit_by_id($cit);
 					                $oc=mysql_fetch_array($a_o);
-								   echo "<tr><td>$m</td><td>".$audi_pp['ccit_charge']."</td><td>".$asst['year']."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td></tr>";
+								   echo "<tr><td>$m</td><td>".$audi_pp['ccit_charge']."</td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
 								   $m++;
                         
 						}
