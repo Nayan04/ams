@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <?php 
 ///////////////////////////
-$module=1;                //
+$module=1;                
 $column=4;                //  Value For Check Page Permission
 ///////////////////////////
 ?>
