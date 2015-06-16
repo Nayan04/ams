@@ -631,7 +631,7 @@ class common
 			        return $rs;	
 					
 					}
-					function view_ac_for_report($ccit_id,$cit_id,$range,$ao,$ay,$doa,$grp,$case_type){
+					function view_ac_for_report($ccit_id,$cit_id,$range,$ao,$ay,$doa,$grp,$case_type,$lar_sd,$lar_ed){
 						//echo $ccit_id;
 					$string="SELECT * FROM auditable_case where";
 					if($ccit_id=='...'){}else{ $string.=" ccit_id='$ccit_id' and"; }
@@ -639,7 +639,19 @@ class common
 					if($range=='...'){}else{ $string.=" range_code='$range' and"; }
 					if($ao=='...'){}else{ $string.=" assesing_officer='$ao' and"; }
 					if($ay=='...'){}else{ $string.=" asst_year='$ay' and"; }
-				    if($doa=='...'){}else{ $string.=" d_o_a='$doa' and"; }
+				    if($doa=='...'){}else{
+						
+						if($doa=='between')
+						{							
+					     $string.=" d_o_a between '$lar_sd' and '$lar_ed' and";
+					    }else if($doa=='equal'){
+							 $string.=" d_o_a ='$lar_sd' and";
+							}else if($doa=='greater'){
+							 $string.=" d_o_a > '$lar_sd' and";
+							}else if($doa=='less'){
+							 $string.="d_o_a < '$lar_sd' and";
+							}
+					}
 				    if($grp=='...'){}else{ $string.=" Groups='$grp' and"; }
 					if($case_type=='...'){}else{ $string.=" type_of_case='$case_type' and"; }				
 					$string.=" isactive=1";
@@ -653,14 +665,26 @@ class common
 			        return $rs;	
 					
 					}
-					function view_allocation_for_report($ccit_id,$cit_id,$apt,$ap,$ay,$doa,$grp,$case_type){
+					function view_allocation_for_report($ccit_id,$cit_id,$apt,$ap,$ay,$doa,$grp,$case_type,$lar_sd,$lar_ed){
 					$string="SELECT * FROM auditable_case where";
 					if($ccit_id=='...'){}else{ $string.=" ccit_id='$ccit_id' and"; }
 					if($cit_id=='...'){}else{ $string.=" cit_id='$cit_id' and"; }
 					if($apt=='...'){}else{ $string.=" APTCode='$apt' and"; }
 					if($ap=='...'){}else{ $string.=" cgap_code='$ap' and"; }
 					if($ay=='...'){}else{ $string.=" asst_year='$ay' and"; }
-				    if($doa=='...'){}else{ $string.=" d_o_a='$doa' and"; }
+				    if($doa=='...'){}else{
+						
+						if($doa=='between')
+						{							
+					     $string.=" d_o_a between '$lar_sd' and '$lar_ed' and";
+					    }else if($doa=='equal'){
+							 $string.=" d_o_a ='$lar_sd' and";
+							}else if($doa=='greater'){
+							 $string.=" d_o_a > '$lar_sd' and";
+							}else if($doa=='less'){
+							 $string.="d_o_a < '$lar_sd' and";
+							}
+					}
 				    if($grp=='...'){}else{ $string.=" Groups='$grp' and"; }
 					if($case_type=='...'){}else{ $string.=" type_of_case='$case_type' and"; }				
 					$string.=" isactive=1 order by cgap_code";
@@ -784,7 +808,7 @@ class common
 						
 						if($lar_date=='between')
 						{							
-					     $string.=" registerdet.DOAO1 between ('$lar_sd','$lar_ed') and";
+					     $string.=" registerdet.DOAO1 between '$lar_sd' and '$lar_ed' and";
 					    }else if($lar_date=='equal'){
 							 $string.=" registerdet.DOAO1 ='$lar_sd' and";
 							}else if($lar_date=='greater'){
@@ -810,7 +834,7 @@ class common
 						
 						if($dos=='between')
 						{							
-					     $string.=" registerdet.DOS between ('$dos_sd','$dos_ed') and";
+					     $string.=" registerdet.DOS between '$dos_sd' and '$dos_ed' and";
 					    }else if($dos=='equal'){
 							 $string.=" registerdet.DOS='$dos_sd' and";
 							}else if($dos=='greater'){
@@ -822,7 +846,7 @@ class common
 					if($user=='...'){}else{ $string.=" register_obj.UserCode='$user' and"; }
 					if($txe=='...'){}else{ if($txe=='between')
 						{							
-					     $string.=" registerdet.TaxEffect between ('$tax_st','$tax_ed') and";
+					     $string.=" registerdet.TaxEffect between '$tax_st' and '$tax_ed' and";
 					    }else if($txe=='equal'){
 							 $string.=" registerdet.TaxEffect='$tax_st' and";
 							}else if($txe=='greater'){
@@ -834,8 +858,8 @@ class common
 					if($entry=='...'){}else{ 
 					if($entry=='between')
 						{	
-						  $sd=STR_TO_DATE('$entry_st','%d/%m/%y');
-						  $ed=STR_TO_DATE('$entry_ed' ,'%d/%m/%y');
+						  $sd=$entry_st;
+						  $ed=$entry_ed;
 					     $string.=" register_obj.EntryDate between '$sd' and '$ed' and";
 					    }else if($entry=='equal'){
 							 $string.=" register_obj.EntryDate='$entry_st' and";
@@ -883,7 +907,7 @@ class common
 						
 						if($lar_date=='between')
 						{							
-					     $string.=" register_obj.LARIAMRecDate between ('$lar_sd','$lar_ed') and";
+					     $string.=" register_obj.LARIAMRecDate between '$lar_sd' and '$lar_ed'  and";
 					    }else if($lar_date=='equal'){
 							 $string.=" register_obj.LARIAMRecDate ='$lar_sd' and";
 							}else if($lar_date=='greater'){
@@ -909,7 +933,7 @@ class common
 						
 						if($dos=='between')
 						{							
-					     $string.=" registerdet.DOS between ('$dos_sd' and '$dos_ed') and";
+					     $string.=" registerdet.DOS between '$dos_sd' and '$dos_ed' and";
 					    }else if($dos=='equal'){
 							 $string.=" registerdet.DOS='$dos_sd' and";
 							}else if($dos=='greater'){
@@ -921,7 +945,7 @@ class common
 					if($user=='...'){}else{ $string.=" register_obj.UserCode='$user' and"; }
 					if($txe=='...'){}else{ if($txe=='between')
 						{							
-					     $string.=" registerdet.TaxEffect between ('$tax_st' and '$tax_ed') and";
+					     $string.=" registerdet.TaxEffect between '$tax_st' and '$tax_ed' and";
 					    }else if($txe=='equal'){
 							 $string.=" registerdet.TaxEffect='$tax_st' and";
 							}else if($txe=='greater'){
@@ -933,9 +957,9 @@ class common
 					if($entry=='...'){}else{ 
 					if($entry=='between')
 						{	
-						  $sd=STR_TO_DATE('$entry_st','%d/%m/%y');
-						  $ed=STR_TO_DATE('$entry_ed' ,'%d/%m/%y');
-					     $string.=" register_obj.EntryDate between '$sd' and '$ed' and";
+						  $sd= $entry_st;
+						  $ed=$entry_ed;
+					     $string.=" register_obj.EntryDate between '$entry_st' and '$entry_ed' and";
 					    }else if($entry=='equal'){
 							 $string.=" register_obj.EntryDate='$entry_st' and";
 							}else if($entry=='greater'){
@@ -949,7 +973,7 @@ class common
 					$string.=" registerdet.isactive=1 and register_obj.isactive=1 and registerdet.ObjType='RAP' and register_obj.ObjType='RAP' and registerdet.MASTCode=register_obj.MASTCode order by register_obj.APCode asc ";
 				 
 					 $sql = sprintf($string);
-				//	 echo $sql;
+				  //  echo $sql;
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);

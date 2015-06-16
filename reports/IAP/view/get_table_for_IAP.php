@@ -1,11 +1,6 @@
 <?php  include("../../../config/common.php");
 $db=new common();
-
-
-
 $a=($_POST);
-
-//print_r($a);
 $ccit_id=$a['ccit'];
 $cit_id=$a['cit'];
 $fy=$a['fy'];
@@ -31,28 +26,28 @@ $tax_ed='';
 $entry_st='';
 $entry_ed='';
 if(isset($a['fd'])){
-	$lar_sd=$a['fd'];//lar start Date
+	$lar_sd=$db->get_date_with_dash($a['fd']);//lar start Date
 	}
 if(isset($a['sd'])){
-	$lar_ed=$a['sd']; // lar End Date
+	$lar_ed=$db->get_date_with_dash($a['sd']); // lar End Date
 	}
 if(isset($a['dos_sd'])){
-	$dos_sd=$a['dos_sd']; // dos start Date
+	$dos_sd=$db->get_date_with_dash($a['dos_sd']); // dos start Date
 	}
 if(isset($a['dos_ed'])){
-	$dos_ed=$a['dos_ed']; // dos End Date
+	$dos_ed=$db->get_date_with_dash($a['dos_ed']); // dos End Date
 }
 if(isset($a['tax_st'])){
-	$tax_st=$a['tax_st']; // tax start
+	$tax_st=$db->get_date_with_dash($a['tax_st']); // tax start
 }
 if(isset($a['tax_end'])){
-    $tax_end=$a['tax_end']; // tax end
+    $tax_end=$db->get_date_with_dash($a['tax_end']); // tax end
 }
 if(isset($a['entry_st'])){
-	$entry_st=$a['entry_st']; // entry start Date
+	$entry_st=$db->get_date_with_dash($a['entry_st']); // entry start Date
 	}
 if(isset($a['entry_end'])){
-	$entry_ed=$a['entry_end']; // entry Date
+	$entry_ed=$db->get_date_with_dash($a['entry_end']); // entry Date
 	}
 
 	
@@ -107,7 +102,7 @@ $i=1;?>
 					      if($aoos=mysql_fetch_array($aos)){					 
 					         echo $aoos['name'];
 						  }?></td>
-                          <td><?php echo $row['DOAO1']; ?></td>
+                          <td><?php  if($row['DOAO1']=='0000-00-00'){}else{ echo $doo=$db->get_date_with_slash($row['DOAO1']);} ?></td>
                           <td><?php
 					  $ayy=$db->get_year_by_id($row['AssYearCode']);
 					  if($assty=mysql_fetch_array($ayy)){					 

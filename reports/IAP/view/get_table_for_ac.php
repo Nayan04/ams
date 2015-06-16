@@ -6,10 +6,18 @@ $cit_id=$a['cit'];
 $range=$a['range'];
 $ao=$a['ao'];
 $fy=$a['asst_year'];
-$doa=$a['doa'];
+$doa=$a['lar_date'];
+$lar_sd='';
+$lar_ed='';
+if(isset($a['fd'])){
+	$lar_sd=$db->get_date_with_dash($a['fd']);//lar start Date
+	}
+if(isset($a['sd'])){
+	$lar_ed=$db->get_date_with_dash($a['sd']); // lar End Date
+	}
 $grp=$a['grp'];
 $case_type=$a['case_type'];
-$rs=$db->view_ac_for_report($ccit_id,$cit_id,$range,$ao,$fy,$doa,$grp,$case_type);?>
+$rs=$db->view_ac_for_report($ccit_id,$cit_id,$range,$ao,$fy,$doa,$grp,$case_type,$lar_sd,$lar_ed);?>
 
 <table id="example1" class="table table-bordered table-striped display xls"  style="white-space:nowrap;">
   
@@ -56,7 +64,7 @@ $rs=$db->view_ac_for_report($ccit_id,$cit_id,$range,$ao,$fy,$doa,$grp,$case_type
 					  echo $asst['year'];
 					  } ?></td>
       <td><?php echo $row['amount']; ?></td>
-      <td><?php echo $row['d_o_a']; ?></td>
+      <td><?php if($row['d_o_a']=='0000-00-00'){}else{ echo $doo=$db->get_date_with_slash($row['d_o_a']);} ?></td>
       <td><?php echo $row['remark']; ?></td>
       <td><?php 
 					  $ap=$db->get_ap_by_id($row['audit_party_code']);

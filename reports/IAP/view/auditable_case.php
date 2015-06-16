@@ -174,7 +174,7 @@ include("../../../common/menu_header_inside.php");?>
                       <?php } ?>
                     </select></td>
                   <td >Date of Order</td>
-                  <td><select id="doa" name="doa" onChange="get_text_box();">
+                  <td><select id="lar_date" name="lar_date" onChange="get_text_box();">
                       <option value="...">ALL</option>
                       <option value="between">Between</option>
                       <option value="equal">Equal To</option>

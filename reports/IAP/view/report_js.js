@@ -174,7 +174,7 @@ function get_text_box(){
 	var lar=$("#lar_date").val();
 	 var dataString = 'date='+ lar +"&id=lar";
 			 
-			   //  alert(dataString);
+			    // alert(dataString);
 				  
 				  $.post("../controller/textbox_control.php", dataString ).done(function( data ) {
 																					 
@@ -190,7 +190,7 @@ function checks(){
 	var dos=$("#dos").val();
 	 var dataString = 'date='+ dos +"&id=dos" ;
 			 
-			   //  alert(dataString);
+			 //   alert(dataString);
 				  
 				  $.post("../controller/textbox_control.php", dataString ).done(function( data ) {
 																					 
@@ -262,7 +262,7 @@ function exit(){
 	var dos=$("#ed").val();
 	 var dataString = 'date='+ dos +"&id=entry" ;
 			 
-			   //  alert(dataString);
+			   // alert(dataString);
 				  
 				  $.post("../controller/textbox_control.php", dataString ).done(function( data ) {
 																					 

@@ -257,12 +257,16 @@ select {
                         <option value="non-corporate">Non-Corporate</option>
                       </select></td>
                     <td>Status</td>
-                    <td><div id="status"><input type="checkbox"  class="sta" name="status" value="Dropped"  >
-                      &nbsp;Dropped  &nbsp;&nbsp;&nbsp;
+                    <td>
+                      <div id="status">
+                      <input type="checkbox"  class="sta" name="status" value="Dropped">
+                      &nbsp; Dropped  &nbsp;&nbsp;&nbsp;
                       <input type="checkbox"  name="status" class="sta" value="Pending">
-                      &nbsp;Pending   &nbsp;&nbsp;&nbsp;
+                      &nbsp; Pending  &nbsp;&nbsp;&nbsp;
                       <input type="checkbox"  name="status" class="sta" value="Settled">
-                      &nbsp;Settled</div></td>
+                      &nbsp; Settled  &nbsp;
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td>Date of Settled/ Dropped</td>

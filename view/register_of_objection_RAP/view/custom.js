@@ -2,7 +2,19 @@
               //  var so=parseInt(tid)+1;
 //$(':input:enabled:visible:first').focus();
 
-
+function get_text(){		
+               // $("#re").hide();
+				var range=$('#obcode option:selected').val();
+	            
+					
+		        var dataString = 'objcode='+ range;
+			    
+			    $.post("view_obj_text.php", dataString ).done(function( data ) {
+				// $("#re").show();						
+                $("#objtxt").html(data);
+			//	alert(data);
+			});                             
+      }
 
 function get_text_box(){		
                // $("#re").hide();
@@ -136,7 +148,7 @@ cache: false,             // To unable request pages to be cached
 processData:false,        // To send DOMDocument or non processed data file it is set to false
 success: function(data)   // A function to be called if request succeeds
 {
-	// document.location="view.php";
+	document.location="view.php";
 	  $("#msg").html(data);
 	//alert(data)
 

@@ -27,20 +27,20 @@ $lar_ed='';
 $dos_sd='';
 $dos_ed='';
 $tax_st='';
-$tax_ed='';
+$tax_end='';
 $entry_st='';
 $entry_ed='';
 if(isset($a['fd'])){
-	$lar_sd=$a['fd'];//lar start Date
+	$lar_sd=$db->get_date_with_dash($a['fd']);//lar start Date
 	}
 if(isset($a['sd'])){
-	$lar_ed=$a['sd']; // lar End Date
+	$lar_ed=$db->get_date_with_dash($a['sd']); // lar End Date
 	}
 if(isset($a['dos_sd'])){
-	$dos_sd=$a['dos_sd']; // dos start Date
+	$dos_sd=$db->get_date_with_dash($a['dos_sd']); // dos start Date
 	}
 if(isset($a['dos_ed'])){
-	$dos_ed=$a['dos_ed']; // dos End Date
+	$dos_ed=$db->get_date_with_dash($a['dos_ed']); // dos End Date
 }
 if(isset($a['tax_st'])){
 	$tax_st=$a['tax_st']; // tax start
@@ -49,10 +49,10 @@ if(isset($a['tax_end'])){
     $tax_end=$a['tax_end']; // tax end
 }
 if(isset($a['entry_st'])){
-	$entry_st=$a['entry_st']; // entry start Date
+	$entry_st=$db->get_date_with_dash($a['entry_st']); // entry start Date
 	}
-if(isset($a['sd'])){
-	$entry_ed=$a['entry_end']; // entry Date
+if(isset($a['entry_end'])){
+	$entry_ed=$db->get_date_with_dash($a['entry_end']); // entry Date
 	}
 
 $apt=0;	
@@ -87,7 +87,7 @@ $i=1;
   </thead>
   <tbody >
     <?php  $m=1;
-          $iap_det=$db->get_rap_register_details_for_report($ccit_id,$cit_id,$ap,$range,$ao,$fy,$lar,$objection,$majorminor,$groups,$status,$dos,$user,$txe,$entry,$lar_sd,$lar_ed,$dos_sd,$dos_ed,$tax_st,$tax_ed,$entry_st,$entry_ed); //registeDet
+          $iap_det=$db->get_rap_register_details_for_report($ccit_id,$cit_id,$ap,$range,$ao,$fy,$lar,$objection,$majorminor,$groups,$status,$dos,$user,$txe,$entry,$lar_sd,$lar_ed,$dos_sd,$dos_ed,$tax_st,$tax_end,$entry_st,$entry_ed); //registeDet
 			         while ($row=mysql_fetch_array($iap_det)){
 					 $iap_reg_obj='';
 					 $iap_reg=$db->get_iap_register_obj_by_mst($row['MastCode']); //register_obj
@@ -109,16 +109,16 @@ $i=1;
 					  if($assty=mysql_fetch_array($ayy)){					 
 					  echo $assty['year'];
 					  } ?></td>
-      <td><?php echo $row['DOAO1'].",".$row['SectionCode1']; ?></td>
-      <td><?php $a=$row['TaxEffect']; $f=($a/100000); echo $f; ?></td>
+      <td><?php if($row['DOAO1']=='0000-00-00'){echo ",".$row['SectionCode1'];}else{$doo=$db->get_date_with_slash($row['DOAO1']); echo $doo ."," .$row['SectionCode1']; } ?></td>
+      <td><?php $a=$row['TaxEffect']; $f=round(($a/100000),2); echo $f; ?></td>
       <td><?php echo $row['GOObjection']; ?></td>
       <td><?php if($row['Accepted']==0){echo "No";}else{echo "Yes";}?></td>
-      <td><?php echo $row['DOI'];?></td>
-      <td><?php echo $row['LimitationDate']; ?></td>
-      <td><?php echo $row['DORO']; ?></td>
+      <td><?php if($row['DOI']=='0000-00-00'){}else{ echo  $doo=$db->get_date_with_slash($row['DOI']); }?></td>
+      <td><?php if($row['LimitationDate']=='0000-00-00'){}else{ echo  $doo=$db->get_date_with_slash($row['LimitationDate']);} ?></td>
+      <td><?php if($row['DORO']=='0000-00-00'){}else{ echo  $doo=$db->get_date_with_slash($row['DORO']);} ?></td>
       <td><?php echo $row['TaxEffectROrder']; ?></td>
       <td><?php echo $row['DCRNo']; ?></td>
-      <td><?php echo $row['DOCom']; ?></td>
+      <td><?php if($row['DOCom']=='0000-00-00'){}else{ echo  $doo=$db->get_date_with_slash($row['DOCom']);} ?></td>
       <td><?php if($row['SeenByIAP']==0){echo "No";}else{echo "Yes";}?></td>
     </tr>
     <?php $m++;  } ?>

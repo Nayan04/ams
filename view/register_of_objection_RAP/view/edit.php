@@ -361,7 +361,7 @@ $column=5;                //  Value For Check Page Permission
 					<?php }}  ?>
                   </select></td>
                 <td>Objection</td>
-                <td><input id="objtxt" name="objtxt" value="<?php echo $ac['GOObjection']; ?>"></td>
+                <td colspan="3"><input readonly id="objtxt" name="objtxt" class="setgo" value="<?php echo $ac['GOObjection']; ?>" size="50"></td>
               </tr>
               <tr>
                 <td>Objection Raised Under Section </td>

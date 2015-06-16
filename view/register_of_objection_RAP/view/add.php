@@ -285,7 +285,7 @@ $column=4;                //  Value For Check Page Permission
                     <?php }  ?>
                   </select></td>
                 <td align="center">Objection</td>
-                <td><input id="objtxt" name="objtxt"></td>
+                <td colspan="3"><input id="objtxt" name="objtxt" class="setgo" size="150"></td>
               </tr>
               <tr>
                 <td>Objection Raised Under Section </td>

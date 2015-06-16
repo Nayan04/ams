@@ -8,7 +8,7 @@ if($rr=mysql_fetch_array($rs)){
 	$code=$rr['obj_detail'];
 	?>
     <script type="text/javascript" language="javascript1.5">
-     alert(<?php echo $code;?>)
+     //alert(<?php //echo $code;?>)
 	$("#objtxt").val("<?php echo $code;?>");
     </script>
 	
