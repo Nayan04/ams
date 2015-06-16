@@ -153,17 +153,17 @@ $column=5;                //  Value For Check Page Permission
                 <td><input type="text"   id="LARIAMNo" name="LARIAMNo" value="<?php echo $a_obj['LARIAMNo']; ?>"></td>
                
                <td>Enrty Date</td>
-                <td><input type="text"   id="EntryDate" name="EntryDate" value="<?php echo $a_obj['EntryDate'];?>"></td>
+                <td><input type="text"   id="EntryDate" name="EntryDate" value="<?php if($a_obj['EntryDate']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($a_obj['EntryDate']); }?>"></td>
                 
                 
             
                 <td>Received Date</td>
-                <td><input type="text"   id="LARIAMRecDate" name="LARIAMRecDate" value="<?php echo $a_obj['LARIAMRecDate']; ?>" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
+                <td><input type="text"   id="LARIAMRecDate" name="LARIAMRecDate" value="<?php if($a_obj['LARIAMRecDate']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($a_obj['LARIAMRecDate']);} ?>" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
                 </tr>
                  <tr>
                 
                 <td>Date of Objection</td>
-                <td><input type="text"   id="DOAO1" name="DOAO1" value="<?php echo $ac['DOAO1']; ?>" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
+                <td><input type="text"   id="DOAO1" name="DOAO1" value="<?php if($ac['DOAO1']=='0000-00-00'){}else{ echo $dd=$obj->get_date_with_slash($ac['DOAO1']); }?>" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
                  <td>Fin. Year</td>
                 <td><select id="FinYearCode" name="FinYearCode">
                 
@@ -226,7 +226,7 @@ $column=5;                //  Value For Check Page Permission
                          <td> Block Asst.
                          <input type="checkbox" name="BlockAsst" value="1" checked id="BlockAsst"/>              
                         </td>
-                        <td>Period :<input type="text" name="BlockAsstPeriod" id="BlockAsstPeriod" value="<?php echo $ac['BlockAssPeriod']; ?>" /> </td>
+                        <td>Period :<input type="text" name="BlockAsstPeriod" id="BlockAsstPeriod" value="<?php echo $ac['BlockAsstPeriod']; ?>" /> </td>
                      <?php }else{ ?>
                      <td> Block Asst.
                          <input type="checkbox" name="BlockAsst" value="1"  id="BlockAsst"/>              
@@ -348,7 +348,7 @@ $column=5;                //  Value For Check Page Permission
             </tr>
             <tr>
                 <td>Last Date For Action</td>
-                <td><input type="text" id="LimitationDate" name="LimitationDate" value="<?php echo $ac['LimitationDate']; ?>"></td>
+                <td><input type="text" id="LimitationDate" name="LimitationDate" value="<?php if($ac['LimitationDate']=='0000-00-00'){}else{echo $d=$obj->get_date_with_slash($ac['LimitationDate']);} ?>"></td>
                
                 
             
@@ -383,7 +383,7 @@ $column=5;                //  Value For Check Page Permission
                 <?php }?>
                  </tr>
              <tr>
-             <TD>Date Of Sattelment/ Dropped</TD><TD><input type="text" value="<?php echo $ac['DOS']; ?>"   id="DOS" name="DOS" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></TD>
+             <TD>Date Of Sattelment/ Dropped</TD><TD><input type="text" value="<?php if($ac['DOS']=='0000-00-00'){}else{ echo $ddd=$obj->get_date_with_slash($ac['DOS']);} ?>"   id="DOS" name="DOS" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></TD>
                 <td>Remark</td>
                 <td><textarea name="Remarks" id="Remarks"><?php echo $ac['Remarks'];?> </textarea></td>
                 <td>Attachment 1</td>

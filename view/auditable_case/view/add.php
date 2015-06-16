@@ -157,7 +157,7 @@ $column=4;                //  Value For Check Page Permission
                   <td>
                     
                     <input type="text" id="amt" name="amt" onKeyPress="return isNumber(event)">
-                    <b id="errmsg" style="color:red;"></td>
+                    <b id="errmsg" style="color:red;"></b></td>
                 </tr>
                 <tr>
                   <td>Remark</td>

@@ -91,7 +91,7 @@ alert("***Invalid file Size or Type***");
 }
 /*******************************************************************************/
 $a=($_POST);
-print_r($a);
+//print_r($a);
 //print_r(array_values($a));
 //$values='',,$a['assesse'],,,$a['block'],$a['pirod'],$a['des']
 $ap_code=$a['aps'];
@@ -100,11 +100,12 @@ $cit=$_REQUEST['cit'];
 $ccit=$_REQUEST['ccit'];
 //$city=$_REQUEST['city'];
 $memo=$_REQUEST['memo'];
-$entry_date=$_REQUEST['entry_date'];
-$rece_date=$_REQUEST['rece_date'];
+$entry_date=$db->get_date_with_dash($_REQUEST['entry_date']);
+
+$rece_date=$db->get_date_with_dash($_REQUEST['rece_date']);
 $ccit_id=$_REQUEST['ccit_id'];
 $cit_id=$_REQUEST['cit_id'];
-$doo=$_REQUEST['doo_date'];
+$doo=$db->get_date_with_dash($_REQUEST['doo_date']);
 $fyear=$_REQUEST['fyear'];
 $assess=$_REQUEST['assessee'];
 $pan=$a['pan'];
@@ -112,6 +113,7 @@ $year=$a['year'];
 $block='';
 if(isset($a['bloc'])){
 $block=$a['bloc'];
+$year='';
 }// ye a nai raha hai
 $period=$a['period'];
 $des_ao=$a['des_ao'];
@@ -124,13 +126,13 @@ $sec2=$a['sec2'];
 $sec3=$a['sec3'];
 $sec4=$a['sec4'];
 $sec5=$a['sec5'];
-$l_date=$a['l_date'];
+$l_date=$db->get_date_with_dash($a['l_date']);
 $status=$a['status_type'];
 $obser='';
 if(isset($a['un_obser'])){
 	$obser=$a['un_obser'];
 	}
-$dos=$a['dos'];
+$dos=$db->get_date_with_dash($a['dos']);
 $att1=$targetPath1;
 $att2=$targetPath2;
 $remark=$a['remark'];

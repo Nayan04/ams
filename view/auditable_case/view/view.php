@@ -229,7 +229,7 @@ $column=6;                //  Value For Check Page Permission
                     <tr>
                       <td><input type="radio" id="che" class="radio"  name="che" value="<?=$row['ac_id'];?>" ></td>
                       <td><?php echo $m;?></td>
-                      <td><?php echo $row['d_o_a']; ?></td>
+                      <td><?php echo $doo=$db->get_date_with_slash($row['d_o_a']); ?></td>
                       <td><?php echo $row['assessee_name']; ?></td>
                       <td><?php echo $row['pan']; ?></td>
                       <td><?php

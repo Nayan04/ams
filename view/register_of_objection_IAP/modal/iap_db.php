@@ -165,6 +165,13 @@ $sql = sprintf("update register_obj  SET isactive=0 WHERE MastCode='$val' ");
 			        return $rs;
 			
 	}
+	function get_date_with_dash($dd_mm_yyyy){
+		$var =$dd_mm_yyyy;
+        $date=str_replace('/', '-', $var);
+        $result=date('Y-m-d', strtotime($date)); 
+		return $result;
+		}
+	
 
 }
 		?>

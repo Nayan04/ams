@@ -100,11 +100,11 @@ $cit=$_REQUEST['cit'];
 $ccit=$_REQUEST['ccit'];
 //$city=$_REQUEST['city'];
 $memo=$_REQUEST['LARIAMNo'];
-$entry_date=$_REQUEST['EntryDate'];
-$rece_date=$_REQUEST['LARIAMRecDate'];
+$entry_date=$db->get_date_with_dash($_REQUEST['EntryDate']);
+$rece_date=$db->get_date_with_dash($_REQUEST['LARIAMRecDate']);
 $ccit_id=$_REQUEST['CCITCode'];
 $cit_id=$_REQUEST['CITCode'];
-$doo=$_REQUEST['DOAO1'];
+$doo=$db->get_date_with_dash($_REQUEST['DOAO1']);
 $fyear=$_REQUEST['FinYearCode'];
 $assess=$_REQUEST['AssName'];
 $pan=$a['PanNo'];
@@ -112,6 +112,7 @@ $year=$a['AssYearCode'];
 $block='';
 if(isset($a['BlockAsst'])){
 $block=$a['BlockAsst'];
+$year='';
 }// ye a nai raha hai
 $period=$a['BlockAsstPeriod'];
 $des_ao=$a['AOCode'];
@@ -124,13 +125,13 @@ $sec2=$a['ObjSection2'];
 $sec3=$a['ObjSection3'];
 $sec4=$a['ObjSection4'];
 $sec5=$a['ObjSection5'];
-$l_date=$a['LimitationDate'];
+$l_date=$db->get_date_with_dash($a['LimitationDate']);
 $status=$a['StatusCode'];
 $obser='';
 if(isset($a['UnderObserve'])){
 	$obser=$a['UnderObserve'];
 	}
-$dos=$a['DOS'];
+$dos=$db->get_date_with_dash($a['DOS']);
 $att1=$targetPath1;
 $att2=$targetPath2;
 $remark=$a['Remarks'];

@@ -304,7 +304,7 @@ $column=6;                //  Value For Check Page Permission
 					  echo $row['FinYearCode'];
 					  ?></td>
                       <td><?php echo $row['LARIAMNo']; ?></td>
-                      <td><?php echo $row['DOAO1']; ?></td>
+                      <td><?php if($row['DOAO1']=='0000-00-00'){}else{ echo $doo=$db->get_date_with_slash($row['DOAO1']);} ?></td>
                       <td><?php echo $row['AssName']; ?></td>
                       <td><?php echo $row['PanNo']; ?></td>
                        <td><?php echo substr($row['ScanFile1'],14); ?></td>
@@ -343,7 +343,7 @@ $column=6;                //  Value For Check Page Permission
 						?></td>
                         <td><?php 
 					     					 
-					         echo $row['EntryDate'];
+					          if($row['EntryDate']=='0000-00-00'){}else{ echo $edate=$db->get_date_with_slash($row['EntryDate']);}
 						?></td>
                         <td><?php 
 					     					 

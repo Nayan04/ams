@@ -161,7 +161,7 @@ cache: false,             // To unable request pages to be cached
 processData:false,        // To send DOMDocument or non processed data file it is set to false
 success: function(data)   // A function to be called if request succeeds
 {
-	//document.location="view.php";
+	document.location="view.php";
 	  //  alert(data);
        $("#msg").html(data);
 }
@@ -199,7 +199,7 @@ $.post("../controller/update_ac_control.php", dataString ).done(function( data )
 	{
 				//	alert(data);								
                 $("#res").html(data);
-   			  // document.location="view_ccit.php";
+   			   document.location="view_ccit.php";
 	}); 
 		  }
 	  
@@ -582,12 +582,3 @@ $(document).ready(function() {
 											}
 									
 									});		
-$(document).ready(function() {
-    $("#tabs").tabs( {
-        "activate": function(event, ui) {
-            $( $.fn.dataTable.tables( true ) ).DataTable().columns.adjust();
-        }
-    } );
-    
-   
-} );

@@ -420,6 +420,7 @@ $column=4;                //  Value For Check Page Permission
  
 
 </div>
+</div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
   <div class="container-fluid">
@@ -449,7 +450,8 @@ $column=4;                //  Value For Check Page Permission
 <script src="../../../assests/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-						 // alert();
+						  //alert();
+						 $("#prio").hide();
 						  $("#rece_dat").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
 						    $("#rece_date").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
 							$("#rece_date1").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});

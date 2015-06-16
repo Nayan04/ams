@@ -280,7 +280,7 @@ $column=6;                //  Value For Check Page Permission
 					  echo $asst['year'];
 					  } ?></td>
                         <td><?php echo $iap_reg_obj['LARIAMNo']; ?></td>
-                        <td><?php echo $iap_reg_obj['LARIAMRecDate']; ?></td>
+                        <td><?php if($iap_reg_obj['LARIAMRecDate']=='0000-00-00'){}else{ echo $doo=$db->get_date_with_slash($iap_reg_obj['LARIAMRecDate']);}  ?></td>
                         <td><?php echo $row['ParaNo']; ?></td>
                         <td><?php echo $row['AssName']; ?></td>
                         <td><?php echo $row['PanNo']; ?></td>
@@ -330,7 +330,7 @@ $column=6;                //  Value For Check Page Permission
 						?></td>
                         <td><?php 
 					     					 
-					         echo $iap_reg_obj['EntryDate'];
+					         if($iap_reg_obj['EntryDate']=='0000-00-00'){}else{ echo $doo=$db->get_date_with_slash($iap_reg_obj['EntryDate']);}
 						?></td>
                         <td><?php 
 					     					 

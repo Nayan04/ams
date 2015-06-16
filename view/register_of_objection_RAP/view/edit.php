@@ -182,9 +182,9 @@ $column=5;                //  Value For Check Page Permission
               <td>LAR No.</td>
               <td><input type="text" name="lar" id="lar" value="<?php echo $a_obj['LARIAMNo'];  ?>" ></td>
               <td>Received Date</td>
-              <td><input type="text" name="rar" id="rar" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $a_obj['LARIAMRecDate']; ?>"></td>
+              <td><input type="text" name="rar" id="rar" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($a_obj['LARIAMRecDate']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($a_obj['LARIAMRecDate']); }?>"></td>
               <td>Enrty Date</td>
-              <td><input type="text"   id="entry_date" name="entry_date" value="<?php echo $a_obj['EntryDate'];?>"></td>
+              <td><input type="text"   id="entry_date" name="entry_date" value="<?php if($a_obj['EntryDate']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($a_obj['EntryDate']); }?>"></td>
             </tr>
           </table>
           </div>
@@ -281,11 +281,11 @@ $column=5;                //  Value For Check Page Permission
                 
                 <tr>
                   <td colspan="1" width="5%"> Date Of Assessement Order</td>
-                  <td><input type="text"   id="rece_dat" name="rece_dat" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOAO1'];?>"></td>
-                  <td><input type="text"   id="rece_date1" name="rece_date1" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOAO2'];?>"></td>
-                  <td><input type="text"   id="rece_date2" name="rece_date2" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOAO3'];?>"></td>
-                  <td><input type="text"   id="rece_date3" name="rece_date3" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOAO4'];?>"></td>
-                  <td><input type="text"   id="rece_date4" name="rece_date4" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOAO5'];?>"></td>
+                  <td><input type="text"   id="rece_dat" name="rece_dat" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask    value="<?php if($ac['DOAO1']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOAO1']); }?>"></td>
+                  <td><input type="text"   id="rece_date1" name="rece_date1" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOAO2']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOAO2']); }?>"></td>
+                  <td><input type="text"   id="rece_date2" name="rece_date2" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOAO3']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOAO3']);}?>"></td>
+                  <td><input type="text"   id="rece_date3" name="rece_date3" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOAO4']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOAO4']); }?>"></td>
+                  <td><input type="text"   id="rece_date4" name="rece_date4" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOAO5']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOAO5']);}?>"></td>
                 </tr>
                 <tr>
                   <td>Section</td>
@@ -441,6 +441,7 @@ $column=5;                //  Value For Check Page Permission
                 <?php }else{?>
 					 <option value="Major">Major</option>
 					<?php } ?>
+                    </select>
                 </td>
                 </tr>
                 <tr>
@@ -472,7 +473,7 @@ $column=5;                //  Value For Check Page Permission
           <tbody>
             <tr>
               <td>Date of Issue Of Inst. of Rem.Action</td>
-              <td><input type="text"   id="dateofi" name="dateofi" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOI']; ?>"></td>
+              <td><input type="text"   id="dateofi" name="dateofi" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOI']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash( $ac['DOI']); }?>"></td>
               <td>Remedial Action Proposed</td>
               <td><select id="rmp" name="rmp">
                   <option value="...">...</option>
@@ -486,11 +487,11 @@ $column=5;                //  Value For Check Page Permission
                   <?php }}  ?>
                 </select></td>
               <td>Last Date Of Action</td>
-              <td><input type="text"  id="dateofaction" name="dateofaction" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['LimitationDate']; ?>"></td>
+              <td><input type="text"  id="dateofaction" name="dateofaction" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['LimitationDate']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['LimitationDate']);} ?>"></td>
             </tr>
             <tr>
               <td>Date Of Remedial Order</td>
-              <td><input type="text"  id="dateofremedial" name="dateofremedial" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DORO']; ?>" ></td>
+              <td><input type="text"  id="dateofremedial" name="dateofremedial" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DORO']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DORO']);} ?>" ></td>
               <td>Tax Effect as per Rem. Order</td>
               <td><input type="text" id="taxeffecrot" name="taxeffectro" value="<?php echo $ac['TaxEffectROrder']; ?>" ></td>
             </tr>
@@ -498,11 +499,11 @@ $column=5;                //  Value For Check Page Permission
               <td>DCR NO</td>
               <td><input type="text" id="dcrno" name="dcrno" value="<?php echo $ac['DCRNo']; ?>"></td>
               <td>Date of Collection/Refund</td>
-              <td><input type="text"  id="dateofcollection" name="dateofcollection" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOC']; ?>"></td>
+              <td><input type="text"  id="dateofcollection" name="dateofcollection" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOC']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOC']); } ?>"></td>
             </tr>
             <tr>
               <td>Date of Comm. from AG/Board</td>
-              <td><input type="text"  id="datecomm" name="datecomm" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOCom']; ?>"></td>
+              <td><input type="text"  id="datecomm" name="datecomm" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOCom']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOCom']); }?>"></td>
             </tr>
             <tr>
               <td>Status</td>
@@ -530,7 +531,7 @@ $column=5;                //  Value For Check Page Permission
 					<?php }?>
                 </select></td>
               <td>Date of Settlement/Dropped</td>
-              <td><input type="text"  id="dateofsettle" name="dateofsettle" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php echo $ac['DOS']; ?>"></td>
+              <td><input type="text"  id="dateofsettle" name="dateofsettle" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask value="<?php if($ac['DOS']=='0000-00-00'){}else{ echo $Entry=$obj->get_date_with_slash($ac['DOS']); } ?>"></td>
             </tr>
             <tr>
               <td>Remarks</td>

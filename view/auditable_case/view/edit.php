@@ -10,6 +10,8 @@ $column=5;               //  Value For Check Page Permission
 //////////////////////////
 ?>
 <!-------------------- HEADER MENUS---------------------------->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 <?php  include("../../../common/menu_header_inside.php");?>
 <!-------------------- HEADER MENUS---------------------------->
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation<span class="caret"></span></a>
@@ -148,16 +150,8 @@ $column=5;               //  Value For Check Page Permission
           <td>     
         City</td><td> <input type="text"   id="city" name="city" value="<?php echo $cc['name'];?>" readonly class="setgo" >
         <input type="hidden"   id="city_id" name="city_id" value="<?php echo $ac['city_id'];?>" readonly class="setgo" ></td>
-                <?php $grps=0;
-				if($ac['city_group']==1){
-					$grps='Delhi and Mumbai';
-					
-					} else if($ac['city_group']==2) {
-						$grps='Other Metros';
-						}else if($ac['city_group']==3) {
-						$grps='Non Metro';
-						}?>
-        <td>CITY GROUP </td><td><input type="text"   id="city_group" readonly name="city_groups" value="<?php echo $grps; ?>" class="setgo">
+                
+        <td>CITY GROUP </td><td><input type="text"   id="city_group" readonly name="city_groups" value="<?php echo $ac['city_group']; ?>" class="setgo">
         <input type="hidden"   id="city_group" readonly name="city_group" value="<?php echo $ac['city_group']; ?>" class="setgo">
         </td></tr>
          </table>
@@ -169,7 +163,9 @@ $column=5;               //  Value For Check Page Permission
             <tbody>
             <tr>
                 <td>Date Of Order</td>
-                <td><input type="text"   id="doo" name="doo" value="<?php echo $ac['d_o_a'];?>" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                <td><span id="sprytextfield1">
+                <input type="text"   id="doo" name="doo" value="<?php echo $dd=$obj->get_date_with_slash($ac['d_o_a']);?>" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span>                  
                 <input type="hidden"   id="ao_id" name="ao_id"  value="<?php echo $ao_id;?>"></td>
                 </tr>
             <tr>
@@ -300,7 +296,7 @@ $(document).ready(function(){
 <!-- Bootstrap 3.3.2 JS -->
 
 <script type="text/javascript">
-      $(function () {
+$(function () {
         $("#example1").dataTable();
         $('#example2').dataTable({
           "bPaginate": true,
@@ -311,7 +307,8 @@ $(document).ready(function(){
           "bAutoWidth": false
         });
       });
-    </script>
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "date", {format:"dd/mm/yyyy", validateOn:["blur", "change"], useCharacterMasking:true});
+</script>
 <!-- page script -->
 </body>
 </html>

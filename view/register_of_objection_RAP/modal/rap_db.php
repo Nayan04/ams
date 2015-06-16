@@ -15,7 +15,12 @@ class rap_db
 	}
 	
 	
-	
+	function get_date_with_dash($dd_mm_yyyy){
+		$var =$dd_mm_yyyy;
+        $date=str_replace('/', '-', $var);
+        $result=date('Y-m-d', strtotime($date)); 
+		return $result;
+		}
 	
 	
 	function insert_objection_reg_rap($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rec_date,$entry_date){
