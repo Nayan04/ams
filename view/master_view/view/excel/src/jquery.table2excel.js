@@ -45,7 +45,17 @@
 			$(e.element).each( function(i,o) {
 				var tempRows = "";
 				$(o).find("tr").not(e.settings.exclude).each(function (i,o) {
-					tempRows += "<tr>" + $(o).html() + "</tr>";
+					tempRows += "<tr>";
+				
+                $(o).find("th").not(e.settings.exclude).each(function(i, o) {
+																					   var a=$(this).attr('colspan');
+                tempRows += "<th colspan="+a+" style=background:gray;color:#fff;>" + $(o).html() + "</th>";
+		                                                                    });
+				$(o).find("td").not(e.settings.exclude).each(function(i, o) {
+																					  // var a=$(this).attr('colspan');
+                tempRows += "<td>" + $(o).html() + "</td>";
+		                                                                    });
+				tempRows += "</tr>";
 				});
 				e.tableRows.push(tempRows);
 			});

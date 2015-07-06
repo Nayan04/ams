@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +26,16 @@ function get_ao(){
 	
 	}
 </script>
-<?php 
+<?php
 ///////////////////////////s
-$module=4;                //
-$column=4;                //  Value For Check Page Permission
+$module = 4; //
+$column = 4; //  Value For Check Page Permission
 ///////////////////////////
 ?>
 <!-------------------- HEADER MENUS---------------------------->
-<?php  include("../../../common/menu_header_inside.php");?>
+<?php
+include("../../../common/menu_header_inside.php");
+?>
 <!-------------------- HEADER MENUS---------------------------->
   <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation<span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
@@ -95,21 +99,33 @@ $column=4;                //  Value For Check Page Permission
         </h3>
       </div>
     </div>
-    <?php include("../model/draft_db.php");
-		       $obj=new draft_db();
-			   $rs=$obj->view_cit();
-			  
-		?>
+    <?php
+include("../model/draft_db.php");
+$obj = new draft_db();
+$rs  = $obj->view_cit();
+
+?>
+
+<form id="nnnnn" name="nnnnn">
     <div class=" box box-body main" style="margin-top:-10px;">
       <div class="hds">
+     
         <table width="100%" id="recTable" >
           <tr>
             <td align="center">CIT Charge </td>
             <td><select name="cit" id="cit" onChange="get_ao();" class="setgo">
                 <option value="...">...</option>
-                <?php while($cit=mysql_fetch_array($rs)){?>
-                <option value="<?php echo $cit['id'] ?>"><?php echo $cit['cit_charge_name']; ?></option>
-                <?php }  ?>
+                <?php
+while ($cit = mysql_fetch_array($rs)) {
+?>
+                <option value="<?php
+    echo $cit['id'];
+?>"><?php
+    echo $cit['cit_charge_name'];
+?></option>
+                <?php
+}
+?>
               </select></td>
             <td >DP NO. :</td>
             <td><input type="text" id="dpno" name="dpno" class="setgo"></td>
@@ -124,17 +140,22 @@ $column=4;                //  Value For Check Page Permission
             <td>C & AG Year</td>
             <td colspan="3"><select  id="year" name="year" >
                 <option value="...">ALL</option>
-                <?php          $r1=$obj->view_year();
-				                while($sec=mysql_fetch_array($r1)){
-					  ?>
-                <option value="<?= $sec['year_id']; ?>"><?php echo $sec['year'];?></option>
-                <?php } ?>
+                <?php
+$r1 = $obj->view_year();
+while ($sec = mysql_fetch_array($r1)) {
+?>
+                <option value="<?= $sec['year_id']; ?>"><?php
+    echo $sec['year'];
+?></option>
+                <?php
+}
+?>
               </select>
           </tr>
           <tr>
             <td>Date of sending prof. report to <br>
               board : Part A & B </td>
-            <td><input type="text"   id="dosparta" name="prof"  data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
+            <td><input type="text"   id="dosparta" name="dosparta"  data-inputmask="'alias': 'mm/dd/yyyy'" data-mask /></td>
             <td>Assessee Name</td>
             <td><input type="text" id="assname" name="assname"/></td>
             <td>PAN No.</td>
@@ -155,13 +176,13 @@ $column=4;                //  Value For Check Page Permission
           <td><input type="text" id="dore" name="dore"  data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
           <td >Date of Disposal <br>
             of Explanation</td>
-          <td ><input type="text"  id="dode" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask/></td>
+          <td ><input type="text"  id="dode" name="dode" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask/></td>
           <td>Date of final return to Directorate</td>
           <td><input type="text" id="dofrd" name="dofrd"  data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
         </tr>
         <tr>
           <td>Status</td>
-          <td ><select id="stat" name="stat">
+          <td ><select id="stat" name="stat" id="stat">
               <option value="...">...</option>
               <option value="Dropped">Dropped</option>
               <option value="Pending">Pending</option>
@@ -176,25 +197,27 @@ $column=4;                //  Value For Check Page Permission
         <td>Asst. Year</td>
           <td><select id="ay" name="ay">
               <option value="...">ALL</option>
-              <?php 
-					   
-		                            $r1=$obj->view_year();
-				           
-		 		                 while($sec=mysql_fetch_array($r1)){
-					
-			             ?>
-              <option value="<?= $sec['year_id']; ?>"><?php echo $sec['year'];?></option>
-              <?php } ?>
+              <?php
+
+$r1 = $obj->view_year();
+
+while ($sec = mysql_fetch_array($r1)) {
+    
+?>
+<option value="<?= $sec['year_id']; ?>"><?php echo $sec['year'];?></option>
+              <?php
+}
+?>
             </select></td>
           <td>Block Asst.
-            <input type="checkbox" id="ba" name="ba"/></td>
+            <input type="checkbox" id="ba" name="ba" /></td>
           <td id="prio"><input type="text" id="priod" name="priod"></td>
           <td>Tax Effect</td>
-          <td><input type="text" name="te" id="te"></td>
+          <td><input type="text" name="te" id="te"><b id="errmsg" style="color:red;"></b></td>
         </tr>
         <tr>
           <td>Boards Final Decession</td>
-          <td><select id="bfd"fd name="bfd">
+          <td><select id="bfd" name="bfd">
               <option value="...">...</option>
               <option value="Dropped">Dropped</option>
               <option value="Pending">Pending</option>
@@ -211,14 +234,21 @@ $column=4;                //  Value For Check Page Permission
         <tr></tr>
         <td>Section under which initiated</td>
           <td><select id="sec" name="sec" >
-              <?php $obj_db=new draft_db();
-                 $rs=$obj_db->get_section(); ?>
+              <?php
+$obj_db = new draft_db();
+$rs     = $obj_db->get_section();
+?>
               <option value="...">ALL </option>
-              <?php while($sec=mysql_fetch_array($rs)){
-	
-	                 ?>
-              <option value="<?= $sec['section_id']; ?>"><?php echo $sec['section_code'];?></option>
-              <?php }?>
+              <?php
+while ($sec = mysql_fetch_array($rs)) {
+    
+?>
+              <option value="<?= $sec['section_id']; ?>"><?php
+    echo $sec['section_code'];
+?></option>
+              <?php
+}
+?>
             </select></td>
           <td colspan="2" >Date of completion of remedial action</td>
           <td colspan="2"><input type="text" id="com_date" name="com_date"  data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></td>
@@ -231,17 +261,20 @@ $column=4;                //  Value For Check Page Permission
           
         </tr>
         <tr>
-          <td>Attach File 1</td>
-          <td><input type="file" value="attach1" name="Attachfile" id="file1"></td>
+          <td colspan="2">Attach File 1</td>
+          <td colspan="2"><input type="file" value="att1" name="att1" id="att1"></td><td colspan="3"><a class="" id="clear1"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
+          </tr><tr>
           <td colspan="2">Attach File 2</td>
-          <td colspan="2"><input type="file" value="attach2" name="Attach file" id="file2"></td>
+          <td colspan="2"><input type="file" value="att2" name="att2" id="att2"></td><td colspan="3"><a class="" id="clear2"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
         </tr>
         <tr>
           <td colspan="7" align="right"><button type="button" class="btn btn-primary" data-dismiss="modal" onClick="add_draft();" id="save" >Submit</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="delete_draft();" id="save" style="visibility:hidden;" >Delete</button></td>
         </tr>
       </table>
+      
     </div>
+    </form>
   </div>
 </div>
 <!-- /.box-body -->

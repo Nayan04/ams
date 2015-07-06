@@ -13,7 +13,7 @@ $rs=$obj->view_objection_by_code($obj_id);
 					
 			             ?>
                          
-                         <input type="text" id="obj_detail" value="<?php echo $sec['obj_detail']; ?>" style="border:none;">
+                         <?php echo $sec['obj_detail']; ?>
                         
                         
  <?php } ?>

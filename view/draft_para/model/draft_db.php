@@ -15,31 +15,32 @@ class draft_db
 		mysql_close($this->link);
 	}
 	
-	function insert_draft($dpno,$dor,$year,$dosparta,$assname ,$panno,$dore,$dode ,$dofrd,$stat,$gist,$aom,$cit,$ccit,$range_id ,$accepted,$expofres,$countt){
-		$sql = sprintf("insert into draftpara (DPNo,DOR,FinYearCode,DOSPartA,DOSPartB, AssName,AOCode,RangeCode,CCITCode,CITCode,Accepted,CallExpOfResPerson,ExpOfResPerson,DORE,DODE,DOFRD,PANNo,Remarks,StatusCode,isactive,draft_id) values('$dpno','$dor','$year','$dosparta','','$assname','$aom','$range_id','$ccit','$cit','$accepted','$expofres','','$dore','$dode','$dofrd','$panno','$gist','$stat',1,'$countt')"); 
+	function insert_draft($dpno,$dor,$year,$dosparta,$assname ,$panno,$dore,$dode ,$dofrd,$stat,$gist,$aom,$cit,$ccit,$range_id ,$accepted,$expofres,$countt, $APMastCode, $APCode, $user){
+		$sql = sprintf("insert into draftpara (DPNo,DOR,FinYearCode,DOSPartA,DOSPartB, AssName,AOCode,RangeCode,CCITCode,CITCode,Accepted,CallExpOfResPerson,ExpOfResPerson,DORE,DODE,DOFRD,PANNo,Remarks,StatusCode,isactive,draft_id, APMastCode, APCode, UserCode) values('$dpno','$dor','$year','$dosparta','','$assname','$aom','$range_id','$ccit','$cit','$accepted','$expofres','','$dore','$dode','$dofrd','$panno','$gist','$stat',1,'$countt', '$APMastCode', '$APCode', '$user')"); 
 		
 		 $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
 			         }	
+					echo $sql;
 		}
 		
 		
-		function insert_dpdet($ay,$te ,$bfd,$board_date,$rem ,$com_date,$ref,$col ,$file1,$file2,$ba,$ini,$sec,$countt,$block_p){
+		function insert_dpdet($ay,$te ,$bfd,$board_date,$rem ,$com_date,$ref,$col ,$file1,$file2,$ba,$ini,$sec,$countt,$block_p, $APMastCode, $APCode){
 			
-		$sql = sprintf("insert into dpdettab (AssYearCode,TaxEffect,StatusCode,DORA,DOIRA,SectionCode,DOCRA,DOC,BlockAsst,BlockAsstPeriod, BoardDate, RefNo,ScanFile1,ScanFile2,MastCode,SrNo,isactive) values('$ay','$te','$bfd','$rem','$ini','$sec','$com_date','$col','$ba','$block_p','$board_date','$ref','$file1','$file2','$countt','$countt',1)");	
-			
-			
+		$sql = sprintf("insert into dpdettab (AssYearCode,TaxEffect,StatusCode,DORA,DOIRA,SectionCode,DOCRA,DOC,BlockAsst,BlockAsstPeriod, BoardDate, RefNo,ScanFile1,ScanFile2,MastCode,SrNo,isactive, APMastCode, APCode) values('$ay','$te','$bfd','$rem','$ini','$sec','$com_date','$col','$ba','$block_p','$board_date','$ref','$file1','$file2','$countt','$countt',1,'$APMastCode', '$APCode')");
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
-			         }	
+			         }else{
+					 echo $sql;
+					 }
 			}
 			
 			
-		function insert_dpdet_by_edit($ay,$te ,$bfd,$board_date,$rem ,$com_date,$ref,$col ,$file1,$file2,$ba,$ini,$sec,$countt,$sno,$block_p){
+		function insert_dpdet_by_edit($ay,$te ,$bfd,$board_date,$rem ,$com_date,$ref,$col ,$file1,$file2,$ba,$ini,$sec,$countt,$sno,$block_p,$APCode,$APMastCode){
 			
-		$sql = sprintf("insert into dpdettab (AssYearCode,TaxEffect,StatusCode,DORA,DOIRA,SectionCode,DOCRA,DOC,BlockAsst,BlockAsstPeriod, BoardDate, RefNo,ScanFile1,ScanFile2,MastCode,SrNo,isactive) values('$ay','$te','$bfd','$rem','$ini','$sec','$com_date','$col','$ba','$block_p','$board_date','$ref','$file1','$file2','$sno','$countt',1)");	
+		$sql = sprintf("insert into dpdettab (AssYearCode,TaxEffect,StatusCode,DORA,DOIRA,SectionCode,DOCRA,DOC,BlockAsst,BlockAsstPeriod, BoardDate, RefNo,ScanFile1,ScanFile2,MastCode,SrNo,isactive, APCode, APMastCode) values('$ay','$te','$bfd','$rem','$ini','$sec','$com_date','$col','$ba','$block_p','$board_date','$ref','$file1','$file2','$sno','$countt',1,'$APCode','$APMastCode')");	
 			
 			
 		            $rs=mysql_query($sql,$this->link);
@@ -52,8 +53,8 @@ class draft_db
 			
 			
 		
-		function update_draft($dpno,$dor,$year,$dosparta,$assname,$panno,$dore,$dode ,$dofrd,$stat,$gist,$aom,$cit,$ccit,$range_id,$accepted,$expofres,$sno){
-			$sql = sprintf("update draftpara SET DOR='$dor',FinYearCode='$year',DOSPartA='$dosparta',DOSPartB='', AssName='$assname',AOCode='$aom',RangeCode='$range_id',CCITCode='$ccit',CITCode='$cit',Accepted='$accepted',CallExpOfResPerson='$expofres',ExpOfResPerson='',DORE='$dore',DODE='$dode',DOFRD='$dofrd',PANNo='$panno',Remarks='$gist',StatusCode='$stat' where id='$sno' "); 
+		function update_draft($dpno,$dor,$year,$dosparta,$assname,$panno,$dore,$dode ,$dofrd,$stat,$gist,$aom,$cit,$ccit,$range_id,$accepted,$expofres,$sno, $APCode, $APMastCode,$user){
+			$sql = sprintf("update draftpara SET DOR='$dor',FinYearCode='$year',DOSPartA='$dosparta',DOSPartB='', AssName='$assname',AOCode='$aom',RangeCode='$range_id',CCITCode='$ccit',CITCode='$cit',Accepted='$accepted',CallExpOfResPerson='$expofres',ExpOfResPerson='',DORE='$dore',DODE='$dode',DOFRD='$dofrd',PANNo='$panno',Remarks='$gist',StatusCode='$stat', APCode='$APCode', APMastCode='$APMastCode', UserCode='$user' where id='$sno' "); 
 		
 		 $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
@@ -64,10 +65,16 @@ class draft_db
 			}
 			
 			
-	function update_dpdet($ay,$te ,$bfd,$board_date,$rem ,$com_date,$ref,$col ,$file1,$file2,$ba,$ini,$sec,$countt,$sno, $block_p){
-			
-		$sql = sprintf("update dpdettab SET AssYearCode='$ay',TaxEffect='$te',StatusCode='$bfd',DORA='$rem',DOIRA='$ini',SectionCode='$sec',DOCRA='$com_date',DOC='$col',BlockAsst='$ba',BlockAsstPeriod='$block_p', BoardDate='$board_date', RefNo='$ref',ScanFile1='$file1',ScanFile2='$file2' where draft_id='$sno' ");	
-			
+	function update_dpdet($ay,$te ,$bfd,$board_date,$rem ,$com_date,$ref,$col ,$file1,$file2,$ba,$ini,$sec,$countt,$sno, $block_p, $apc, $apmast){
+			$sql='';
+		if($file1==''){
+		$sql = sprintf("update dpdettab SET AssYearCode='$ay',TaxEffect='$te',StatusCode='$bfd',DORA='$rem',DOIRA='$ini',SectionCode='$sec',DOCRA='$com_date',DOC='$col',BlockAsst='$ba',BlockAsstPeriod='$block_p', BoardDate='$board_date', RefNo='$ref',ScanFile2='$file2', APCode='$apc', APMastCode='$apmast' where draft_id='$sno' ");	
+		} if($file2==''){			
+			$sql = sprintf("update dpdettab SET AssYearCode='$ay',TaxEffect='$te',StatusCode='$bfd',DORA='$rem',DOIRA='$ini',SectionCode='$sec',DOCRA='$com_date',DOC='$col',BlockAsst='$ba',BlockAsstPeriod='$block_p', BoardDate='$board_date', RefNo='$ref',ScanFile1='$file1', APCode='$apc', APMastCode='$apmast' where draft_id='$sno' ");	
+			}if($file1!='' && $file2!=''){
+				$sql = sprintf("update dpdettab SET AssYearCode='$ay',TaxEffect='$te',StatusCode='$bfd',DORA='$rem',DOIRA='$ini',SectionCode='$sec',DOCRA='$com_date',DOC='$col',BlockAsst='$ba',BlockAsstPeriod='$block_p', BoardDate='$board_date', RefNo='$ref',ScanFile1='$file1',ScanFile2='$file2', APCode='$apc', APMastCode='$apmast' where draft_id='$sno' ");	
+				
+				}
 			
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
@@ -124,7 +131,7 @@ class draft_db
 		function get_section(){
 			
 			
-				$sql = sprintf("select * from section_detail where isactive=1 "); 
+				$sql = sprintf("select * from section_detail where isactive=1 order by section_code asc "); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -179,6 +186,15 @@ class draft_db
 			        return $rs;				
 						
 						}
+						function view_draft_para_count(){
+							$sql = sprintf("SELECT count(id) total from draftpara where isactive=1"); 
+		            $rs=mysql_query($sql,$this->link);
+		            if(!$rs){
+			         echo mysql_error($this->link);
+			         }
+			        return $rs;				
+						
+						}
 						
 					function view_draft_id($draft_id){						
 				    $sql = sprintf("select * from draftpara where isactive=1 and id='$draft_id'"); 
@@ -203,6 +219,17 @@ class draft_db
 						function view_draft_dpt_by_mst($mst){
 						
 						$sql = sprintf("select * from dpdettab where isactive=1 and MastCode='$mst'"); 
+		            $rs=mysql_query($sql,$this->link);
+		            if(!$rs){
+			         echo mysql_error($this->link);
+			         }
+			        return $rs;
+						
+						
+						}
+						function view_draft_by_cit($mst){
+						
+						$sql = sprintf("select count(id)total, APCode from draftpara where isactive=1 and APCode='$mst'"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);

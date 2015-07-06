@@ -12,7 +12,7 @@ $ay=$a['ay'];?>
 
 <table id="example3" class="table table-bordered table-striped display xl" style="white-space:nowrap;">
   <thead>
-  <tr ><th colspan="17" style="table-layout:auto; text-align:left; font-family:Tahoma, Geneva, sans-serif; font-size:11px;padding-left:600px; color:#000">Receipt Audit Register-6</th></tr><tr><th colspan="17" style="table-layout:auto; text-align:left; font-family:Tahoma, Geneva, sans-serif;padding-left:590px; font-size:11px; color:#000"> Regiter Regarding Draft Paras</th></tr>
+  <tr ><th colspan="17" >Receipt Audit Register-6</th></tr><tr><th colspan="17" > Regiter Regarding Draft Paras</th></tr>
     <tr>
       <th>Sr.</th>
       <th>C & AG Year</th>

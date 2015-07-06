@@ -87,7 +87,7 @@ $column=6;                //  Value For Check Page Permission
              <?php $module=26; //ccit module code
 		       $column=5;
 			   $per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
-			   if(!$per_val){?>
+			   if($per_val){?>
 		
           <a class="btn btn-app" onClick="edit();" id="edis" > <i class="fa fa-edit"></i> Edit </a>
            <?php }else{?>
@@ -104,7 +104,7 @@ $column=6;                //  Value For Check Page Permission
         <div class="box-body">
           <div id="prin">
             <div class="box-body">
-              <div class="head">User Group</div>
+              <div class="head_section">User Group</div>
               <table id="example1"  width="100%" class="table table-bordered table-striped display" style="white-space:nowrap;">
                 <thead>
                   <tr>
@@ -157,9 +157,23 @@ $column=6;                //  Value For Check Page Permission
 <?php include("../../../common/master_footer_for_view.php") ?>
 <script src='permissiom_js.js'></script>
 <script type="text/javascript">
-      $(function () {
-       $("#example1").dataTable();
-				  });
+       var t = $('#example1').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        } ],
+        "order": [[ 1, 'asc' ]],	
+		"scrollY":290,
+		"paging":false
+    } );
+ 
+    t.on( 'order.dt search.dt', function () {
+        t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+	var tt = new $.fn.dataTable.TableTools( t, {sRowSelect: 'single'});
        
 	  
     </script>

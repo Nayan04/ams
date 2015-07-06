@@ -25,7 +25,7 @@ class user_db
 		}
 		
 		function view_user(){
-				$sql = sprintf("select * from user_detail where isactive=1 "); 
+				$sql = sprintf("select * from user_detail where isactive=1 and type!=1 "); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -78,7 +78,7 @@ class user_db
 				
 		function view_grp()
 		{
-			$sql = sprintf("select * from user_group_detail where isactive=1 "); 
+			$sql = sprintf("select * from usergroupmast where isactive=1 and type!=1 "); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);

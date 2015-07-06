@@ -432,7 +432,7 @@ $column=5;                //  Value For Check Page Permission
                 <?php }?>
                   </select></td>
                 <td>Tax Effect (RS)</td>
-                <td><input type="text" id="amt" name="amt" value="<?php echo $ac['TaxEffect'];?>"></td>
+                <td><input type="text" id="amt" name="amt" value="<?php echo $ac['TaxEffect'];?>"><b id="errmsgs" style="color:red"></b></td>
                 <td>Type</td>
                 <td>
                 <select id="type" name="type" >
@@ -541,9 +541,9 @@ $column=5;                //  Value For Check Page Permission
             </tr>
             <tr>
               <td>Attachment 1</td>
-              <td><input type="file" name="att1" id="att1"></td>
+              <td><input type="file" name="att1" id="att1"><a class="" id="clear1"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
               <td>Attachment 2</td>
-              <td><input type="file" name="att2" id="att2"></td>
+              <td><input type="file" name="att2" id="att2"><a class="" id="clear2"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
             </tr>
         </form>
         </tbody>

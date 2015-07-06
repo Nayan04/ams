@@ -76,7 +76,7 @@ $column=5;               //  Value For Check Page Permission
            <a class="btn btn-app" style="color:#E5E5E5;"> <i class="fa fa-table"></i> Excel </a> 
            <a style="color:#E5E5E5;" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a>
           </h3>
-          </h3>
+        
         </div>
      
         
@@ -183,18 +183,18 @@ $column=5;               //  Value For Check Page Permission
             <tr>
                 <td>Group</td>
                 <td><select id="group" name="group">
-                <?php if($ac['groups']=="...") {?>
-                <option value="..." selected>...</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Non-Corporate">Non Corporate</option>
-                <?php } else if($ac['groups']=="Corporate") {?>
+                <?php  if($ac['groups']=="Corporate") {?>
                  <option value="...">...</option>
                 <option value="Corporate" selected>Corporate</option>
-                <option value="Non-Corporate">Non Corporate</option>
+                <option value="Non Corporate">Non Corporate</option>
                  <?php } else if($ac['groups']=="Non Corporate") {?>
                   <option value="...">...</option>
                 <option value="Corporate">Corporate</option>
-                <option value="Non-Corporate" selected>Non Corporate</option>
+                <option value="Non Corporate" selected>Non Corporate</option>
+                <?php }else {?>
+                <option value="..." selected>...</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Non Corporate">Non Corporate</option>
                 <?php } ?>
                 </select></td>
                 
@@ -232,7 +232,7 @@ $column=5;               //  Value For Check Page Permission
             </tr>
             <tr>
                 <td>Assessed/Return Income- Loss/Refund</td>
-                <td><input type="text" id="amt" name="amt" value="<?php echo $ac['amount']; ?>"></td>
+                <td><input type="text" id="amt" name="amt" value="<?php echo $ac['amount']; ?>"><b id="errmsg" style="color:red;"></b></td>
                
                 
             </tr>
@@ -254,7 +254,7 @@ $column=5;               //  Value For Check Page Permission
             </tr>
              <tr>
                 <td></td>
-                <td><button type="button" class="btn btn-primary" name="save" id="save" data-dismiss="modal" onClick="edit_ac();" >ADD</button></td>
+                <td><button type="button" class="btn btn-primary" name="save" id="save" data-dismiss="modal" onClick="edit_ac();" >Update</button></td>
                
                 
             </tr>

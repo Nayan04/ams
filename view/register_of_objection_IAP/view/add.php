@@ -171,7 +171,7 @@ $column=4;                //  Value For Check Page Permission
                 
             
                 <td>PAN NO.</td>
-                <td><input type="text"   id="pan" name="pan" maxlength="10" ><div id="errormsg"></div></td>
+                <td><input type="text"   id="pan" name="pan" maxlength="10" ></td>
                 
                 
            
@@ -213,7 +213,7 @@ $column=4;                //  Value For Check Page Permission
                 
                 </select></td>              
                 <td align="center">Tax Effect (RS)</td>
-                <td><input type="text" id="amt" name="amt" ></td>
+                <td colspan="2"><input type="text" id="amt" name="amt" ><b id="errmsgs" style="color:red"></b></td>
                 <td align="right">Type</td>
                 <td>
                 <select id="type" name="type" >                
@@ -290,13 +290,13 @@ $column=4;                //  Value For Check Page Permission
                  <option value="DROPPED">DROPPED</option>
                 
                 </select></td>
-                <td><input type="checkbox" name="un_obser" id="un_obser" value="1">Under Observation?</td> </tr>
+                <td colspan="2"><input type="checkbox" name="un_obser" id="un_obser" value="1">Under Observation?</td> </tr>
              <tr>
              <TD colspan="2">Date Of Sattelment/ Dropped</TD><TD><input type="text"   id="dos" name="dos" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask></TD>
                 <td align="center">Remark</td>
                 <td><textarea name="remark" id="remark"> </textarea></td>
                 <td>Attachment 1</td>
-                <td colspan="3"><input type="file" name="att1" id="att1"></td>
+                <td colspan="2"><input type="file" name="att1" id="att1"></td><td><a class="" id="clear1"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
                
                 
             </tr>
@@ -304,7 +304,7 @@ $column=4;                //  Value For Check Page Permission
                 <td colspan="2">Details Of Corr. Made</td>
                 <td><textarea name="corr" id="corr"> </textarea></td><TD></TD><TD></TD>
                <td>Attachment 2</td>
-                <td colspan="3"><input type="file" name="att2" id="att2"></td>
+                <td colspan="2"><input type="file" name="att2" id="att2"></td><td><a class="" id="clear2"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
                 
             </tr>
              <tr>

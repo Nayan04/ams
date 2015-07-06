@@ -92,8 +92,8 @@ $column=5;                //  Value For Check Page Permission
       <div class="box box-primary" style="width:40%; margin-left:30%; margin-right:20%;">
         <div class="box-body">
        
-             <form class="modal-content" >
-              <div class="head">Edit city</div>
+             <form class="" >
+            
           <div class="form-group">
           
              <input type="hidden" name="id"  class="form-control" id="id" value="<?php echo $cit['city_id']; ?>">

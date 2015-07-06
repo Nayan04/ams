@@ -103,7 +103,7 @@ include("../../../common/menu_header_inside.php");?>
           </thead>
         <tr>
           <td>1</td>
-          <td><a href="#">Local Audit Report </a></td>
+          <td><a href="rap_view.php">Local Audit Report </a></td>
         </tr>
         <tr>
           <td>2</td>
@@ -122,7 +122,7 @@ include("../../../common/menu_header_inside.php");?>
     <div style="width:80%; background-color:#fff; float:left; ">
       <table width="100%" id="exam" class="table table-bordered table-striped display" style="white-space:nowrap;">
         <tr>
-          <td align="right">Officer</td>
+          <td align="right">Search Officer</td>
           <td><input type="text" id="off" name="off" class="officer" data-column="2"/>
             &nbsp;&nbsp;
             <input type="button" value="Views" id="get_view" name="get_view" onClick="views_report();" class="btn btn-success">
@@ -131,12 +131,13 @@ include("../../../common/menu_header_inside.php");?>
         </tr>
       </table>
     </div>
-    <div style="width:78%;  background-color:#fff; float:left; margin-left:20px; padding-left:10px; overflow:scroll; max-height:400px; overflow-x:hidden; ">
+    <div class="table_0"  style="width:78%; background-color:#fff; float:left; margin-left:20px; padding-left:10px; ">
       <table id="example1" width="100%" class="table table-bordered table-striped display" > 
         <thead>
           <tr>
+            
+            <th></th>
             <th>NO</th>
-            <th>Select</th>
             <th>Officer</th>
           </tr>
         </thead>
@@ -146,8 +147,9 @@ include("../../../common/menu_header_inside.php");?>
 			$sno=0;
 			while($row=mysql_fetch_array($rs)){?>
           <tr>
-            <td><?php echo $sno+1; ?></td>
             <td><input type="radio" value="<?php echo $row['officer_id']; ?>" id="che" name="che"></td>
+            <td><?php echo $sno+1; ?></td>
+            
             <td><?php echo $row['name']; ?></td>
           </tr>
           <?php 	$sno++; ?>
@@ -195,24 +197,35 @@ include("../../../common/menu_header_inside.php");?>
 			</script>         
 <script type="text/javascript">
        var t = $('#example1').DataTable( {
-						"paging":false	
+						"paging":false,	
 						
         "columnDefs": [ {
             
             "orderable": false,
-            "targets": 0, 
+            "targets": 1, 
 			
         } ],
-		//"scrollY":200
+		"scrollY":200
     } );
+
+   
+	
+
  
     t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+        t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
         } );
     } ).draw();
+	
+	 var tt = new $.fn.dataTable.TableTools( t, {
+        sRowSelect: 'single'		
+    }); 
+    $( t.fnContainer() ).insertAfter('a.infos');
     </script>
 <script type="text/javascript">
+
+
 function filterColumn ( i,text ) {
 	$('#example1').DataTable().column( i ).search(text).draw();
 }

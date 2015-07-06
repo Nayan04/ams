@@ -7,7 +7,7 @@ document.location="../../../login/views/index.php";</script>
 <script src="../../../pace-master/pace.min.js"></script>
 <?php
 $user=$_SESSION['user_id'];
-$add_str='<a class="btn btn-app" style="color:#E5E5E5;" ><i class="fa fa-file" ></i> Add </a>';
+$add_str='<a class="btn btn-app"  style="color:#E5E5E5;" ><i class="fa fa-file" ></i> Add </a>';
 $edit_str='<a class="btn btn-app" style="color:#E5E5E5;" ><i class="fa fa-edit "></i> Edit </a>';
 $del_str='<a class="btn btn-app" style="color:#E5E5E5;"> <i class="fa fa-edit"></i> Delete </a>';
 $excel_str='<a class="btn btn-app" style="color:#E5E5E5;"> <i class="fa fa-edit"></i> Excel </a>';
@@ -19,10 +19,13 @@ if($per_val){}else{?>
 <?php }?>
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <link href="../../../assests/dist/css/master_css.css" rel="stylesheet" type="text/css" />
-</head><body class="skin-blue layout-top-nav">
+</head><body class="skin-blue sidebar-mini wysihtml5-supported layout-top-nav">
 <div class="wrapper">
 <header class="main-header">
 <nav class="navbar navbar-static-top">
+<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
 <div class="container-fluid">
 <div class="navbar-header">
   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"> <i class="fa fa-bars"></i> </button>
@@ -233,34 +236,34 @@ if($per_val){}else{?>
 		$per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
 		if($per_val)
 		{?>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Export Data<span class="caret"></span></a>
+<!--li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Export Data<span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
     <li><a href="../../../export/export/view/export_view.php">Master</a></li>
   </ul>
-</li>
+</li-->
 <?php }else{ ?>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" style="color:#CCC;" data-toggle="dropdown">Export Data<span class="caret"></span></a>
+<!--li class="dropdown"> <a href="#" class="dropdown-toggle" style="color:#CCC;" data-toggle="dropdown">Export Data<span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
     <li><a  style="color:#CCC;">Master</a></li>
   </ul>
-</li>
+</li-->
 <?php }?>
 <!-------------------------------------------------------------------------------------------->
 <?php $module=23;
 		$per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
 		if($per_val)
 		{?>
-<li class="dropdown"> <a href="#" class="dropdown-toggle"  data-toggle="dropdown">Import Data<span class="caret"></span></a>
+<!--li class="dropdown"> <a href="#" class="dropdown-toggle"  data-toggle="dropdown">Import Data<span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
     <li><a href="../../../import/import/view/import_view.php">Register / DP</a></li>
   </ul>
-</li>
+</li-->
 <?php }else{ ?>
-<li class="dropdown"> <a href="#" class="dropdown-toggle" style="color:#CCC;" data-toggle="dropdown">Import Data<span class="caret"></span></a>
+<!--li class="dropdown"> <a href="#" class="dropdown-toggle" style="color:#CCC;" data-toggle="dropdown">Import Data<span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
     <li><a style="color:#CCC;">Register / DP</a></li>
   </ul>
-</li>
+</li-->
 <?php }?>
 <!-------------------------------------------------------------------------------------------->
 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utility<span class="caret"></span></a>

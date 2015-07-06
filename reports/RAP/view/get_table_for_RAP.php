@@ -63,8 +63,8 @@ $i=1;
 
 <table id="example3" width="100%" class="table table-bordered table-striped display" style="white-space:nowrap;">
   <thead>
- <tr ><th colspan="20" style="table-layout:auto; text-align:left; font-family:Tahoma, Geneva, sans-serif; padding-left:600px; font-size:11px; color:#000">Office Of Commissioner Of Income Tax (Audit), Ahemdabad </th>
-             </tr><tr><th colspan="20" style="table-layout:auto; text-align:left; font-family:Tahoma, Geneva, sans-serif;  padding-left:700px; font-size:11px; color:#000">Local Audit Report</th></tr>
+ <tr ><th colspan="20" >Office Of Commissioner Of Income Tax (Audit), Ahemdabad </th>
+             </tr><tr><th colspan="20">Local Audit Report</th></tr>
     <tr>
       <th>No.</th>
       <th>PAN No</th>

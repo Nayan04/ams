@@ -130,7 +130,7 @@ $column=4;                //  Value For Check Page Permission
                   <td>Group</td>
                   <td><select id="group" name="group">
                       <option value="Corporate">Corporate</option>
-                      <option value="Non-Corporate">Non-Corporate</option>
+                      <option value="Non Corporate">Non Corporate</option>
                     </select></td>
                 </tr>
                 <tr>

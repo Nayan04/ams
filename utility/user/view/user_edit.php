@@ -91,7 +91,7 @@ $column=6;                //  Value For Check Page Permission
       <div class="box box-primary" style="width:40%; margin-left:30%; margin-right:20%;">
         <div class="box-body">
        
-             <form class="modal-content" id="myform">
+             <form  id="myform">
           <div class="form-group">
           
              <input type="hidden" name="id"  class="form-control" id="id" value="<?php echo $cit['id']; ?>" autofocus>
@@ -111,18 +111,19 @@ $column=6;                //  Value For Check Page Permission
                       <label>User Group</label>
                       <select class="form-control" id="grp" name="grp">
                       
-                      <option value="<?= $cit['id']; ?>" ><?php echo $cit['group_name']; ?></option>
+                    
                        <?php 
 		                           $r1=$obj->view_grp();
 								   
 		 		                 while($sec=mysql_fetch_array($r1)){
-					
+					              if($cit['group_name']==$sec['MastName']){
 			             ?>
-                         
-                        <option value="<?= $sec['id']; ?>"><?php echo $sec['group_name'];?></option>
+                         <option value="<?= $sec['MastCode']; ?>" selected><?php echo $sec['MastName'];?></option>
+                         <?php }else{ ?>
+                        <option value="<?= $sec['MastCode']; ?>"><?php echo $sec['MastName'];?></option>
                         
                         
-                       <?php } ?>
+                       <?php }} ?>
                       </select>
                     </div>
            

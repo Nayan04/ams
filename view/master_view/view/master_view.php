@@ -10,6 +10,7 @@ $obj=new common();
 <head>
 <meta charset="UTF-8">
 <title>Audit Monitoring System</title>
+<link rel="stylesheet" href="../../../orangebox/css/orangebox.css" type="text/css" />
 <style>
 .hides{
 	display:none;
@@ -98,9 +99,10 @@ include("../../../common/menu_header_inside.php");?>
         </div>
         <div class="box-body">
           <div id="#re"></div>
-          <div class="head">Master View</div>
+          
           <!--button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button-->
           <div class="hds" style="min-height:10px;">
+          <div class="head_section">Master View</div>
             <table>
               <tr>
                 <td> Audit Type</td>
@@ -208,7 +210,7 @@ include("../../../common/menu_header_inside.php");?>
                   <td>Assesse</td>
                   <td><input type="text" id="ass" name="ass"></td>
                   <td>Under Section</td>
-                  <td rowspan="2"><div id="usection" style="height:90px;overflow-x: hidden; border:1px solid #FFF; padding:5px;">
+                  <td rowspan="4"><div id="usection" style="height:90px;overflow-x: hidden; border:1px solid #FFF; padding:5px;">
                       <?php  
                         $rs=$obj->get_sec(); ?>
                       <?php while($sec=mysql_fetch_array($rs)){ ?>
@@ -319,7 +321,8 @@ include("../../../common/menu_header_inside.php");?>
   <!-- /.container -->
   <!--------------------------Footer---------------------------------------------------------->
   <?php include("../../../common/master_footer_for_view.php");?>
-<script src="master_js.js"></script>
+  <script type="text/javascript" src="../../../orangebox/js/orangebox.min.js"></script>
+  <script src="master_js.js"></script>
 
 <script src="excel/src/jquery.table2excel.js"></script>
 <script>
@@ -360,6 +363,22 @@ $(document).ready(function(){
 	 });
 	
     </script>
+    <script>
+    $('#all').click(function(event) {  
+					//alert()		 
+   if(this.checked) {
+      // Iterate each checkbox
+	 //  $( '#container input[type="checkbox"]' ).prop('checked', this.checked)
+      $('#usection input[type="checkbox"]').each(function() {
+          this.checked = true;
+      });
+  }
+  else {
+    $('#usection input[type="checkbox"]').each(function() {
+          this.checked = false;
+      });
+  }
+});</script>
 <!-- page script -->
 </body>
 </html>

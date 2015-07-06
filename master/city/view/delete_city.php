@@ -7,7 +7,7 @@ if($rs==1){
  ?>
 <script>	
 alert("You can not delete this record Code is used in other forms!!");
-//	document.location="../view/city_view.php"
+document.location="../view/city_view.php"
 </script>
 
 <?php } else{ ?>

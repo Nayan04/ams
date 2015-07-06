@@ -1,5 +1,13 @@
 <table id="example5" class="table table-bordered table-striped display" style="text-transform:capitalize;" >
                     <thead>
+                    <tr style="display:none;">
+                
+                <td colspan="12" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr>
+              
+                <td colspan="12" align="center"><strong>Summary CCIT Wise (RAP) </strong></td>
+              </tr>
                       <tr>
                         <th rowspan="2">SN</th>
                         <th rowspan="2">CCIT</th>
@@ -70,7 +78,7 @@
 												// echo mysql_num_rows($iap_det);
 											//	 echo $iap_reg_obj['StatusCode']."....<br>";
 											if($iap_reg_obj['MajorMinor']=='Minor'){
-												    echo $tx=$iap_reg_obj['TaxEffect'];
+												    $tx=$iap_reg_obj['TaxEffect'];
 											        $tax_effect_minor=$tax_effect_minor+$tx;
 													}else if($iap_reg_obj['MajorMinor']=='Major'){
 													$tx=$iap_reg_obj['TaxEffect'];

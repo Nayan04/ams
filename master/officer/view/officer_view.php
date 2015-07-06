@@ -169,7 +169,7 @@ include("../../../common/menu_header_inside.php");?>
 <!-- ./wrapper -->
 <?php include("../../../common/master_footer_for_view.php") ?>
 <script src='officer_js.js'></script>
-<script>$(function() {$("#excel ,#excel2").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Officer Detail"});}); });</script>
+<script>$(function() {$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Officer Detail"});}); });</script>
 
 <?php 
 $module=12;

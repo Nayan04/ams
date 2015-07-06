@@ -172,8 +172,10 @@ $column=6;                //  Value For Check Page Permission
   
 <!-- ./wrapper -->
  <?php include("../../../common/master_footer_for_view.php") ?>
+ 
+
 <script src='year_js.js'></script>
-<script>$(function() {$("#excel ,#excel2").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Year Detail"});}); });</script>
+<script>$(function() {$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Year Detail"});}); });</script>
 
 <?php $module=17;
 		  $column=8;

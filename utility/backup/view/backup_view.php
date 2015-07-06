@@ -66,7 +66,7 @@
 	$return.= 'COMMIT;';
   
   //SAVE THE BACKUP AS SQL FILE
-  $handle = fopen('../../../backup_file/'.'AMS-Backup-'.date('Y-m-d @ h-i-s').'.sql','w+');
+  $handle = fopen('../../../backup_file/'.'AMS-Backup-'.date('Y-m-d h i s').'.sql','w+');
   fwrite($handle,$data);
   fclose($handle);
    
@@ -93,17 +93,29 @@ function clean($str) {
 	}
 }
 include("../../../config/db_config.php");
+header('Set-Cookie: fileLoading=true'); 
 $backup_response = backup_Database(config::host,config::username,config::password,config::database);
 
  
   //$tables = 'users,country,states';
  
 // $backup_response = backup_Database('localhost','root','','school_db',$tables);
+$msg=dirname(__FILE__).'\backup_file\AMS-Backup-'.date('Y-m-d').'.sql';
+header('Content-type: application/octet-stream');
+header('Content-Disposition: attachment; filename=db-backup-'.date('Y-m-d').'.sql');
+//header("location:javascript://history.go(-1)");
+echo $data;
 
-	 $msg=dirname(__FILE__).'\backup_file\AMS-Backup-'.date('Y-m-d @ h-i-s').'.sql';
 	  ?>
-	<script language="javascript1.5" type="text/javascript">
-	alert("Database Backup Successfully Created!");
-	window.history.go(-1);
-	</script>  
- 
+	<script>
+  setInterval(function(){
+  if ($.cookie("fileLoading")) {
+    // clean the cookie for future downoads
+    $.removeCookie("fileLoading");
+
+    //redirect
+	alert("Back Up has been created Created")
+    location.href =history.go(-1);
+  }
+},1000);
+    </script>

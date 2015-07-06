@@ -4,7 +4,7 @@
                 var sno=$("#sno").val();
 				var code=$('#code').val();
 				var descrip=$('#descrip').val();
-	          // alert("aa");
+	         //  alert("aa");
 				var re=validation();
 			  if(re==true){	
 				 

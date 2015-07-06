@@ -183,9 +183,7 @@ function get_obj_detail(){
                     $('div#status input[type=checkbox]').each(function() {
                     if ($(this).is(":checked")) {
                     selected.push($(this).attr('value'));
-                    }else{
-						   selected.push('');
-						}
+                    }
                     });
 					var sec='&status='+selected;
 					datass+=sec;
@@ -203,3 +201,4 @@ function exit(){
 	document.location="../../../dashboard.php";
 	
 	}
+	

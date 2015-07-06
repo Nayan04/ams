@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 include("../modal/rap_db.php");
 $db=new rap_db();
 $a=array();
@@ -22,11 +22,11 @@ echo "Return Code: " . $_FILES["att1"]["error"] . "<br/><br/>";
 }
 else
 {
-if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php }
+if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {
+$num=rand(0,9999);
+$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
+$targetPath1 = "../../../docs/".$num.'_'.$_FILES['att1']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath1) ; }
 else
 {
 $sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
@@ -64,11 +64,10 @@ echo "Return Code: " . $_FILES["att2"]["error"] . "<br/><br/>";
 else
 {
 if (file_exists("../../../docs/" . $_FILES["att2"]["name"])) {
-?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php
+$num=rand(0,9999);
+$sourcePath = $_FILES['att2']['tmp_name']; // Storing source path of the file in a variable
+$targetPath2 = "../../../docs/".$num.'_'.$_FILES['att2']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath2) ;
 }
 else
 {
@@ -230,10 +229,10 @@ if($smonth>=1 && $smonth<=3){
 		}
 //$ass_officer=0;
 
-
+$user=$_SESSION['user_mast'];
 $objShrtCode=0;
 //echo $rec_date."REC_date";
-$db->insert_objection_reg_rap($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rece_date,$entry_date);
+$db->insert_objection_reg_rap($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rece_date,$entry_date,$user);
 
 $db->insert_objection_regdet_rap($last_mast,$last_sno,$last_APMast,$ap_code,$para,$assess,$pan,$groups,$year,$des_ao,$auo,$rec_date,$rec_date1,$rec_date2,$rec_date3,$rec_date4,$sec,$sec1,$sec2,$sec3,$sec4,$obcode,$objShrtCode,$objection,$tax_effect,$major,$seen,$accp,$dateofi,$rmp,$l_date,$doro,$taxeffectro,$dcrno,$dateofcollection,$datecomm,$status,$dateofsettle,$squarter,$remark,$block,$period,$obj_rai_sec1,$obj_rai_sec2,$obj_rai_sec3,$obj_rai_sec4,$obj_rai_sec5,$att1,$att2,$tax_type,$corr);
 

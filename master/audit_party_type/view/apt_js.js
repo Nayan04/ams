@@ -98,10 +98,10 @@ function add_apt(){
 			  	
 				 
 		        var dataString = 'apt='+ apt + '&ss='+ ss  +'&ws='+ ws +'&pri='+ pri+'&group='+ group+ '&sign11='+ sign11 + '&sign12=' + sign12 + '&sign13=' + sign13 + '&sign21=' + sign21 + '&sign22=' + sign22 + '&sign23=' + sign23 + '&t1=' +cor_dh + '&t2=' + cr_othe + '&t3='+ cor_non + '&t4='+ non_cor_dh +'&t5='+ non_cor_other_me +'&t6='+ non_cor_me+'&case_type='+case_name+'&case_id='+case_id + '&sno=' + sno;
-			 //  alert(dataString);
+			   alert(dataString);
 			   $.post("../controller/apt_add_control.php", dataString ).done(function( data ) {
 																					 
-																					// alert(data);
+																				// alert(data);
 									
 						$("#err").html(data);		
                
@@ -416,8 +416,11 @@ function resett(){
             "orderable": false,
             "targets": 1
         } ],
-        "order": [[ 5, 'asc' ]]
-    } );
+        "order": [[ 5, 'asc' ]],
+		"scroolX": 200,
+		"scrollY": 200,
+		"paging": false
+	    } );
  
     t.on( 'order.dt search.dt', function () {
         t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
@@ -425,14 +428,4 @@ function resett(){
         } );
     } ).draw();
 	
-	  $(function () {
-        $("#example1").dataTable();
-        $('#example2').dataTable({
-          "bPaginate": true,
-          "bLengthChange": false,
-          "bFilter": false,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": false
-        });
-      });
+	 

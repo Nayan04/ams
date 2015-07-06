@@ -95,8 +95,8 @@ $column=4;                //  Value For Check Page Permission
       </div>
       <div class="box box-primary " style="width:40%; margin-left:30%; margin-right:20%;">
         <div class="box-body">
-             <form class="modal-content" >
-         <div class="head">Add city</div><div id="err"></div>
+             <form class="" >
+         <div id="err"></div>
               <div class="form-group">
             <label for="city" class="control-label">City</label>
             <input type="text" name="city"  class="form-control" id="city" placeholder="Enter City" autofocus>

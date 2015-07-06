@@ -100,7 +100,7 @@ include("../../../common/menu_header_inside.php");?>
          </div>
           <div class="form-group">
             <label for="add" class="control-label">Address</label>
-            <input type="text" name="add"  class="form-control" id="add" value="<?php echo $cit['address']; ?>">
+            <input type="text" name="adds"  class="form-control" id="adds" value="<?php echo $cit['address']; ?>">
             </div>
             
              <div class="form-group">

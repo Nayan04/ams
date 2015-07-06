@@ -94,7 +94,7 @@ include("../../../common/menu_header_inside.php");?>
 			   $per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
 				if($per_val){?>
                  
-           <a class="btn btn-app" onClick="del_city();" id="del_row"> <i class="fa fa-scissors"></i>Delete </a>
+           <a class="btn btn-app" onClick="del_city();" id="dele_row"> <i class="fa fa-scissors"></i>Delete </a>
             <?php }else{
                    echo $del_str;
                 }?>
@@ -112,15 +112,15 @@ include("../../../common/menu_header_inside.php");?>
                    echo $del_str;
                 }?>
                <!------------------------------------------------------------------------------------------->
-           <a id="for_exit" onClick="exit()" class="btn btn-default"> <i class="fa fa-sign-out"></i> Exit </a>
+           <a id="for_exit" onClick="exit()" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a>
           </h3>
           </h3>
         </div>
           
        <div class="box-body">
         <div id="#re"></div>
-         <div>
-          <table id="example1" class="table table-bordered table-striped xls" width="100%" >
+         <div class="xls">
+          <table id="example1" class="table table-bordered table-striped" width="100%" >
            <thead>
            <tr>
            <th></th>
@@ -163,7 +163,7 @@ include("../../../common/menu_header_inside.php");?>
             </tbody>
             
           </table>
-        
+        </div>
         </div>
         <!-- /.box-body -->
       </div>
@@ -178,7 +178,7 @@ include("../../../common/menu_header_inside.php");?>
 <!--------------------------Footer---------------------------------------------------------->
   <?php include("../../../common/master_footer_for_view.php") ?>
 <script src='city_js.js'></script>
-<script>$(function() {$("#excel ,#excel2").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "City Detail"});}); });</script>
+<script>$(function() {$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "City Detail"});}); });</script>
 
     <?php 
 	$module=18;

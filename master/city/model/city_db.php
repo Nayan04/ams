@@ -131,8 +131,8 @@ class city_db
 				}	
 			function check_for_range($id){
 				
-				$idd=$id;
-				echo $idd;
+				//$idd=$id;
+				//echo $idd;
 				$sql = sprintf("select * from range_detail WHERE city_id='$idd' and isactive=1 "); 
 		        $rs=mysql_query($sql,$this->link);
 					$a=mysql_num_rows($rs);

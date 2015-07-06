@@ -106,7 +106,7 @@ $column=5;                //  Value For Check Page Permission
          <div class="hds">
          <form id="iap" name="iap" enctype="multipart/form-data">
          <input name="MastCode" id="MastCode" type="hidden" value="<?php echo $id; ?>">
-         <table class="table" width="100%">
+         <table  width="100%">
          <tr>
          <td>Audit Party</td>
          <td>         
@@ -143,9 +143,9 @@ $column=5;                //  Value For Check Page Permission
          
          </table>
       </div> 
-     <div class="right_trees" style="width:90%; padding:0 10%;">
+     <div class="right_trees" style="width:90%; padding:0 20px;">
        
-             <table id="example" class="table" >
+             <table id="example" class="table" style="white-space:nowrap">
            
             <tbody>
             <tr>
@@ -270,7 +270,7 @@ $column=5;                //  Value For Check Page Permission
                 <?php }?>
                 </select></td>              
                 <td>Tax Effect (RS)</td>
-                <td><input type="text" id="TaxEffect" name="TaxEffect" value="<?php echo $ac['TaxEffect'];?>" onKeyPress="isNumber(evt)"></td>
+                <td colspan="2"><input type="text" id="TaxEffect" name="TaxEffect" value="<?php echo $ac['TaxEffect'];?>" onKeyPress="isNumber(evt)"><b id="errmsgs" style="color:red"></b></td>
                 <td>Type</td>
                 <td>
                 <select id="MajorMinor" name="MajorMinor" >
@@ -387,7 +387,7 @@ $column=5;                //  Value For Check Page Permission
                 <td>Remark</td>
                 <td><textarea name="Remarks" id="Remarks"><?php echo $ac['Remarks'];?> </textarea></td>
                 <td>Attachment 1</td>
-                <td><input type="text" value="<?php echo $ac['ScanFile1']?>" readonly><input type="file" name="att1" id="att1" value="<?php echo $ac['ScanFile1']; ?>"></td>
+                <td><input type="text" value="<?php echo $ac['ScanFile1']?>" readonly><input type="file" name="att1" id="att1" value="<?php echo $ac['ScanFile1']; ?>"></td><td><a class="" id="clear1"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
                
                 
             </tr>
@@ -395,7 +395,7 @@ $column=5;                //  Value For Check Page Permission
                 <td>Details Of Corr. Made</td>
                 <td><textarea name="correspondence" id="correspondence"> <?php echo $ac['correspondence'];?></textarea></td><TD></TD><TD></TD>
                <td>Attachment 2</td>
-                <td><input type="text" value="<?php echo $ac['ScanFile2']?>" readonly> <input type="file" name="att2" id="att2" value="<?php echo $ac['ScanFile2']; ?>"></td>
+                <td><input type="text" value="<?php echo $ac['ScanFile2']?>" readonly> <input type="file" name="att2" id="att2" value="<?php echo $ac['ScanFile2']; ?>"></td><td><a class="" id="clear2"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
                 
             </tr>
              <tr>

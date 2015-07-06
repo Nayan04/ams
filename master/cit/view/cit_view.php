@@ -106,7 +106,7 @@ include("../../../common/menu_header_inside.php");?>
                    echo $excel_str;
                 }?>
                <!------------------------------------------------------------------------------------------->
-           <a id="exit_for" onClick="exit()" class="btn btn-default"> <i class="fa fa-sign-out"></i> Exit </a>
+           <a id="exit_for" onClick="exit()" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a>
           </h3>
          
         </div>
@@ -173,7 +173,7 @@ include("../../../common/menu_header_inside.php");?>
 	  $column=8;
 	  $per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
 	  if($per_val){?>
-<script>$(document).ready(function() {var table = $('#example1').DataTable();var tt = new $.fn.dataTable.TableTools( table, {sRowSelect: 'single'}); $( tt.fnContainer() ).insertAfter('a.infos');} );</script>
+<script>$(document).ready(function() {var tt = new $.fn.dataTable.TableTools( table, {sRowSelect: 'single'}); $( tt.fnContainer() ).insertAfter('a.infos');} );</script>
 <?php }?>
 <!-- page script -->
 </body>

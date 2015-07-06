@@ -58,7 +58,7 @@ function edit(){
 		var value = $("input:radio[name=che]:checked").val(); 
 	if(value==null){
 		
-		alert("No Data Available!");
+		alert("Please Select Data If Available!");
 		}
 	else{
 				
@@ -130,7 +130,7 @@ $('.table').each(function(){
       
   if (ao==null || ao.trim()=="" )   
     { 
-       alert('Asessing Officer Is Blank');
+       alert('Assessing Officer Is Blank');
         $('#ao').focus();
        return false; 
 	}

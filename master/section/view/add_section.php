@@ -138,6 +138,10 @@ $column=4;                //  Value For Check Page Permission
     </div>
     <!-- /.container -->
   <?php include("../../../common/master_footer_for_view.php") ?>
+  <script src="../../../assests/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+<script src="../../../assests/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+<script src="../../../assests/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+
 <script src="section_js.js"></script>
 <!-- Bootstrap 3.3.2 JS -->
    

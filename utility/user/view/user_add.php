@@ -87,7 +87,7 @@ $column=6;                //  Value For Check Page Permission
       </div>
       <div class="box box-primary" style="width:40%; margin-left:30%; margin-right:20%;">
         <div class="box-body">
-          <form class="modal-content" id="myform" >
+          <form  id="myform" >
             <div class="form-group">
               <label for="code" class="control-label">User</label>
               <input type="text" name="user"  class="form-control" id="user" placeholder="User Name"  autofocus/>
@@ -107,7 +107,7 @@ $column=6;                //  Value For Check Page Permission
 		 		                 while($sec=mysql_fetch_array($r1)){
 					
 			             ?>
-                <option value="<?= $sec['id']; ?>"><?php echo $sec['group_name'];?></option>
+                <option value="<?= $sec['MastCode']; ?>"><?php echo $sec['MastName'];?></option>
                 <?php } ?>
               </select>
             </div>
@@ -123,6 +123,8 @@ $column=6;                //  Value For Check Page Permission
       </div>
       <!-- /.container -->
     </div>
+    </div>
+    
 <?php include("../../../common/master_footer_for_view.php") ?>
 <script src="user_js.js"></script>
 <!-- Bootstrap 3.3.2 JS -->

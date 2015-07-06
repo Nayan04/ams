@@ -332,7 +332,7 @@ $column=4;                //  Value For Check Page Permission
                     <option value="othertax">Other Tax</option>
                   </select></td>
                 <td>Tax Effect (RS)</td>
-                <td><input type="text" id="amt" name="amt"></td>
+                <td><input type="text" id="amt" name="amt"> <b id="errmsgs" style="color:red"></b></td>
                 <td>Type</td>
                 <td colspan="3"><select id="type" name="type" >
                     <option value="Minor">Minor</option>
@@ -402,9 +402,9 @@ $column=4;                //  Value For Check Page Permission
             </tr>
             <tr>
               <td>Attachment 1</td>
-              <td><input type="file" name="att1" id="att1"></td>
+              <td width="200"><input type="file" name="att1" id="att1"><a class="" id="clear1"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
               <td>Attachment 2</td>
-              <td><input type="file" name="att2" id="att2"></td>
+              <td ><input type="file" name="att2" id="att2"><a class="" id="clear2"><i style="font-size:20px; color:red" title="Please Click For Cancel" class="fa fa-close"></i></a></td>
               <td></td>
             </tr>
         </form>

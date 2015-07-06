@@ -14,25 +14,34 @@ $ass_ye=$a['ass'];
 $cit_id=$a['cit'];
 $i=1;
 ?>
+
 <div style="overflow:scroll; max-height:300px;">
    <table id="example1" class="table table-bordered table-striped display " style="white-space:nowrap;">
                 <thead>
+                 <tr style="display:none;">
+              
+                <th colspan="15" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></th>
+              </tr>
+              <tr style="display:none;">
+                
+                <th colspan="15" align="center"><strong>Drapt Para</strong></th>
+              </tr>
                   <tr>
                     <th>No.</th>
-                    <th>C & AG Year</th>
+                    <th>C & <br />AG Year</th>
                     <th>DP No.</th>
-                    <th>Dt. of Receipt</th>
-                    <th>Dt. of Sending</th>
-                    <th>Assessee Name</th>
-                    <th>Gist of Objection</th>
-                    <th>CCIT Charge</th>
-                    <th>CIT Charge</th>
-                    <th>Assessing Officer</th>
+                    <th>Dt. <br /> of Receipt</th>
+                    <th>Dt. <br /> of Sending</th>
+                    <th>Assessee <br /> Name</th>
+                    <th>Gist of <br /> Objection</th>
+                    <th>CCIT <br /> Charge</th>
+                    <th>CIT <br /> Charge</th>
+                    <th>Assessing <br /> Officer</th>
                     <th>Status</th>
-                    <th>Ass.Year</th>
-                    <th>Tax Effect</th>
-                    <th>Scan File 1</th>
-                    <th>Scan File 2</th>
+                    <th>Ass. <BR />Year</th>
+                    <th>Tax <br /> Effect</th>
+                    <th>Scan <BR /> File 1</th>
+                    <th>Scan <BR /> File 2</th>
                   </tr>
                 </thead>
                 <tbody >            
@@ -90,8 +99,8 @@ while($row=mysql_fetch_array($tables))
 					  }
                       ?></td>
                   <td><?php echo $row['TaxEffect']; ?></td>
-                  <td><?php echo $row['ScanFile1'];?></td>
-                  <td ><?php  echo $row['ScanFile2'];?></td>
+                  <td><a href="<?php echo $row['ScanFile1']; ?>" data-ob="lightbox"><?php echo substr($row['ScanFile1'],14); ?></a></td>
+                  <td ><a href="<?php echo $row['ScanFile2']; ?>" data-ob="lightbox"><?php echo substr($row['ScanFile2'],14); ?></a></td>
                  
                 </tr>
 
@@ -99,7 +108,7 @@ while($row=mysql_fetch_array($tables))
  </tbody>
 </table>
 </div>
-<head>
+
 <script type="text/javascript">
 
 $(document).ready(function(){						   
@@ -111,4 +120,4 @@ $(document).ready(function(){
 				"bInfo" : false
 		});
 			   </script>
-               </head>
+               

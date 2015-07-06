@@ -9,6 +9,9 @@ $obj= new rap_db();
 <head>
 <meta charset="UTF-8">
 <title>Audit Monitoring System</title>
+<script src="../../../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="../../../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+
 <!--------------------------------- HEADER MENUS---------------------------->
 <?php ///////////////////////////
 $module=20;                //
@@ -209,7 +212,7 @@ include("../../../common/menu_header_inside.php");?>
           </select>
           <div id="test" style="margin:2px;"></div></td>
         <td>Objection</td>
-        <td><select  id="objection" name="objection" onChange="get_obj_detail();">
+        <td style="max-width:300px;"><select  id="objection" name="objection" onChange="get_obj_detail();">
             <option value="...">ALL</option>
             <?php 
 					   
@@ -220,9 +223,10 @@ include("../../../common/menu_header_inside.php");?>
 			             ?>
             <option value="<?= $sec['objection_id']; ?>"><?php echo $sec['obj_code'];  ?></option>
             <?php } ?>
-          </select></td>
-        <td id="od"></td>
-      </tr>
+          </select><br>
+         </td>
+        
+      </tr><tr><td colspan="4" align="right"> <b id="od" style="width:100%"></b></td></tr>
       <tr>
         <td>Type</td>
         <td><select id="type" name="type" >
@@ -234,7 +238,7 @@ include("../../../common/menu_header_inside.php");?>
         <td colspan="2"><select id="grp" name="grp" >
             <option value="...">ALL</option>
             <option value="corporate">Corporate</option>
-            <option value="non-corporate">Non-Corporate</option>
+            <option value="non corporate">Non Corporate</option>
           </select></td>
       </tr>
       <tr>

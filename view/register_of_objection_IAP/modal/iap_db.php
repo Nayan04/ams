@@ -13,9 +13,9 @@ class iap_db
 	{
 		mysql_close($this->link);
 	}	
-	function insert_objection_reg($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit,$cit,$range_code,$memo,$rece_date,$entry_date){
+	function insert_objection_reg($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit,$cit,$range_code,$memo,$rece_date,$entry_date,$user){
 		
-		$sql = sprintf("insert into register_obj (MastCode,SrNO,APMastCode,APTypeCode,FinYearCode,MonthCode,QuarterCode,APCode,APOfficerCode,CCITCode,CITCode,RangeCode,LARIAMNO,LARIAMRecDate,EntryDate, isactive,ObjType) values('$last_mast','$last_sno','$last_APMast','$AP_type_code','$fyear','$cur_month','$quater_id','$ap_code','0','$ccit','$cit','$range_code','$memo','$rece_date','$entry_date',1,'IAP')"); 
+		$sql = sprintf("insert into register_obj (MastCode,SrNO,APMastCode,APTypeCode,FinYearCode,MonthCode,QuarterCode,APCode,APOfficerCode,CCITCode,CITCode,RangeCode,LARIAMNO,LARIAMRecDate,EntryDate, isactive,ObjType,UserCode) values('$last_mast','$last_sno','$last_APMast','$AP_type_code','$fyear','$cur_month','$quater_id','$ap_code','0','$ccit','$cit','$range_code','$memo','$rece_date','$entry_date',1,'IAP','$user')"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -33,9 +33,9 @@ class iap_db
 			        
 					
 		}
-		function update_objection_reg($last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit,$cit,$range_code,$memo,$rece_date,$entry_date,$id){
+		function update_objection_reg($last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit,$cit,$range_code,$memo,$rece_date,$entry_date,$id,$user){
 		
-		$sql = sprintf("update register_obj set APMastCode='$last_APMast',APTypeCode='$AP_type_code',FinYearCode='$fyear',MonthCode='$cur_month',QuarterCode='$quater_id',APCode='$ap_code',APOfficerCode=0,CCITCode='$cit',CITCode='$ccit',RangeCode='$range_code',LARIAMNO='$memo',LARIAMRecDate='$rece_date',EntryDate='$entry_date' where ObjType='IAP' and isactive=1 and MastCode='$id'"); 
+		$sql = sprintf("update register_obj set APMastCode='$last_APMast',APTypeCode='$AP_type_code',FinYearCode='$fyear',MonthCode='$cur_month',QuarterCode='$quater_id',APCode='$ap_code',APOfficerCode=0,CCITCode='$cit',CITCode='$ccit',RangeCode='$range_code',LARIAMNO='$memo',LARIAMRecDate='$rece_date',EntryDate='$entry_date', UserCode='$user' where ObjType='IAP' and isactive=1 and MastCode='$id'"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -171,7 +171,32 @@ $sql = sprintf("update register_obj  SET isactive=0 WHERE MastCode='$val' ");
         $result=date('Y-m-d', strtotime($date)); 
 		return $result;
 		}
+    function f_up($file_name,$paths)
+	{			
+	         $targetPath1='';
+			if(isset($_FILES["att1"]["type"]))
+            {
+ 	           $validextensions = array("jpeg", "jpg", "png","pdf");
+	           $temporary = explode(".", $_FILES["att1"]["name"]);
+	           $file_extension = end($temporary);
+	           if ((($_FILES["att1"]["type"] == "image/png") || ($_FILES["att1"]["type"] == "image/jpg") || ($_FILES["att1"]["type"] == "image/jpeg") || ($_FILES["att1"]["type"] == "application/pdf")
+) && ($_FILES["att1"]["size"] < 10000000)//Approx. 10000kb files can be uploaded.
+&& in_array($file_extension, $validextensions)) 
+	       {
+		     if ($_FILES["att1"]["error"] > 0)
+		     {
+			  echo "Return Code: " . $_FILES["att1"]["error"] . "<br/><br/>";
+		     }else{
+				$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
+				$targetPath1 = $paths.$_FILES['att1']['name']; // Target path where file is to be stored
+				move_uploaded_file($sourcePath,$targetPath1) ; // Moving Uploaded file
+		          }
+				  return $targetPath1;
+	       }
+    }else{
+		return 0;
+		}
 	
 
 }
-		?>
+}

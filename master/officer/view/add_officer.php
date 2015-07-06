@@ -106,7 +106,7 @@ include("../../../common/menu_header_inside.php");?>
                         
              <div class="form-group">
             <label for="add" class="control-label">Address</label>
-            <input type="text" name="add"  class="form-control" id="add" placeholder="Enter Address">
+            <input type="text" name="adds"  class="form-control" id="adds" placeholder="Enter Address">
             </div>
             
              <div class="form-group">

@@ -1,3 +1,6 @@
+
+$('.table td:first-child').addClass('hc');
+$('.table th:first-child').addClass('hc');
 $('td:last-child input[type="checkbox"]').on('change', function(){
     $(this)
     .closest('td')
@@ -27,12 +30,30 @@ function edit(){
 		}
 }
 
-
+ 	function validation(gns){
+	 
+	// alert(gns)
+	 
+	
+  if (gns==null || gns.trim()=="" )   
+    { 
+       alert('Group Name Is Blank');
+        $('#grp').focus();
+		$('#gn').focus();
+       return false; 
+	}else{
+		return true; 
+		}
+	
+	}
 function add_group()
  {
        var name=$("#gn").val();
 	   var des=$("textarea#desc").val();
-		
+		var grp=$('#grp').val();
+   
+      
+ 
               var cate=[];
 		        var menue=[];
 		        var add=[];
@@ -122,13 +143,16 @@ function add_group()
 	 
 	var dataString = 'cate='+ menue +'&add='+ add +'&update='+ update +'&delete='+ del +'&print='+ pri+'&excel='+ excel+'&view='+ view+'&all='+ alls+'&name='+ name+'&desc='+ des;
 	                   //   alert(dataString)
-						  
+						   var re=validation(name);
+			  if(re==true){	
+				  
 						  $.post("../controller/add_permission.php", dataString ).done(function( data ) {
 																							//	alert(data)
                           $("#re").html(data);
 						  document.location='group_view.php'
 						  })
 	     
+			  }
 }
 function edit_group()
  {
@@ -225,13 +249,15 @@ function edit_group()
 	 
 	var dataString = 'cate='+ menue +'&add='+ add +'&update='+ update +'&delete='+ del +'&print='+ pri+'&excel='+ excel+'&view='+ view+'&all='+ alls+'&name='+ name+'&desc='+ des+'&idss='+ ids;
 	                   //  alert(dataString)
-						  
+						  	   var re=validation(name);
+			  if(re==true){	
+				  
 						  $.post("../controller/edit_permission.php", dataString ).done(function( data ) {
 																							//	alert(data)
                           $("#re").html(data);
 					      document.location='group_view.php'
 						  })
-	     
+			  }
 }
 function add(){
 	document.location="add_group.php";

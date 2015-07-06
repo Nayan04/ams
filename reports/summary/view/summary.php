@@ -125,7 +125,7 @@ include("../../../common/menu_header_inside.php");?>
                         <input type="radio" id="GroupWise1"   name="GroupWise" value="13" checked>
                         &nbsp;&nbsp;AUDIT PARTY </div></td>
                     <td>Fin.Yr </td>
-                    <td><select data-column="2" name="fin" class="filter_fin" >
+                    <td><select data-column="2" name="fin" class="year_fil" >
                         <option value="...">ALL</option>
                         <?php 
 						      
@@ -235,6 +235,30 @@ $(document).ready(function() {
         "paging": false
       
 	});
+	function filterColumn ( i,text ) {	
+	//alert(i);
+	//alert(text);
+	$('.year_filter').DataTable().column( i ).search(text).draw();
+}
+function clears(){
+	     // alert("sdcs");
+	     var table = $('.year_filter').DataTable();
+		// alert(table.html())
+         table.search( '' ).columns().search( '' ).draw();
+	}
+
+$('.year_fil').change( function() {
+								
+									 var cf=$('.year_fil option:selected').text();
+									 //  alert(cf);
+								   if(cf=="ALL"){
+									   clears();
+									   }else{
+									   clears();
+									//   alert($('.year_fil option:selected').text())
+	     filterColumn( $(this).attr('data-column'),$('.year_fil option:selected').text());
+									}
+} );
 
 $('input[name=Type]').on('click',function(){
 				var val1=$('input[name=Type]:checked').val();
@@ -242,7 +266,8 @@ $('input[name=Type]').on('click',function(){
 			//	alert(val1)
 				//alert(val2)
 				if(val1==1 && val2==13)
-				{     //alert()
+				{    // alert()
+				        clears();
 					    $('#sum_IAP').removeClass('hides');            //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -256,25 +281,41 @@ $('input[name=Type]').on('click',function(){
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
+						///////////////////////////////////////////////////////////////
+						$('#example1').addClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
 				}else if(val1==1 && val2==12)
 				{
-				       $('#sum_IAP').addClass('hides');            //sum_IAP
+				        clears();
+					   $('#sum_IAP').addClass('hides');            //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides');   //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').removeClass('hides'); // sum_IAP_with_cit
 						$('#RAP_with_AP').addClass('hides');
 						$('#RAP_with_CCIT').addClass('hides');
 						$('#RAP_with_CIT').addClass('hides');//show IAP WITH CCIT
-						
+						///////////////////////////////////////////////////////////////						
 						$('#sum_IAP').removeClass('xls');
 						$('#sum_IAP_with_ccit').removeClass('xls');
 						$('#sum_IAP_with_cit').addClass('xls');
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
+						//////////////////////////////////////////////////////////
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').addClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
 						
 				}else if(val1==1 && val2==11)
 				{
-					     alert('CCIT')
+					   //  alert('CCIT')
+					    clears();
 						$('#sum_IAP').addClass('hides');            //sum_IAP
 						$('#sum_IAP_with_ccit').removeClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides');   // sum_IAP_with_cit
@@ -288,9 +329,17 @@ $('input[name=Type]').on('click',function(){
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
+						/////////////////////////////////////////////
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').addClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
 						
 				}else if(val1==2 && val2==13)
 				{
+					 clears();
 						$('#sum_IAP').addClass('hides');           //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -304,10 +353,17 @@ $('input[name=Type]').on('click',function(){
 						$('#RAP_with_AP').addClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
+						//////////////////////////////////////////////////
+						$('#example1').removeClass('year_filter');
+						$('#example2').addClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
 						
 				}else if(val1==2 && val2==11)
 				{
-						
+						 clears();
 						$('#sum_IAP').addClass('hides');           //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -321,10 +377,18 @@ $('input[name=Type]').on('click',function(){
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').addClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
+						//////////////////////////////////////////////
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').addClass('year_filter');
+						$('#example6').removeClass('year_filter');
 						
 				}else if(val1==2 && val2==12)
 				{
-					alert()
+					//alert()
+					 clears();
 						$('#sum_IAP').addClass('hides');           //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -338,6 +402,13 @@ $('input[name=Type]').on('click',function(){
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').addClass('xls');
+						////////////////////////////////////////
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').addClass('year_filter');
 						
 				}
 				
@@ -349,6 +420,7 @@ $('input[name=GroupWise]').on('click',function(){
 				
 				if(val1==1 && val2==13)
 				{     //alert()
+				 clears();
 					    $('#sum_IAP').removeClass('hides');            //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -362,8 +434,16 @@ $('input[name=GroupWise]').on('click',function(){
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
+						/////////////////////////////////////////////
+						$('#example1').addClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
 				}else if(val1==1 && val2==12)
 				{
+					 clears();
 				       $('#sum_IAP').addClass('hides');            //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides');   //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').removeClass('hides'); // sum_IAP_with_cit
@@ -378,9 +458,17 @@ $('input[name=GroupWise]').on('click',function(){
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
 						
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').addClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
+						
 				}else if(val1==1 && val2==11)
 				{
 					    // alert('CCIT')
+						 clears();
 						$('#sum_IAP').addClass('hides');            //sum_IAP
 						$('#sum_IAP_with_ccit').removeClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides');   // sum_IAP_with_cit
@@ -395,8 +483,16 @@ $('input[name=GroupWise]').on('click',function(){
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
 						
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').addClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
+						
 				}else if(val1==2 && val2==13)
 				{
+					 clears();
 						$('#sum_IAP').addClass('hides');           //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -411,9 +507,16 @@ $('input[name=GroupWise]').on('click',function(){
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
 						
+						$('#example1').removeClass('year_filter');
+						$('#example2').addClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').removeClass('year_filter');
+						
 				}else if(val1==2 && val2==11)
 				{
-						
+						 clears();
 						$('#sum_IAP').addClass('hides');           //sum_IAP
 						$('#sum_IAP_with_ccit').removeClass('hides');; //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -428,9 +531,17 @@ $('input[name=GroupWise]').on('click',function(){
 						$('#RAP_with_CCIT').addClass('xls');
 						$('#RAP_with_CIT').removeClass('xls');
 						
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').addClass('year_filter');
+						$('#example6').removeClass('year_filter');
+						
 				}else if(val1==2 && val2==12)
 				{
 				//	alert()
+				 clears();
 						$('#sum_IAP').addClass('hides');           //sum_IAP
 						$('#sum_IAP_with_ccit').addClass('hides'); //sum_IAP_with_ccit
 						$('#sum_IAP_with_cit').addClass('hides'); // sum_IAP_with_cit
@@ -444,18 +555,17 @@ $('input[name=GroupWise]').on('click',function(){
 						$('#RAP_with_AP').removeClass('xls');
 						$('#RAP_with_CCIT').removeClass('xls');
 						$('#RAP_with_CIT').addClass('xls');
-						
+						$('#example1').removeClass('year_filter');
+						$('#example2').removeClass('year_filter');
+						$('#example3').removeClass('year_filter');
+						$('#example4').removeClass('year_filter');
+						$('#example5').removeClass('year_filter');
+						$('#example6').addClass('year_filter');
 				}
 				
 				
 										  });
-
-		  
-
-
-
-								
-		 $("#tabs").tabs( {
+        $("#tabs").tabs( {
         "activate": function(event, ui) {
             $( $.fn.dataTable.tables( true ) ).DataTable().columns.adjust();
         }

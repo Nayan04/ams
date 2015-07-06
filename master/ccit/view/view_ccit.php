@@ -4,44 +4,18 @@
 <head>
 <meta charset="UTF-8">
 <title>CCIT Details <?php echo date('d-m-Y'); ?></title>
+
 <!-------------------- HEADER MENUS---------------------------->
 <?php ///////////////////////////
 $module=6;                //
 $column=6;                //  Value For Check Page Permission
 ///////////////////////////
 include("../../../common/menu_header_inside.php");?>
+<style>
+
+</style>
 <!-------------------- HEADER MENUS---------------------------->
-<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a  id="" onClick="add()">
-                  <pre> ADD  Ctrl+A</pre>
-                  </a></li>
-                <li><a   onClick="edit_ccit();">
-                  <pre> EDIT  Ctrl+E</pre>
-                  </a></li>
-                <li><a  onClick="del_ccit()">
-                  <pre> DELETE  Ctrl+D</pre>
-                  </a></li>
-                <li><a >
-                  <pre style="color:#E5E5E5;"> SAVE  Ctrl+S</pre>
-                  </a></li>
-                <li><a>
-                  <pre style="color:#E5E5E5;"> CLEAR  Ctrl+R</pre>
-                  </a></li>
-                <li><a>
-                  <pre style="color:#E5E5E5;"> BACK  Ctrl+B</pre>
-                  </a></li>
-                <li><a>
-                  <pre style="color:#E5E5E5;"> PRINT    Ctrl+P</pre>
-                  </a></li>
-                <li><a id="excel2">
-                  <pre> EXCEL     Ctrl+L</pre>
-                  </a></li>
-                <li><a onClick="exit();">
-                  <pre> EXIT     Ctrl+X</pre>
-                  </a></li>
-              </ul>
-            </li>
+
             <li><a href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">About</a></li>
           </ul>
           
@@ -52,6 +26,7 @@ include("../../../common/menu_header_inside.php");?>
                                </form>
                                <ul class="nav navbar-nav navbar-right">
                                  <li><a href="#"> <i class="fa fa-eye">At a glance..</i></a></li>
+                                 <li> <a id="exit_for" class="btn" onClick="exit()"> <i class="fa fa-sign-out"></i> Exit </a></li>
                                </ul>
                              </div>
                              <!-- /.navbar-collapse -->
@@ -97,14 +72,14 @@ include("../../../common/menu_header_inside.php");?>
              <?php }else{?>
             <a class="btn btn-app" style="color:#E5E5E5;" ><i class="fa fa-table" ></i> Excel </a>
             <?php }?>
-           <a id="exit_for" class="btn btn-app" onClick="exit()"> <i class="fa fa-sign-out"></i> Exit </a> </h3>
+           <a id="exit_for" class="btn btn-app" onClick="exit()"> <i class="fa fa-sign-out"></i> Exit </a> 
         </div>
      
       <!--------------------------------------------BUTTONS------------------------------------------------------>
       <!--------------------------------------------MAIN CONTENT----------------------------------------------------->
       <div class="box box-body" >
         <div id="prin" class="xls">
-          <table id="example1" class="table table-bordered table-striped " width="100%" >
+          <table id="example1" class="table table-bordered table-striped display" width="100%" >
             <thead>
               <tr>
                 <th></th>
@@ -164,7 +139,9 @@ if($per_val){?>
         sRowSelect: 'single'		
     }); 
     $( tt.fnContainer() ).insertAfter('a.infos');
+	
 } );
+ 
 </script>
 <?php }?>
 </body>

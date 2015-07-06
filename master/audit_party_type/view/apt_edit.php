@@ -205,7 +205,8 @@ include("../../../common/menu_header_inside.php");?>
 		while($case=mysql_fetch_array($rs1))
 		{ 
 		 if($case['assgroup']=='Corporate')
-		 {   $type_of_case[$j]=$case['type_of_case'];
+		 {   
+		      $type_of_case[$j]=$case['type_of_case'];
 		      $case_ids[$j]=$case['type_of_case_code'];
 	         $cor_sign_dh[$j]=array($case['sign1'],$case['sign2'],$case['sign3']);
 		    
@@ -225,7 +226,8 @@ include("../../../common/menu_header_inside.php");?>
 		 
 		 
 		}
-		//print_r($type_of_case);
+		
+//	print_r($type_of_case);
 	for($k=0;$k<sizeof($cor_sign_dh);$k++){
 		?>
          <tr>

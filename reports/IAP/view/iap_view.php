@@ -9,12 +9,16 @@ $obj= new common();
 <head>
 <meta charset="UTF-8">
 <title>Audit Monitoring System</title>
+<script src="../../../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="../../../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+
 <!--------------------------------- HEADER MENUS---------------------------->
 <?php ///////////////////////////
 $module=19;                //
 $column=6;                //  Value For Check Page Permission
 ///////////////////////////
 include("../../../common/menu_header_inside.php");?>
+
 <!-------------------------------- HEADER MENUS---------------------------->
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -64,7 +68,7 @@ include("../../../common/menu_header_inside.php");?>
     </nav>
   </header>
   <style>
-body{ font-size:12px;}
+
 select {
 	width:150px;
 }
@@ -96,7 +100,7 @@ select {
         </div>
         <div class="box-body">
           <div class="container" style="width:100%;">
-            <div  style="min-height:5px;  background:rgb(60,141,188);padding:5px;width:100%; margin:5px;color:#FFF;"> Select Report </div>
+            <div  class="head_section" style="margin:2px;" > Select Report </div>
             <div style="width:100%; height:100%; background-color:#CCC; float:left; margin:5px;  border:2px solid #030303;">
               <!--main container-->
               <div style="width:20%; height:100%; background-color:#fff; float:left; border-right:2px solid #030303;border-bottom::2px solid #030303; ">
@@ -126,6 +130,8 @@ select {
               </div>
               <div style="width:80%; height:100%; background-color:#fff; float:left;">
               <form id="IAP_report" name="IAP_report">
+             
+              
                 <table width="100%" id="example1" class="table table-bordered table-striped" style="white-space:nowrap;">
                   <tr>
                     <td>CCIT Charge</td>
@@ -254,7 +260,7 @@ select {
                     <td colspan="2"><select id="grp" name="grp" >
                         <option value="...">ALL</option>
                         <option value="corporate">Corporate</option>
-                        <option value="non-corporate">Non-Corporate</option>
+                        <option value="non corporate">Non Corporate</option>
                       </select></td>
                     <td>Status</td>
                     <td>

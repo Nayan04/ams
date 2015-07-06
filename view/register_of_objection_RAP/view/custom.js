@@ -2,6 +2,21 @@
               //  var so=parseInt(tid)+1;
 //$(':input:enabled:visible:first').focus();
 
+
+var control1 = $("#att1");
+var control2 = $("#att2");
+
+$("#clear1").on("click", function () {
+    control1.replaceWith( control1 = control1.clone( true ) );
+});
+
+$("#clear2").on("click", function () {
+    control2.replaceWith( control2 = control2.clone( true ) );
+});
+
+$('.right_trees table td:first-child').addClass('hc');
+$('.right_trees table th:first-child').addClass('hc');
+
 function get_text(){		
                // $("#re").hide();
 				var range=$('#obcode option:selected').val();
@@ -139,6 +154,7 @@ function add_rap()
 var a=validation();
 if(a)
 {
+	$("#rap")[0].reset();
 $.ajax({
 url: "../controller/add_RAP.php", // Url to which the request is send
 type: "POST",             // Type of request to be send, called as method
@@ -148,9 +164,9 @@ cache: false,             // To unable request pages to be cached
 processData:false,        // To send DOMDocument or non processed data file it is set to false
 success: function(data)   // A function to be called if request succeeds
 {
-	document.location="view.php";
+	//document.location="view.php";
 	  $("#msg").html(data);
-	//alert(data)
+	  alert(data)
 
 }
 	   });
@@ -164,6 +180,10 @@ success: function(data)   // A function to be called if request succeeds
 	//alert();
      var datass=new FormData($("#rap")[0]);
 	// alert(datass)
+	var a=validation();
+if(a)
+{
+	
      $.ajax({
 url: "../controller/update_RAP_control.php", // Url to which the request is send
 type: "POST",             // Type of request to be send, called as method
@@ -174,46 +194,14 @@ processData:false,        // To send DOMDocument or non processed data file it i
 success: function(data)   // A function to be called if request succeeds
 {
 	document.location="view.php";
-	  //  alert(data);
+	  // alert(data);
        $("#msg").html(data);
 }
      });
-
+}
 	}
 
 
-	  function edit_ac(){
-		  
-		  
-		         var range=$('#range option:selected').val(); //select
-  // alert("ds");
-   var asse_o=$('#asse_o option:selected').val();//select
-   var cit=$('#cit').val();
-   var id=$('#ao_id').val();
-   var ccit=$('#ccit').val();
-   var city=$("#city").val();
-    var city_group=$("#city_group").val();
-	 var doo=$("#doo").val();
-	  var asse=$("#assessee").val();
-	   var pan=$("#pan").val();
-	    var group=$("#group option:selected").val();//select
-		 var year=$("#year option:selected").val(); //select
-		  var toc=$("#toc option:selected").val();  //select
-		   var amt=$("#amt").val(); 
-		    var remark=$('textarea#remark').val();;//text area
-			 var ap=$("#ap").val();
-    var dataString = 'range='+ range + '&asse_o='+ asse_o+ '&cit='+ cit+ '&ccit='+ ccit+ '&city='+ city+ '&city_group='+ city_group+ '&doo='+ doo+ '&asse='+ asse+ '&pan='+ pan+ '&group='+ group+ '&year='+ year+ '&toc='+ toc+ '&amt='+ amt+ '&remark='+ remark+ '&ap='+ ap+ '&id='+id;
-//	alert(dataString);
-//	var re=validation();
-//	if(re==true){
-		
-$.post("../controller/update_ac_control.php", dataString ).done(function( data )
-	{
-				//	alert(data);								
-                $("#res").html(data);
-   			   document.location="view_ccit.php";
-	}); 
-		  }
 	  
 	  
 function edit(){
@@ -266,13 +254,24 @@ function printDiv(divName)  //print document
 	 
 	  var lar=$('#lar').val();
 	  var c=$('#pan').val();
+	  var e=$('#assname').val();
+	   var d=$('#amt').val();
       //alert(c);
   if (lar==null || lar.trim()=="" )   
     { 
        alert('LAR No. Is Blank ');
         $('#lar').focus();
        return false; 
-	}if(c==null || c==""){
+	}else if(e==null || e.trim()==""){
+		  alert('Assesse Name Is Blank !! ');
+        $('#assname').focus();
+       return false; 
+		}else if(d<0)
+	{
+		                             $("#errmsgs").html("Please Enter Positive Value");
+									 $("#amt").focus();
+									 return false;
+    }if(c==null || c==""){
 		alert("Pan NO Is Blank")
 		$('#pan').focus();
         return false;
@@ -304,20 +303,9 @@ function printDiv(divName)  //print document
  }
  
  
- function isNumber() // number validation
- {
-   //called when key is pressed in textbox
-  $("#pris").keypress(function (e) {
-     //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        $("#errmsg").html("Digits Only").show().fadeOut("slow");
-               return false;
-    }
-   });
-}
+
    
- $("#amt").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#amt").val().indexOf(".")||!(a.which<48||a.which>57)?($("#errmsg").hide(),0):($("#errmsg").html("Enter Only Digits With one desimal point").show(1000),!1)})
+ $("#amt").keypress(function(a){return 8==a.which||0==a.which||46==a.which&&-1==$("#amt").val().indexOf(".")||!(a.which<48||a.which>57)?($("#errmsgs").hide(),0):($("#errmsgs").html("Enter Only Digits With one desimal point").show(1000),!1)})
 
 function add(){
 	document.location="add.php";
@@ -374,28 +362,60 @@ function filtertree ( i, text ) {
       }
  
 $(document).ready(function() {  
- var t1=$('#example1').dataTable({
-		"scrollY": 200,
-		"scrollX": 450,
-        "scrollCollapse": true,
-        "paging": false,
-		 "order": [[ 1, 'asc' ]]
-        });
+  var t = $('#example1').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        } ],
+        "order": [[ 1, 'asc' ]],	
+		"scrollY":290,
+		"scrollX":450,
+		"paging":false
+    } );
+ 
+    t.on( 'order.dt search.dt', function () {
+        t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+ 
 	  
-  var t2=$('#example2').dataTable({
-		"scrollY": 200,
-		"scrollX": 450,
-        "scrollCollapse": true,
-        "paging": false,
-		"order": [[ 0, 'asc' ]]
-       	});
-  var t3=$('#example3').dataTable({
-		"scrollY":200,
-		"scrollX": 450,
-        "scrollCollapse": true,
-        "paging": false,
-		"order": [[ 0, 'asc' ]]
-      	});
+   var t1 = $('#example2').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        } ],
+        "order": [[ 1, 'asc' ]],	
+		"scrollY":290,
+		"scrollX":450,
+		"paging":false
+    } );
+ 
+    t1.on( 'order.dt search.dt', function () {
+        t1.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+	
+  var t2 = $('#example3').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        } ],
+        "order": [[ 1, 'asc' ]],	
+		"scrollY":290,
+		"scrollX":450,
+		"paging":false
+    } );
+ 
+    t2.on( 'order.dt search.dt', function () {
+        t2.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
     
 	
 	
@@ -506,8 +526,12 @@ $(document).ready(function() {
 		
     } );
 	$('a.tree').on('click', function () {
+									  if($(this).attr("id")=='all_fil'){
+	filtertree('', '')
+	}else{
 			clears();						  
 		filtertree( $(this).attr('data-column'),$(this).text() );
+	}
 	} );
 	function clears(){
 	     // alert("sdcs");
@@ -538,34 +562,45 @@ $(document).ready(function() {
 										    $("#quar").removeClass('xls');
 										    $("#checks").addClass('hides');
 											
+											$('#open_add').show();
+											$('#edis').show();
+											$('#dele_row').show();
+											$("#open_add").click(add);
+											$("#edis").click(edit);
+											$("#dele_row").click(del_rap);
+											
 										}else if(values==2){
 											$("select[name='range']").prop("disabled", this.checked);
 											$("select[name='ao']").prop("disabled", this.checked);
 											$("select[name='group']").prop("disabled", this.checked);
 											$("select[name='status']").prop("disabled", this.checked);
 											$("select[name='ao']").prop("disabled", this.checked);
-											//$("select[name='fin']").prop("disabled", this.checked);
 											$("select[name='type']").prop("disabled", this.checked);
 											$('#detail').removeClass('xls');											
 											$("#sum").addClass('xls');
-										    $("#quar").removeClass('xls');
-											
+										    $("#quar").removeClass('xls');											
 											$("#detail").addClass('hides');
 											$("#sum").removeClass('hides');
 											$("#quar").addClass('hides');
 											$("#checks").removeClass('hides');
+											
+											$('#open_add').hide();
+											$('#edis').hide();
+											$('#dele_row').hide();
+											$('#open_add').prop('onclick',null).off('click');
+											$('#edis').prop('onclick',null).off('click');
+											$('#dele_row').prop('onclick',null).off('click');
 											}
 									
 									});		
 			$(".year").click(function(){
-									//alert();
 									var values=$(this).val();
 									if(values==1){
 										$("select[name='range']").prop("disabled", this.checked);
-											$("select[name='ao']").prop("disabled", this.checked);
-											$("select[name='group']").prop("disabled", this.checked);
-											$("select[name='status']").prop("disabled", this.checked);
-											$("select[name='ao']").prop("disabled", this.checked);
+										$("select[name='ao']").prop("disabled", this.checked);
+										$("select[name='group']").prop("disabled", this.checked);
+										$("select[name='status']").prop("disabled", this.checked);
+										$("select[name='ao']").prop("disabled", this.checked);
 										$("#sum").removeClass('hides');
 										$("#quar").addClass('hides');
 										$("#detail").addClass('hides');
@@ -573,7 +608,14 @@ $(document).ready(function() {
 										$('#detail').removeClass('xls');											
 									    $("#sum").addClass('xls');
 										$("#quar").removeClass('xls');
-										//$("#checks").hide();
+										
+										    $('#open_add').hide();
+											$('#edis').hide();
+											$('#dele_row').hide();
+											$('#open_add').prop('onclick',null).off('click');
+											$('#edis').prop('onclick',null).off('click');
+											$('#dele_row').prop('onclick',null).off('click');
+											
 										}else if(values==2){
 											$("select[name='range']").prop("disabled", this.checked);
 											$("select[name='ao']").prop("disabled", this.checked);
@@ -582,15 +624,19 @@ $(document).ready(function() {
 											$("select[name='ao']").prop("disabled", this.checked);
 											//$("select[name='fin']").prop("disabled", this.checked);
 											$("select[name='type']").prop("disabled", this.checked);
-											
-											//$("#checks").show();
 											$("#detail").addClass('hides');
 											$("#sum").addClass('hides');
-											$("#quar").removeClass('hides');
+											$("#quar").removeClass('hides');											
+											$('#detail').removeClass('xls');			
+									        $("#sum").removeClass('xls');
+										    $("#quar").addClass('xls');
 											
-											$('#detail').removeClass('xls');											
-									    $("#sum").removeClass('xls');
-										$("#quar").addClass('xls');
+											$('#open_add').hide();
+											$('#edis').hide();
+											$('#dele_row').hide();
+											$('#open_add').prop('onclick',null).off('click');
+											$('#edis').prop('onclick',null).off('click');
+											$('#dele_row').prop('onclick',null).off('click');
 											}
 									
 									});		

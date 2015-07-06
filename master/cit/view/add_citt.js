@@ -225,7 +225,7 @@ function resett(){
 	
 <!--------------------------------------------------------------------------------------------------------------------------------------->
 
-       var t = $('#example1').DataTable( {
+       var table = $('#example1').DataTable( {
         "columnDefs": [ {
             "searchable": false,
             "orderable": false,
@@ -234,27 +234,18 @@ function resett(){
         } ],
         "order": [[ 4, 'asc' ]],
 		"scrollY":290,
-		"paging":false
+		"paging":false,
+		
     } );
  
-    t.on( 'order.dt search.dt', function () {
-        t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+    table.on( 'order.dt search.dt', function () {
+        table.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
         } );
     } ).draw();
    
    
    
-      $(function () {
-        $("#example1").dataTable();
-        $('#example2').dataTable({
-          "bPaginate": true,
-          "bLengthChange": false,
-          "bFilter": false,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": false
-        });
-      });
+      
   
   

@@ -107,7 +107,7 @@ $column=6;                //  Value For Check Page Permission
         </div>
         <div class="box-body">
           <div id="#re"></div>
-          <div class="head">User Master</div>
+          <div class="head_section">User Master</div>
           <!--button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button-->
           <table id="example1" class="table table-bordered table-striped" width="100%" >
             <thead>
@@ -149,18 +149,27 @@ $column=6;                //  Value For Check Page Permission
 <?php include("../../../common/master_footer_for_view.php") ?>
 <script src="user_js.js"></script>
 <script type="text/javascript">
-      $(function () {
-        $("#example1").dataTable();
-        $('#example2').dataTable({
-          "bPaginate": true,
-          "bLengthChange": false,
-          "bFilter": false,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": false
-        });
-      });
+      
+	  var t = $('#example1').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        } ],
+        "order": [[ 1, 'asc' ]],	
+		"scrollY":290,
+		"paging":false
+    } );
+ 
+    t.on( 'order.dt search.dt', function () {
+        t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+	var tt = new $.fn.dataTable.TableTools( t, {sRowSelect: 'single'});
     </script>
+    
+
 <!-- page script -->
 </body>
 </html>

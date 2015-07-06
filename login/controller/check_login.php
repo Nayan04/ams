@@ -16,6 +16,7 @@ if($row=mysql_fetch_array($rs))
 				     $_SESSION['user_id']=$user;//session 2
 					 $_SESSION['set_is_login']=1;
 				     $_SESSION['group_name']=$row['group_name'];
+					 $_SESSION['user_mast']=$row['id'];
 					// $_SESSION['group_code']=$name; //session 3   
 					//$rs=$obj_db->update_login($user,1);
 

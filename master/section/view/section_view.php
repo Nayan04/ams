@@ -117,8 +117,8 @@ $column=6;                //  Value For Check Page Permission
           
        <div class="box-body" class="xls">
         <div id="#re"></div>
-        
-          <table id="example1" class="table table-bordered table-striped xls" width="100%" >
+        <div class="xls">
+          <table id="example1" class="table table-bordered table-striped" width="100%" >
              <thead>
               <tr>
               <tr>
@@ -160,6 +160,7 @@ $column=6;                //  Value For Check Page Permission
             </tbody>
             
           </table>
+          </div>
        
         </div>
         <!-- /.box-body -->
@@ -173,7 +174,7 @@ $column=6;                //  Value For Check Page Permission
  <?php include("../../../common/master_footer_for_view.php") ?>
 
 <script src='section_js.js'></script>
-<script>$(function() {$("#excel ,#excel2").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Section Detail"});}); });</script>
+<script>$(function() {$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Section Detail"});}); });</script>
 
     <?php     
 	$module=16;

@@ -73,7 +73,7 @@ $column=5;                //  Value For Check Page Permission
           <a class="btn btn-app" style="color:#E5E5E5;"> <i class="fa fa-edit"></i> Edit </a>
            <a class="btn btn-app" style="color:#E5E5E5;"> <i class="fa fa-scissors"></i>Delete </a>
            
-          <a class="btn btn-app" onClick="add_obj();"> <i class="fa fa-save"></i> Save </a> 
+          <a class="btn btn-app" onClick="update_obj();"> <i class="fa fa-save"></i> Save </a> 
           <a class="btn btn-app" onClick="goBack();" id="back_ones"> <i class="fa fa-arrow-left"></i> Back </a> 
           
           <a class="btn btn-app" style="color:#E5E5E5;"> <i class="fa fa-print"></i> Print </a>

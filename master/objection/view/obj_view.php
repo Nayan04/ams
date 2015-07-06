@@ -108,7 +108,7 @@ include("../../../common/menu_header_inside.php");?>
                    echo $excel_str;
                 }?>
                <!-------------------------------------------------------------------------------------------> 
-           <a id="for_exit" onClick="exit()" class="btn btn-default"> <i class="fa fa-sign-out"></i> Exit </a>
+           <a id="for_exit" onClick="exit()" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a>
           </h3>
           </h3>
         </div>
@@ -116,7 +116,7 @@ include("../../../common/menu_header_inside.php");?>
        <div class="box-body">
         <div id="#re"></div>
        <div class="xls">
-          <table id="example1" class="table table-bordered table-striped xls" width="100%" >
+          <table id="example1" class="table table-bordered table-striped " width="100%" >
              <thead>
               <tr>
               <tr>

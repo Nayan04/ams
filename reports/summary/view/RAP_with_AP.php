@@ -1,5 +1,13 @@
 <table id="example2" class="table table-bordered table-striped display" style="text-transform:capitalize;" >
                     <thead>
+                    <tr style="display:none;">
+                
+                <td colspan="12" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr>
+              
+                <td colspan="12" align="center"><strong>Summary Audit Party Wise (RAP) </strong></td>
+              </tr>
                       <tr>
                         <th rowspan="2">SN</th>
                         <th rowspan="2">Audit Party</th>

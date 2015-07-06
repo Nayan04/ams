@@ -12,6 +12,7 @@ $obj=new draft_db();
 ?>
 <meta charset="UTF-8">
 <title>Audit Monitoring System</title>
+<link rel="stylesheet" href="../../../orangebox/css/orangebox.css" type="text/css" />
 <!-------------------- HEADER MENUS---------------------------->
 <?php ///////////////////////////
 $module=4;                //
@@ -93,7 +94,8 @@ include("../../../common/menu_header_inside.php");?>
                    echo $del_str;
                 }?>
           <!------------------------------------------------------------------------------------------->
-          <a class="btn btn-app" style="color:#E5E5E5;" ><i class="fa fa-save"></i> Save </a> <a class="btn btn-app infos" style="color:#E5E5E5;" > <i class="fa fa-arrow-left"></i> Back </a>
+          <a class="btn btn-app"       style="color:#E5E5E5;" ><i class="fa fa-save"></i> Save </a> 
+          <a class="btn btn-app infos" style="color:#E5E5E5;" > <i class="fa fa-arrow-left"></i> Back </a>
           <?php $module=4;
 		       $column=9;
 			   $per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
@@ -109,6 +111,7 @@ include("../../../common/menu_header_inside.php");?>
         <div id="prin">
           <div class=" box main">
             <div class="hds">
+           <div class="head_section">View Draft Para</div>
               <table width="100%">
                 <tr>
                   <td> C & AG Year </td>
@@ -148,7 +151,7 @@ include("../../../common/menu_header_inside.php");?>
                 <tr>
                   <td>Assesse Name </td>
                   <td><input type="text" data-column="6" class="an_filter" id="text6_filter"></td>
-                  <td> Aessessing officer </td>
+                  <td> Assessing officer </td>
                   <td><select data-column="10" class="ao_filter" id="ao" name="ao" >
                       <?php  $obj_db=new draft_db();
                        $rs=$obj_db->get_ao_all(); ?>
@@ -173,23 +176,32 @@ include("../../../common/menu_header_inside.php");?>
           <div class="xls">
             <table id="example1" class="table table-bordered table-striped display">
               <thead>
+               <tr style="display:none;">
+                <th></th>
+                <td colspan="16" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr style="display:none;">
+                <th></th>
+                <td colspan="16" align="center"><strong>Drapt Para</strong></td>
+              </tr>
                 <tr>
+                
                   <th></th>
                   <th>SNo</th>
-                  <th>C & AG year</th>
+                  <th>C & AG <br> year</th>
                   <th>DP No</th>
-                  <th>Date of Receipt</th>
-                  <th>Date of Sending</th>
-                  <th>Assese Name</th>
-                  <th>Gist Of Objection</th>
-                  <th>CCIT Charge </th>
-                  <th>CIT Charge</th>
-                  <th>Assessing Officer</th>
+                  <th>Date of<br> Receipt</th>
+                  <th>Date of<br> Sending</th>
+                  <th>Assesse Name</th>
+                  <th>Gist Of <br> Objection</th>
+                  <th>CCIT <br>Charge </th>
+                  <th>CIT<br> Charge</th>
+                  <th>Assessing <br> Officer</th>
                   <th>Status</th>
                   <th>Ass.Year</th>
-                  <th>Tax Effect</th>
-                  <th>Scan File 1</th>
-                  <th>Scan File 2</th>
+                  <th>Tax <br>Effect</th>
+                  <th>Scan <br> File 1</th>
+                  <th>Scan <br> File 2</th>
                   <th >DP ID</th>
                 </tr>
               </thead>
@@ -197,8 +209,7 @@ include("../../../common/menu_header_inside.php");?>
                 <?php $m=1;		
 					$obj_db=new draft_db();
 					$rss=$obj_db->view_draft_para();
-					    	while($row=mysql_fetch_array($rss)){ 
-					
+					while($row=mysql_fetch_array($rss)){					
 					?>
                 <tr>
                   <td><input type="radio" id="ch"   name="che" value="<?=$row['id'];?>"  ></td>
@@ -242,8 +253,8 @@ include("../../../common/menu_header_inside.php");?>
 					  }
                       ?></td>
                   <td><?php echo $row['TaxEffect']; ?></td>
-                  <td><?php echo $row['ScanFile1'];?></td>
-                  <td ><?php  echo $row['ScanFile2'];?></td>
+                 <td><a href="<?php echo $row['ScanFile1']; ?>" data-ob="lightbox"><?php echo substr($row['ScanFile1'],14); ?></a></td>
+              <td><a href="<?php echo $row['ScanFile2']; ?>" data-ob="lightbox"><?php echo substr($row['ScanFile2'],14); ?></a></td>
                   <td class="last"><?php echo $row['draft_id']; ?></td>
                 </tr>
                 <?php $m++; } 
@@ -267,8 +278,9 @@ include("../../../common/menu_header_inside.php");?>
 </div>
 <!-- ./wrapper -->
 <?php include("../../../common/master_footer_for_view.php"); ?>
+<script type="text/javascript" src="../../../orangebox/js/orangebox.min.js"></script>
 <script src='draft_js.js'></script>
-<script src="excel/src/jquery.table2excel.js"></script>
+
 <script>
 			$(function() {
 					  
@@ -282,37 +294,44 @@ include("../../../common/menu_header_inside.php");?>
 													   });
 			});
 			</script>
-<script>
- $(document).ready(function() {
-    
-   
-</script>
+
 <script type="text/javascript">
-     
-   
+ var t = $('#example1').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        } ],
+        "order": [[ 1, 'asc' ]],	
+		"scrollY":290,
+		"scrollX":450,
+		"paging":false
+    } ); 
+    t.on( 'order.dt search.dt', function () {
+        t.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+	</script>
  
-$(document).ready(function() {
-	
-	  
-  var table=$('#example1').dataTable({
-		"scrollY": "290px",
-		"scrollX": "400px",
-       "scrollCollapse": true,
-        "paging": false,
-       //"jQueryUI": true
-		
-	});
- <?php $module=4;
+    
+  <?php $module=4;
 	   $column=8;
 			   $per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
-				if($per_val){?> 
-var tts = new $.fn.dataTable.TableTools( table, {
+				if(1){?> 
+<script>
+$(document).ready(function() {
+    var table = $('#example1').DataTable();
+    var tts = new $.fn.dataTable.TableTools( table, {
         sRowSelect: 'single'		
     }); 
     $( tts.fnContainer() ).insertAfter('a.infos');
+} );
+
+</script>
 
  <?php }?>
-    
+    <script>
 	
 	
 	$('a.tree').on('click', function () {
@@ -325,7 +344,7 @@ var tts = new $.fn.dataTable.TableTools( table, {
 	 
 	 
 	
-});
+
 
 
 

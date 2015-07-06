@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 include("../modal/ac_db.php");
 $db=new ac_db();
 $range=$_REQUEST['range'];
@@ -21,6 +21,7 @@ $amt=$_REQUEST['amt'];
 $remark=$_REQUEST['remark'];
 $ap=$_REQUEST['ap'];
 $ap_id=$_REQUEST['ap_id'];
+$user=$_SESSION['user_mast'];
 
 $apt=$db->get_ap_by_id($ap_id);
 $aptype_code=0;
@@ -41,7 +42,7 @@ if($last=mysql_fetch_array($rs)){
 		echo $last=1;
 		}
 /////////////////////
-$db->insert_acc($last,$range,$asse_o,$cit,$ccit,$city,$cit_id,$ccit_id,$city_id,$city_group,$doo,$asse,$pan,$group,$year,$toc,$amt,$remark,$ap,$ap_id,$aptype_code);
+$db->insert_acc($last,$range,$asse_o,$cit,$ccit,$city,$cit_id,$ccit_id,$city_id,$city_group,$doo,$asse,$pan,$group,$year,$toc,$amt,$remark,$ap,$ap_id,$aptype_code,$user);
 
 ?>
 

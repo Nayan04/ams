@@ -108,7 +108,7 @@ include("../../../common/menu_header_inside.php");?>
                    echo $excel_str;
                 }?>
                <!------------------------------------------------------------------------------------------->  
-          <a id="exit_for" onClick="exit()" class="btn btn-default"> <i class="fa fa-sign-out"></i> Exit </a>
+          <a id="exit_for" onClick="exit()" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a>
           </h3>
           </h3>
         </div>
@@ -177,8 +177,6 @@ include("../../../common/menu_header_inside.php");?>
     <!-- /.container -->
 <?php include("../../../common/master_footer_for_view.php") ?>
 <script src='ap_js.js'></script>
-
-<script src="excel/src/jquery.table2excel.js"></script>
 <script>
 			$(function() {
 					  

@@ -23,9 +23,9 @@ class rap_db
 		}
 	
 	
-	function insert_objection_reg_rap($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rec_date,$entry_date){
+	function insert_objection_reg_rap($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rec_date,$entry_date,$user){
 		
-		$sql = sprintf("insert into register_obj (MastCode,SrNO,APMastCode,APTypeCode,FinYearCode,MonthCode,QuarterCode,APCode,APOfficerCode,CCITCode,CITCode,RangeCode,LARIAMNO,LARIAMRecDate,EntryDate,isactive,ObjType) values('$last_mast','$last_sno','$last_APMast','$AP_type_code','$fyear','$cur_month','$quater_id','$ap_code','$auo','$ccit_id','$cit_id','$range_code','$lar','$rec_date','$entry_date',1,'RAP')"); 
+		$sql = sprintf("insert into register_obj (MastCode,SrNO,APMastCode,APTypeCode,FinYearCode,MonthCode,QuarterCode,APCode,APOfficerCode,CCITCode,CITCode,RangeCode,LARIAMNO,LARIAMRecDate,EntryDate,isactive,ObjType,UserCode) values('$last_mast','$last_sno','$last_APMast','$AP_type_code','$fyear','$cur_month','$quater_id','$ap_code','$auo','$ccit_id','$cit_id','$range_code','$lar','$rec_date','$entry_date',1,'RAP','$user')"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -45,10 +45,10 @@ function insert_objection_regdet_rap($last_mast,$last_sno,$last_APMast,$ap_code,
 					
 		}
 		
-		function update_rap_registe_obj($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rec_date,$entry_date,$id){
+		function update_rap_registe_obj($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rec_date,$entry_date,$id,$user){
 		
 		
-		$sql = sprintf("update register_obj set APMastCode='$last_APMast',APTypeCode='$AP_type_code',FinYearCode='$fyear',MonthCode='$cur_month',QuarterCode='$quater_id',APCode='$ap_code',APOfficerCode='$auo',CCITCode='$ccit_id',CITCode='$cit_id',RangeCode='$range_code',LARIAMNO='$lar',LARIAMRecDate='$rec_date',EntryDate='$entry_date' where MastCode='$id'"); 
+		$sql = sprintf("update register_obj set APMastCode='$last_APMast',APTypeCode='$AP_type_code',FinYearCode='$fyear',MonthCode='$cur_month',QuarterCode='$quater_id',APCode='$ap_code',APOfficerCode='$auo',CCITCode='$ccit_id',CITCode='$cit_id',RangeCode='$range_code',LARIAMNO='$lar',LARIAMRecDate='$rec_date',EntryDate='$entry_date', UserCode='$user' where MastCode='$id'"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);

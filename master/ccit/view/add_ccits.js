@@ -1,11 +1,11 @@
 //var tid=$('table tbody tr:last td:first').text();
               //  var so=parseInt(tid)+1;
 //$(':input:enabled:visible:first').focus();
-$('.table').each(function(){
-    $('input[type=radio]:first', this).attr('checked', true);
-});
-$('.table td:first-child').addClass('hc');
-$('.table th:first-child').addClass('hc');
+
+
+$('.table tbody td:first-child').addClass('hc');
+$('.table thead th:first-child').addClass('hc');
+
 $('table tr').click(function() {
 								
     $(this).find('td input:radio').prop('checked', true);
@@ -57,7 +57,7 @@ function edit_ccit(){
 	var value = $("input:radio[name=che]:checked").val(); 
 	if(value==null){
 		
-		alert("No Data Available!");
+		alert("Please select Data If Available!");
 		}
 	else{
 							
@@ -71,7 +71,7 @@ function del_ccit(){
 	var value = $("input:radio[name=che]:checked").val(); 
 	if(value==null){
 		
-		alert("No Data Available!");
+		alert("Please select Data If Available!!");
 		}
 	else{
 	
@@ -88,6 +88,9 @@ function goBack()
  {
     window.history.back();
  }
+ $('table').each(function(){
+    $('input[type=radio]:first', this).attr('checked', true);
+});
  
 function printDiv(divName)  //print document
  {

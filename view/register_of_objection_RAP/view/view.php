@@ -26,6 +26,8 @@ $column=6;                //  Value For Check Page Permission
 	display:none;
 }
 </style>
+<link rel="stylesheet" href="../../../orangebox/css/orangebox.css" type="text/css" />
+
 <!-------------------- HEADER MENUS---------------------------->
 <?php  include("../../../common/menu_header_inside.php");?>
             <!-------------------- HEADER MENUS---------------------------->
@@ -119,6 +121,7 @@ $column=6;                //  Value For Check Page Permission
           <div id="prin">
             <div class="box main">
               <div class="hds">
+              <div class="head_section">Registration Of Objection RAP</div>
                 <table width="100%">
                   <tr>
                     <td> CCIT Charge</td>
@@ -203,7 +206,7 @@ $column=6;                //  Value For Check Page Permission
                   <section class="sidebar">
                     <ul class="sidebar-menu">
                       <li class="header">Organization Chart</li>
-                      <li class="treeview"> <a href="#" onClick="clears()"> <i class="fa fa-plus"></i> <span id="all_option">RAP</span> <i class="fa fa-angle-left pull-right"></i> </a>
+                      <li class="active treeview"> <a href="#"  class="tree" id="all_fil"> <i class="fa fa-plus"></i> <span id="all_option">RAP</span> <i class="fa fa-angle-left pull-right"></i> </a>
                         <ul class="treeview-menu">
                           <?php $c=$db->get_ap_by_type_name('RAP');
 			          while($cits=mysql_fetch_array($c)){ // GET CIT by cit ?>
@@ -233,32 +236,40 @@ $column=6;                //  Value For Check Page Permission
                 <div id="detail" class="xls">
                   <table id="example1" class="table table-bordered table-striped display" style="white-space:nowrap;">
                     <thead>
+                    <tr style="display:none;">
+                <th></th>
+                <td colspan="24" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr style="display:none;">
+                <th></th>
+                <td colspan="24" align="center"><strong>Register of Objection (RAP) </strong></td>
+              </tr>
                       <tr>
                         <th></th>
                         <th>SN</th>
-                        <th>Fin.Year</th>
+                        <th>Fin. <br> Year</th>
                         <th>LAR No.</th>
-                        <th>Date of Assessement Order</th>
-                        <th>Para No.</th>
-                        <th>Assessee Name</th>
+                        <th>Date of <br> Assessement <br> Order</th>
+                        <th>Para <br> No.</th>
+                        <th>Assessee <br> Name</th>
                         <th>PAN No.</th>
-                        <th>Scan File 1</th>
-                        <th>Scan File 2</th>
-                        <th>Asst. Year</th>
-                        <th>Block Asst.</th>
-                        <th>Block Asst. Period</th>
-                        <th>Tax Effect</th>
+                        <th>Scan <br> File 1</th>
+                        <th>Scan <br> File 2</th>
+                        <th>Asst. <br> Year</th>
+                        <th>Block <br>Asst.</th>
+                        <th>Block <br>Asst.  Period</th>
+                        <th>Tax <br>Effect</th>
                         <th>Type</th>
                         <th>Group</th>
                         <th>Satus</th>
-                        <th>CCIT Charge</th>
-                        <th>CIT Charge</th>
-                        <th>Audit Party</th>
+                        <th>CCIT <br>Charge</th>
+                        <th>CIT <br>Charge</th>
+                        <th>Audit <br>Party</th>
                         <th>Range</th>
-                        <th>Assessing Officer</th>
+                        <th>Assessing <br> Officer</th>
                         <th>USER</th>
-                        <th>Entry Date</th>
-                        <th>Group Type</th>
+                        <th>Entry <br> Date</th>
+                        <th>Group <br> Type</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -284,8 +295,8 @@ $column=6;                //  Value For Check Page Permission
                         <td><?php echo $row['ParaNo']; ?></td>
                         <td><?php echo $row['AssName']; ?></td>
                         <td><?php echo $row['PanNo']; ?></td>
-                        <td><?php echo substr($row['ScanFile1'],14); ?></td>
-                        <td><?php echo substr($row['ScanFile2'],14); ?></td>
+                        <td><a href="<?php echo $row['ScanFile1']; ?>" data-ob="lightbox"><?php echo substr($row['ScanFile1'],14); ?></a></td>
+                        <td><a href="<?php echo $row['ScanFile2']; ?>" data-ob="lightbox"><?php echo substr($row['ScanFile2'],14); ?></a></td>
                         <td><?php
 					  $ayy=$db->get_year_by_id($row['AssYearCode']);
 					  if($assty=mysql_fetch_array($ayy)){					 
@@ -325,8 +336,10 @@ $column=6;                //  Value For Check Page Permission
 					         echo $aoos['name'];
 						  } //echo $row['range_code']; ?></td>
                         <td><?php 
-					     					 
-					         echo $iap_reg_obj['UserCode'];
+					     			  $userd=$db->get_user_by_id( $iap_reg_obj['UserCode']);
+									  if($userd=mysql_fetch_array($userd)){
+					                   echo $userd['user'];
+									  }
 						?></td>
                         <td><?php 
 					     					 
@@ -345,24 +358,29 @@ $column=6;                //  Value For Check Page Permission
                   <table id="example2" class="table table-bordered table-striped display" style="text-transform:capitalize;" >
                     <thead>
                       <tr>
-                        <th rowspan="2">SN</th>
-                        <th rowspan="2">Audit Party</th>
-                        <th rowspan="2" >Fin. Year</th>
-                        <th rowspan="2">No Of Cases Audit</th>
-                        <th colspan="2">No Of Cases Settled</th>
-                        <th colspan="2">No OF Obj. Raised</th>
-                        <th colspan="2">Tax Effect</th>
-                        <th rowspan="2">CCIT Charge</th>
-                        <th rowspan="2">CIT Charge</th>
+                      <tr style="display:none;">
+                <th></th>
+                <td colspan="12" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr style="display:none;">
+                <th></th>
+                <td colspan="12" align="center"><strong>Summary Register of Objection (RAP) </strong></td>
+              </tr>
+                        <th ></th>
+                        <th >SN</th>
+                        <th >Audit Party</th>
+                        <th >Fin. Year</th>
+                        <th >No Of <br>  Cases Audit</th>
+                        <th >No Of <br> Cases Settled <br> Major </th>
+                        <th >No Of <br> Cases Settled <br> Minor </th>
+                        <th >No OF  <br> Obj. Raised <br> Major </th>
+                        <th >No OF  <br> Obj. Raised <br> Minor </th>
+                        <th >Tax Effect <br> Major</th>
+                        <th >Tax Effect <br> Minor</th>
+                        <th >CCIT Charge</th>
+                        <th >CIT Charge</th>
                       </tr>
-                      <tr>
-                        <th>Major</th>
-                        <th>Minor</th>
-                        <th>Major</th>
-                        <th>Minor</th>
-                        <th>Major</th>
-                        <th>Minor</th>
-                      </tr>
+                     
                     </thead>
                     <tbody>
                       <?php  $m=1;
@@ -435,7 +453,7 @@ $column=6;                //  Value For Check Page Permission
 					                            $toc=mysql_fetch_array($t);
 								                $a_o=$db->get_cit_by_id($cit);
 					                            $oc=mysql_fetch_array($a_o);
-								                echo "<tr><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
+								                echo "<tr><td></td><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
 												$m++;
 							          }//year
 											  
@@ -444,7 +462,7 @@ $column=6;                //  Value For Check Page Permission
 					                $toc=mysql_fetch_array($t);
 								    $a_o=$db->get_cit_by_id($cit);
 					                $oc=mysql_fetch_array($a_o);
-								    echo "<tr><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
+								    echo "<tr><td></td><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
 									$m++;
                         
 						}
@@ -464,26 +482,32 @@ $column=6;                //  Value For Check Page Permission
                 <div id="quar" class="hides">
                   <table id="example3" class="table table-bordered table-striped display" style="text-transform:capitalize;" >
                     <thead>
+                    <tr style="display:none;">
+                <th></th>
+                <td colspan="13" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr style="display:none;">
+                <th></th>
+                <td colspan="13" align="center"><strong>Register of Objection (RAP) </strong></td>
+              </tr>
                       <tr>
-                        <th rowspan="2">SN</th>
-                        <th rowspan="2">Audit Party</th>
-                        <th rowspan="2" >Fin. Year</th>
-                        <th rowspan="2">Qurter</th>
-                        <th rowspan="2">No Of Cases Audit</th>
-                        <th colspan="2">No Of Cases Settled</th>
-                        <th colspan="2">No OF Obj. Raised</th>
-                        <th colspan="2">Tax Effect</th>
-                        <th rowspan="2">CCIT Charge</th>
-                        <th rowspan="2">CIT Charge</th>
+                      
+                        <th ></th>
+                        <th >SN</th>
+                        <th >Audit Party</th>
+                        <th >Fin. Year</th>
+                        <th>Quarter</th>
+                        <th >No Of <br>  Cases Audit</th>
+                        <th >No Of <br> Cases Settled <br> Major </th>
+                        <th >No Of <br> Cases Settled <br> Minor </th>
+                        <th >No OF  <br> Obj. Raised <br> Major </th>
+                        <th >No OF  <br> Obj. Raised <br> Minor </th>
+                        <th >Tax Effect <br> Major</th>
+                        <th >Tax Effect <br> Minor</th>
+                        <th >CCIT Charge</th>
+                        <th >CIT Charge</th>
                       </tr>
-                      <tr>
-                        <th>Major</th>
-                        <th>Minor</th>
-                        <th>Major</th>
-                        <th>Minor</th>
-                        <th>Major</th>
-                        <th>Minor</th>
-                      </tr>
+                      
                     </thead>
                     <?php  $m=1;
 					        $num_ob_by_year=0;
@@ -583,7 +607,7 @@ $column=6;                //  Value For Check Page Permission
 					                $toc=mysql_fetch_array($t);
 								    $a_o=$db->get_cit_by_id($cit);
 					                $oc=mysql_fetch_array($a_o);
-								    echo "<tr><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td>".$quater_id."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
+								    echo "<tr><td></td><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td>".$quater_id."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
 									$m++;
 										     }//while qua
 										    }//if qua
@@ -591,7 +615,7 @@ $column=6;                //  Value For Check Page Permission
 										  $count=0;
 								}//if year
 							     else{
-									  echo "<tr><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td>".$quater_id."</td><td>".$count."</td><td>".$num_ob_set_major."</td><td>".$num_ob_set_minor."</td><td>".$num_ob_rais_major."</td><td>".$num_ob_rais_minor."</td><td>".round(($tax_effect_major/1000000),2)."</td><td>".round(($tax_effect_minor/1000000),2)."</td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
+									  echo "<tr><td></td><td>$m</td><td>".$audi_pp['party_name']."</td><td>".$asst['year']."</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>".$toc['ccit_charge']."</td><td>". $oc['cit_charge_name']."</td></tr>";
 									 $m++;
 						            }//else of if
 								}
@@ -619,21 +643,16 @@ $column=6;                //  Value For Check Page Permission
 <!-- ./wrapper -->
 <!-- ./wrapper -->
 <?php include("../../../common/master_footer_for_view.php"); ?>
+<script type="text/javascript" src="../../../orangebox/js/orangebox.min.js"></script>
 <script src='custom.js'></script>
 <script>
-$(function() {
-					  
-				  $("#excel").on('click', function(){												   
-				   $(".xls").table2excel({
-					exclude: ".noExl",
-					name: "Excel Document Name",
-					filename: "Register of objection(RAP)"
-				});
-													   });
-			});
-			</script>
-<script>
- $(document).ready(function() {
+$(function() {$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Register of objection(RAP)"});});});
+</script>
+ <?php $module=3;
+	   $column=8;
+			   $per_val=$obj_p->get_access_of_usser_by($user,$module,$column);
+				if(1){?> 
+<script>$(document).ready(function() {
     var table = $('#example1').DataTable();
     var tts = new $.fn.dataTable.TableTools( table, {
         sRowSelect: 'single'		
@@ -642,5 +661,7 @@ $(function() {
 } );
 
 </script>
+
+ <?php }?>
 </body>
 </html>

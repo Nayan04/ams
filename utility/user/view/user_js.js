@@ -1,4 +1,5 @@
-
+$('.table td:first-child').addClass('hc');
+$('.table th:first-child').addClass('hc');
 	 function add_user(){	
 	
                 var sno=$("#sno").val();

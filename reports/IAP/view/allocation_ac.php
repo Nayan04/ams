@@ -9,6 +9,8 @@ $obj= new common();
 <head>
 <meta charset="UTF-8">
 <title>Audit Monitoring System</title>
+<script src="../../../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="../../../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 <!--------------------------------- HEADER MENUS---------------------------->
 <?php ///////////////////////////
 $module=19;                //

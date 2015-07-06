@@ -76,7 +76,7 @@ include("../../../common/menu_header_inside.php");?>
            <h3 class="box-title">
           <a class="btn btn-app"  style="color:#E5E5E5;"> <i class="fa fa-file "></i> Add </a> 
           <a class="btn btn-app"  style="color:#E5E5E5;" > <i class="fa fa-edit"></i> Edit </a>
-           <a class="btn btn-app"  style="color:#E5E5E5;"> <i class="fa fa-scissors"></i>Delete </a></h3>
+           <a class="btn btn-app"  style="color:#E5E5E5;"> <i class="fa fa-scissors"></i>Delete </a>
            
           <a class="btn btn-app" onClick="add_ao();"> <i class="fa fa-save"></i> Save </a> 
           <a class="btn btn-app" onClick="goBack();" id="back_ones"> <i class="fa fa-arrow-left"></i> Back </a> 
@@ -91,7 +91,7 @@ include("../../../common/menu_header_inside.php");?>
       <div class="box box-primary" style="width:40%; margin-left:30%; margin-right:20%;">
         <div class="box-body">
        
-             <form class="modal-content" id="myform" >
+             <form class="" id="myform" >
           <div class="form-group">
         
            <label for="code" class="control-label">Assessing  Officer</label><div id="err" style="margin:2px;"></div>

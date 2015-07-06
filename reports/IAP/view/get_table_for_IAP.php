@@ -1,6 +1,7 @@
 <?php  include("../../../config/common.php");
 $db=new common();
 $a=($_POST);
+//print_r($_POST);
 $ccit_id=$a['ccit'];
 $cit_id=$a['cit'];
 $fy=$a['fy'];
@@ -22,7 +23,7 @@ $lar_ed='';
 $dos_sd='';
 $dos_ed='';
 $tax_st='';
-$tax_ed='';
+$tax_end='';
 $entry_st='';
 $entry_ed='';
 if(isset($a['fd'])){
@@ -38,10 +39,10 @@ if(isset($a['dos_ed'])){
 	$dos_ed=$db->get_date_with_dash($a['dos_ed']); // dos End Date
 }
 if(isset($a['tax_st'])){
-	$tax_st=$db->get_date_with_dash($a['tax_st']); // tax start
+	$tax_st=$a['tax_st']; // tax start
 }
 if(isset($a['tax_end'])){
-    $tax_end=$db->get_date_with_dash($a['tax_end']); // tax end
+    echo $tax_end=$a['tax_end']; // tax end
 }
 if(isset($a['entry_st'])){
 	$entry_st=$db->get_date_with_dash($a['entry_st']); // entry start Date
@@ -61,8 +62,8 @@ if(isset($a['entry_end'])){
 $i=1;?>
 <table id="example3" class="table table-bordered table-striped display" style="white-space:nowrap;">
                     <thead>
-                    <tr ><th colspan="15" style="table-layout:auto; text-align:center; font-family:Tahoma, Geneva, sans-serif; font-size:11px; color:#000">Office Of Commissioner Of Income Tax (Audit), Ahemdabad </th>
-             </tr><tr><th colspan="15" style="table-layout:auto; text-align:center; font-family:Tahoma, Geneva, sans-serif; font-size:11px; color:#000"> Regiter Of Internal Audit Of Objection</th></tr>
+                    <tr ><th colspan="15" >Office Of Commissioner Of Income Tax (Audit), Ahemdabad </th>
+             </tr><tr><th colspan="15" > Regiter Of Internal Audit Of Objection</th></tr>
                       <tr>
                         <th>No.</th>
                         <th>Assessee Name</th>
@@ -85,7 +86,7 @@ $i=1;?>
                     <tbody  >
 
   <?php  $m=1;
-                     $iap_det=$db->get_iap_register_details_for_report($ccit_id,$cit_id,$ap,$apt,$range,$ao,$fy,$lar,$objection,$majorminor,$groups,$status,$dos,$user,$txe,$entry,$lar_sd,$lar_ed,$dos_sd,$dos_ed,$tax_st,$tax_ed,$entry_st,$entry_ed); //registeDet
+                     $iap_det=$db->get_iap_register_details_for_report($ccit_id,$cit_id,$ap,$apt,$range,$ao,$fy,$lar,$objection,$majorminor,$groups,$status,$dos,$user,$txe,$entry,$lar_sd,$lar_ed,$dos_sd,$dos_ed,$tax_st,$tax_end,$entry_st,$entry_ed); //registeDet
 			         while ($row=mysql_fetch_array($iap_det)){
 					 $iap_reg_obj='';
 					 $iap_reg=$db->get_iap_register_obj_by_mst($row['MastCode']); //register_obj

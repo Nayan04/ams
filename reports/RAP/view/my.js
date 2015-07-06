@@ -1,4 +1,5 @@
-// JavaScript Document
+$('.table_0 td:first-child').addClass('hc');
+$('.table_0 th:first-child').addClass('hc');// JavaScript Document
 
 
 function views_report(){
@@ -6,6 +7,9 @@ function views_report(){
 	//alert("aa");
 		 var che=$('input[name=che]:checked').val();
 	      datass ='id='+che;
+		  if(che=='' || che==null ){
+			  alert("Please Select Officer !!")
+			  }else{
 		// alert(datass);
 		 $.post("get_table_for_ledger.php", datass ).done(function( data )
 	     {
@@ -15,7 +19,7 @@ function views_report(){
 					 
 	                }); 
 				
-	
+			  }
 
 	
 	}

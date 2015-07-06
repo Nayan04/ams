@@ -1,49 +1,49 @@
-<?php 
+<?php session_start();
 include("../modal/iap_db.php");
 $db=new iap_db();
 $a=array();
 $a=($_POST);
-print_r($_FILES);
-//print_r($a);
-echo $_FILES["att1"]["type"];
 $targetPath1='';
 $targetPath2='';
- if(isset($_FILES["att1"]["type"]))
- {
- 	$validextensions = array("jpeg", "jpg", "png","pdf");
-	$temporary = explode(".", $_FILES["att1"]["name"]);
-	$file_extension = end($temporary);
-	if ((($_FILES["att1"]["type"] == "image/png") || ($_FILES["att1"]["type"] == "image/jpg") || ($_FILES["att1"]["type"] == "image/jpeg") || ($_FILES["att1"]["type"] == "application/pdf")
+$targetPath1='';
+$targetPath2='';
+if(isset($_FILES["att1"]["type"]))
+{
+$validextensions = array("jpeg", "jpg", "png","pdf");
+$temporary = explode(".", $_FILES["att1"]["name"]);
+$file_extension = end($temporary);
+if ((($_FILES["att1"]["type"] == "image/png") || ($_FILES["att1"]["type"] == "image/jpg") || ($_FILES["att1"]["type"] == "image/jpeg") || ($_FILES["att1"]["type"] == "application/pdf")
 ) && ($_FILES["att1"]["size"] < 10000000)//Approx. 10000kb files can be uploaded.
-&& in_array($file_extension, $validextensions)) 
-	{
-		if ($_FILES["att1"]["error"] > 0)
-		{
-			echo "Return Code: " . $_FILES["att1"]["error"] . "<br/><br/>";
-		}
-		else
-		{
-			if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) 
-			{?>
-    			<script>
-    			alert("***File Already exists ***");
-    			</script>
-	  <?php }else{
-				$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
-				$targetPath1 = "../../../docs/".$_FILES['att1']['name']; // Target path where file is to be stored
-				move_uploaded_file($sourcePath,$targetPath1) ; // Moving Uploaded file
-				}
-		}
-    }
-else{?>
+&& in_array($file_extension, $validextensions)) {
+if ($_FILES["att1"]["error"] > 0)
+{
+echo "Return Code: " . $_FILES["att1"]["error"] . "<br/><br/>";
+}
+else
+{
+if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {
+	
+$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
+$num=time();
+$targetPath1 = "../../../docs/".$num.$_FILES['att1']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath1) ; // Moving Uploaded file
+	}
+else
+{
+$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
+$targetPath1 = "../../../docs/".$_FILES['att1']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath1) ; // Moving Uploaded file
+
+}
+}
+}
+else
+{?>
 <script>
 alert("***Invalid file Size or Type***");
 </script>
 <?php }
-
-}else{
-	$targetPath1='';
-	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_FILES["att2"]["type"]))
@@ -61,11 +61,12 @@ echo "Return Code: " . $_FILES["att2"]["error"] . "<br/><br/>";
 else
 {
 if (file_exists("../../../docs/" . $_FILES["att2"]["name"])) {
-?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php
+
+$sourcePath = $_FILES['att2']['tmp_name']; // Storing source path of the file in a variable
+$num=time();
+$targetPath2 = "../../../docs/".$num.$_FILES['att2']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath2) ; // Moving Uploaded file
+
 }
 else
 {
@@ -87,12 +88,7 @@ alert("***Invalid file Size or Type***");
 </script>
 <?php 
 }
-}else{
-	$targetPath1='';
-	}
-/*******************************************************************************/
-//print_r(array_values($a));
-//$values='',,$a['assesse'],,,$a['block'],$a['pirod'],$a['des']
+}
 $ap_code=$a['APCode'];
 $id=$a['MastCode'];
 $range_code=$_REQUEST['RangeCode'];
@@ -188,8 +184,9 @@ if($ap_ty=mysql_fetch_array($ap_t)){
 //$ass_officer=0;
 //echo $last_reg;
 //echo $last_AP_reg;
- $ccit_id;
-$db->update_objection_reg($last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit_id,$cit_id,$range_code,$memo,$rece_date,$entry_date,$id);
+ //$ccit_id;
+ $user=$_SESSION['user_mast'];
+$db->update_objection_reg($last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit_id,$cit_id,$range_code,$memo,$rece_date,$entry_date,$id,$user);
 $db->update_objection_regdet($last_APMast,$AP_type_code,$ap_code,$assess,$pan,$groups,$year,$des_ao,$doo,$objection,$section,$amt,$major,$l_date,$status,$remark,$block,$period,$obser,$sec1,$sec2,$sec3,$sec4,$sec5,$att1,$att2,$tax_type,$corr,$id);
 
 

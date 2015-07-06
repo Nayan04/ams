@@ -11,6 +11,8 @@
 <link href="../../../assests/plugins/DataTables-1.10.4/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
 <link href="../../../assests/plugins/DataTables-1.10.4/extensions/TableTools/css/dataTables.tableTools.css" rel="stylesheet" type="text/css" />
 <link href="../../../assests/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<script src="../../../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="../../../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 </head>
 <body class="skin-blue layout-top-nav">
 <div class="wrapper">
@@ -155,7 +157,9 @@
                 <tbody>
                   <tr>
                     <td>Current Date</td>
-                    <td colspan="2"><input type="text" id="cur_date" name="cur_date" value="<?php echo date('d/m/Y'); ?>"></td>
+                    <td colspan="2"><span id="sprytextfield2">
+                    <input type="text" id="cur_date" name="cur_date" value="<?php echo date('d/m/Y'); ?>">
+                    <span class="textfieldRequiredMsg">*required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span></td>
                     <td>Alter days from <br>
                       current date</td>
                     <td><input type="text" id="days" name="days" value="5"></td>
@@ -176,15 +180,17 @@
               <table style="font-size:12px;" class="table table-bordered table-striped" >
                 <tbody>
                   <tr>
-                    <td><b>Last date for action</td>
-                    <td><input type="text" id="cur_date2" name="cur_date2" value="<?php echo date('d/m/Y'); ?>"></td>
-                    <td><b>Audit party group</td>
+                    <td><b>Last Date For Action</td>
+                    <td><span id="sprytextfield1">
+                    <input type="text" id="cur_date2" name="cur_date2" value="<?php echo date('d/m/Y'); ?>">
+                    <span class="textfieldRequiredMsg">*required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span></td>
+                    <td><b>Audit Party Group</td>
                     <td><select id="groups" name="groups">
                         <option value="All">...All...</option>
                         <option value="IAP">IAP</option>
                         <option value="RAP">RAP</option>
                       </select></td>
-                      <td><button type="button" class="btn btn-success" id="second" onClick="get_second_table()">View</button></td>
+                    <td><button type="button" class="btn btn-success" id="second" onClick="get_second_table()">View</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -233,7 +239,9 @@ $(document).ready(function(){
 		 $("#example4").dataTable();
        
 });
-    </script>
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "date", {validateOn:["blur", "change"], useCharacterMasking:true, format:"dd/mm/yyyy"});
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "date", {validateOn:["blur", "change"], format:"dd/mm/yyyy", useCharacterMasking:true});
+</script>
 <!-- page script -->
 </body>
 </html>

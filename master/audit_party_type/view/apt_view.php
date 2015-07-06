@@ -107,15 +107,15 @@ include("../../../common/menu_header_inside.php");?>
                    echo $excel_str;
                 }?>
                <!------------------------------------------------------------------------------------------->  
-           <a id="exit_for" onClick="exit()" class="btn btn-default"> <i class="fa fa-sign-out"></i> Exit </a>
+           <a id="exit_for" onClick="exit()" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a>
           </h3>
           </h3>
         </div>
           
        <div class="box-body">
         <div id="#re"></div>
-      
-          <table id="example1" class="table table-bordered table-striped xls" width="100%" >
+      <div class="xls">
+          <table id="example1" class="table table-bordered table-striped" width="100%" >
              <thead>
               <tr>
             <th></th>
@@ -163,6 +163,7 @@ include("../../../common/menu_header_inside.php");?>
             </tbody>
             
           </table>
+          </div>
         </div>
         <!-- /.box-body -->
       </div>
@@ -175,7 +176,7 @@ include("../../../common/menu_header_inside.php");?>
 
 <?php include("../../../common/master_footer_for_view.php") ?>
 <script src='apt_js.js'></script>
-<script>$(function() {$("#excel ,#excel2").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Audit Party Type Detail"});}); });</script>
+<script>$(function() {$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Audit Party Type Detail"});}); });</script>
  <?php 
  $module=8;
  $column=8;

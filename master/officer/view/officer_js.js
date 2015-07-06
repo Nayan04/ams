@@ -5,7 +5,7 @@ function add_officer(){
 
                 var sno=$("#sno").val();
 				var name=$('#name').val();
-				var add=$('#add').val();
+				var add=$('#adds').val();
 				var city=$('#city').val();
 				var ph1=$('#ph1').val();
 				var ph2=$('#ph2').val();
@@ -43,7 +43,7 @@ function add_officer(){
 		 // alert("aa");
                 var id=$("#id").val();
 				var name=$('#name').val();
-				var add=$('#add').val();
+				var add=$('#adds').val();
 				var city=$('#city').val();
 				var ph1=$('#ph1').val();
 				var ph2=$('#ph2').val();

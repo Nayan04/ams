@@ -19,35 +19,10 @@ $column=6;                //  Value For Check Page Permission
 <!-------------------- HEADER MENUS---------------------------->
 <?php  include("../../../common/menu_header_inside.php");?>
             <!-------------------- HEADER MENUS---------------------------->
-            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">
-                  <pre id="add"> ADD     Ctrl+A</pre>
-                  </a></li>
-                <li><a href="#">
-                  <pre id="editt"> EDIT    Ctrl+E</pre>
-                  </a></li>
-                <li><a href="#">
-                  <pre id="del"> DELETE  Ctrl+C</pre>
-                  </a></li>
-                <li><a href="#">
-                  <pre> SAVE    Ctrl+S</pre>
-                  </a></li>
-                <li><a href="#">
-                  <pre> CLEAR   Ctrl+R</pre>
-                  </a></li>
-                <li class="v"><a href="#">
-                  <pre> BACK     Ctrl+B</pre>
-                  </a></li>
-                <li><a href="#">
-                  <pre> PRINT    Ctrl+P</pre>
-                  </a></li>
-                <li><a href="#">
-                  <pre> EXCEL     Ctrl+L</pre>
-                  </a></li>
-              </ul>
-            </li>
-            <li><a href="../../../about/view/about.php">About</a></li>
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+
+            <li><a href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">About</a></li>
           </ul>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -105,11 +80,13 @@ $column=6;                //  Value For Check Page Permission
             <?php }?>
             <!---------------------------------------------------------------------------------------------------------------------->
             <a id="exit_for" onClick="exit()" class="btn btn-app"> <i class="fa fa-sign-out"></i> Exit </a> </h3>
-        </div>
-        <div class="box-body">
+     
+    
+        <div class="box-body" style="margin-top:-10px;">
           <div id="prin">
             <div class="box main">
               <div class="hds">
+              <div class="head_section">Auditable Cases</div>
                 <table width="100%">
                   <tr>
                     <td> Assessee </td>
@@ -126,7 +103,23 @@ $column=6;                //  Value For Check Page Permission
                         <?php 	  }					
 					?>
                       </select></td>
-                    <td> Type Of Cases </td>
+                      </tr>
+                   
+                  </tr>
+                  <tr>
+                    <td> Group</td>
+                    <td><select id="group" name="group" data-column="8" class="filter_group">
+                        <option value="...">...</option>
+                        <option value="Corporate">Corporate</option>
+                        <option value="Non Corporate">Non Corporate</option>
+                      </select></td>
+                    <td>Date Of Order </td>
+                    <td><span id="sprytextfield1">
+                    <input type="text" maxlength="10" data-column="2"  id="min" class="column_filter1" placeholder="dd/mm/yyyy">
+                    <span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span></span></td>
+                    <!--td> Between</td>
+                    <td><input type="text" data-column="2"   id="max" class="column_filter1" placeholder="dd/mm/yyyy" ></td-->
+                     <td> Type Of Cases </td>
                     <td><select class="filter_case" data-column="6" name="case" id="case">
                         <option>ALL</option>
                         <?php $yer=$db->get_type_of_case();
@@ -137,18 +130,6 @@ $column=6;                //  Value For Check Page Permission
 					?>
                       </select></td>
                   </tr>
-                  <tr>
-                    <td> Group</td>
-                    <td><select id="group" name="group" data-column="8" class="filter_group">
-                        <option value="...">...</option>
-                        <option value="Corporate">Corporate</option>
-                        <option value="Non Corporate">Non Corporate</option>
-                      </select></td>
-                    <td>Date Of Order </td>
-                    <td><input type="text" maxlength="10" data-column="2"  id="min" class="column_filter1" placeholder="dd/mm/yyyy"></td>
-                    <!--td> Between</td>
-                    <td><input type="text" data-column="2"   id="max" class="column_filter1" placeholder="dd/mm/yyyy" ></td-->
-                  </tr>
                 </table>
               </div>
               <div class="left_trees">
@@ -157,7 +138,7 @@ $column=6;                //  Value For Check Page Permission
                   <section class="sidebar">
                     <ul class="sidebar-menu">
                       <li class="header">View</li>
-                      <li class="treeview"> <a href="#" onClick="clears()"> <i class="fa fa-plus"></i> <span id="all_option"> ALL</span> <i class="fa fa-angle-left pull-right"></i> </a>
+                      <li class="treeview"> <a href="#" class="tree" id="all_fil"> <i class="fa fa-plus"></i> <span id="all_option"> ALL</span> <i class="fa fa-angle-left pull-right"></i> </a>
                         <ul class="treeview-menu">
                           <!--i class="fa fa-circle-o"></i-->
                           <!--i class="fa fa-angle-left pull-right"></i-->
@@ -201,26 +182,34 @@ $column=6;                //  Value For Check Page Permission
                   <!-- /.sidebar -->
                 </aside>
               </div>
-              <div class="right_trees xls" >
-                <table id="example1" class="table table-bordered table-striped display"  style="white-space:nowrap;">
+              <div class="right_trees xls" style="text-transform:uppercase; font-size:10.5px;" >
+                <table id="example1" class="table table-bordered table-striped display">
                   <thead>
+                   <tr style="display:none;">
+                <th></th>
+                <td colspan="15" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></td>
+              </tr>
+              <tr style="display:none;">
+                <th></th>
+                <td colspan="15" align="center"><strong>List of Auditable Case</strong></td>
+              </tr>
                     <tr>
                       <th></th>
                       <th>SN</th>
-                      <th>Dt. of order</th>
-                      <th>Assessee Name</th>
+                      <th>Dt. of <br> order</th>
+                      <th>Assessee <br> Name</th>
                       <th>PAN NO</th>
-                      <th>Asst. Year</th>
-                      <th>Type Of Case</th>
-                      <th>Income / Loss</th>
+                      <th>Asst. <br> Year</th>
+                      <th>Type Of <br> Case</th>
+                      <th>Income <br> Loss</th>
                       <th>Group</th>
                       <th>Remark</th>
-                      <th>Assessing Officer</th>
+                      <th>Assessing <br> Officer</th>
                       <th>Range</th>
-                      <th>CIT Charge</th>
-                      <th>CCIT Charge</th>
+                      <th>CIT <br> Charge</th>
+                      <th>CCIT <br> Charge</th>
                       <th>USER</th>
-                      <th>Audit Party</th>
+                      <th>Audit <br> Party</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -229,7 +218,7 @@ $column=6;                //  Value For Check Page Permission
                     <tr>
                       <td><input type="radio" id="che" class="radio"  name="che" value="<?=$row['ac_id'];?>" ></td>
                       <td><?php echo $m;?></td>
-                      <td><?php echo $doo=$db->get_date_with_slash($row['d_o_a']); ?></td>
+                      <td><?php if($row['d_o_a']=='0000-00-00' || $row['d_o_a']=='' ){echo "-";}else{ echo $doo=$db->get_date_with_slash($row['d_o_a']);} ?></td>
                       <td><?php echo $row['assessee_name']; ?></td>
                       <td><?php echo $row['pan']; ?></td>
                       <td><?php
@@ -259,7 +248,7 @@ $column=6;                //  Value For Check Page Permission
                       <td><?php  			 
 					         echo $row['ccit_charge'];
 						 ?></td>
-                      <td><?php //echo $row['created_by']; ?></td>
+                      <td><?php echo $row['user']; ?></td>
                       <td><?php 				 
 					         echo $row['party_name'];
 						 
@@ -283,6 +272,8 @@ $column=6;                //  Value For Check Page Permission
 </div>
 <!-- ./wrapper -->
 <?php include("../../../common/master_footer_for_view.php"); ?>
-
 <script src='custom.js'></script>
-<script>$(function(){$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Auditable Cases"});});});</script>
+<script>
+$(function(){$("#excel").on('click', function(){$(".xls").table2excel({exclude: ".noExl",name: "Excel Document Name",filename: "Auditable Cases"});});});
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "date", {format:"dd/mm/yyyy", useCharacterMasking:true, validateOn:["blur", "change"]});
+</script>

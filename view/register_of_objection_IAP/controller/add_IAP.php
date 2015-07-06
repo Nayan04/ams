@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 include("../modal/iap_db.php");
 $db=new iap_db();
 $a=array();
@@ -20,11 +20,12 @@ echo "Return Code: " . $_FILES["att1"]["error"] . "<br/><br/>";
 }
 else
 {
-if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php }
+if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {
+$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
+$num=time();
+$targetPath1 = "../../../docs/".$num.$_FILES['att1']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath1) ; // Moving Uploaded file 
+}
 else
 {
 $sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
@@ -62,11 +63,10 @@ echo "Return Code: " . $_FILES["att2"]["error"] . "<br/><br/>";
 else
 {
 if (file_exists("../../../docs/" . $_FILES["att2"]["name"])) {
-?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php
+$sourcePath = $_FILES['att2']['tmp_name']; // Storing source path of the file in a variable
+$num=time();
+$targetPath2 = "../../../docs/".$num.$_FILES['att2']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath2) ; // Moving Uploaded file
 }
 else
 {
@@ -190,11 +190,11 @@ if($ap_ty=mysql_fetch_array($ap_t)){
 		$AP_type_code=0;
 		}
 ///////////////////// Register Detail /////////////
-
+$user=$_SESSION['user_mast'];
 $ass_officer=0;
 //echo// $last_reg;
 //echo// $last_AP_reg;
-$db->insert_objection_reg($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit_id,$cit_id,$range_code,$memo,$rece_date,$entry_date);
+$db->insert_objection_reg($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$des_ao,$ccit_id,$cit_id,$range_code,$memo,$rece_date,$entry_date,$user);
 $db->insert_objection_regdet($last_mast,$last_sno,$last_APMast,$AP_type_code,$ap_code,$assess,$pan,$groups,$year,$des_ao,$doo,$objection,$section,$amt,$major,$l_date,$status,$remark,$block,$period,$obser,$sec1,$sec2,$sec3,$sec4,$sec5,$att1,$att2,$tax_type,$corr);
 
 

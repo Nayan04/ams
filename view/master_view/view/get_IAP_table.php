@@ -21,6 +21,13 @@ $i=1;?>
 <div style="overflow:scroll; max-height:300px;">
 <table id="example2" class="table table-bordered table-striped display " style="white-space:nowrap;">
                 <thead>
+                 <tr style="display:none;">
+              
+                <th colspan="27" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></th>
+              </tr>
+              <tr style="display:none;">                
+                <th colspan="27" align="center"><strong>Register Of Objection(IAP)</strong></th>
+              </tr>
                   <tr>
                     <th>No.</th>
                     <th>Fin Year</th>

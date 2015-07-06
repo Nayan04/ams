@@ -21,6 +21,13 @@ $i=1;?>
 <div style="overflow:scroll; max-height:300px;">
 <table id="example3" class="table table-bordered table-striped display" style="white-space:nowrap;">
                 <thead>
+                <tr style="display:none;">
+              
+                <th colspan="27" align="center"><strong>Office of Commissioner of Income Tax (Audit), Ahmedabad</strong></th>
+              </tr>
+              <tr style="display:none;">                
+                <th colspan="27" align="center"><strong>Register Of Objection (RAP)</strong></th>
+              </tr>
                   <tr>
                     <th>SNo.</th>
                     <th>Fin. Year</th>
@@ -74,14 +81,15 @@ $i=1;?>
   <td><?php echo $row['ParaNo']; ?></td>
   <td><?php echo $row['AssName']; ?></td>
   <td><?php echo $row['PanNo']; ?></td>
-  <td><?php echo $row['ScanFile1']."pdf"; ?></td>
-  <td><?php echo $row['ScanFile2']."pdf"; ?></td>
+  <td><?php echo substr($row['ScanFile1'],14); ?></td>
+  <td><?php echo substr($row['ScanFile2'],14); ?></td>
   <td><?php
 					  $ayy=$db->get_year_by_id($row['AssYearCode']);
 					  if($assty=mysql_fetch_array($ayy)){					 
 					  echo $assty['year'];
 					  } ?></td>
-  <td><?php echo $row['BlockAsst']; ?></td>
+  <td><input type="checkbox" <?php $q=$row['BlockAsst']; if($q==1){ ?> checked <?php } else { }?> disabled></td>
+  
   <td><?php echo $row['BlockAsstPeriod']; ?></td>
   <td><?php echo $row['TaxEffect']; ?></td>
   <td><?php echo $row['MajorMinor']; ?></td>
@@ -117,27 +125,31 @@ $i=1;?>
 						  } //echo $row['range_code']; ?></td>
   <td><?php 
 					     					 
-					         echo $iap_reg_obj['UserCode'];
+					      //   echo $iap_reg_obj['UserCode'];
+							 $kl=$db->get_user_by_id($iap_reg_obj['UserCode']);
+					      if($rowd=mysql_fetch_array($kl)){					 
+					         echo $rowd['user'];
+						  }
 						?></td>
   <td><?php 
-	 $aos=$db->get_sec_by_id($row['ObjSection1']);
+	 $aos=$db->get_sec_by_id($row['SectionCode1']);
 					      if($sec1=mysql_fetch_array($aos)){
 							  echo $sec1['section_code'];
 							  }
 	?></td>
-     <td><?php $se2=$db->get_sec_by_id($row['ObjSection2']);
+     <td><?php $se2=$db->get_sec_by_id($row['SectionCode2']);
 					      if($sec2=mysql_fetch_array($se2)){
 							  echo $sec2['section_code'];
 							  }?></td>
-      <td><?php $se3=$db->get_sec_by_id($row['ObjSection3']);
+      <td><?php $se3=$db->get_sec_by_id($row['SectionCode3']);
 					      if($sec3=mysql_fetch_array($se3)){
 							  echo $sec3['section_code'];
 							  }?></td>
-       <td><?php $se4=$db->get_sec_by_id($row['ObjSection4']);
+       <td><?php $se4=$db->get_sec_by_id($row['SectionCode4']);
 					      if($sec4=mysql_fetch_array($se4)){
 							  echo $sec4['section_code'];
 							  }?></td>
-        <td><?php $se5=$db->get_sec_by_id($row['ObjSection5']);
+        <td><?php $se5=$db->get_sec_by_id($row['SectionCode5']);
 					      if($sec5=mysql_fetch_array($se5)){
 							  echo $sec5['section_code'];
 							  }?></td>

@@ -36,7 +36,7 @@ class group_db
 		}
 		function get_group_master(){
 		
-		$sql = sprintf("select * from usergroupmast where isactive=1"); 
+		$sql = sprintf("select * from usergroupmast where isactive=1 and type!=1"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);

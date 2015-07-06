@@ -351,7 +351,7 @@ class common
 		}
 		function get_sec(){
 		
-		$sql = sprintf("SELECT * FROM section_detail where isactive=1"); 
+		$sql = sprintf("SELECT * FROM section_detail where isactive=1 order by section_code"); 
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -602,6 +602,18 @@ class common
 				 
 				 
 				 }
+				
+				  function get_user_by_id($user){
+				  $sql = sprintf("select * from user_detail where id='$user' and isactive=1 "); 
+		            $rs=mysql_query($sql,$this->link);
+		            if(!$rs){
+			         echo mysql_error($this->link);
+			         }	
+			 return $rs;
+				 
+				 
+				 }
+				 
 		         function get_objection(){
 					  $sql = sprintf("SELECT * FROM objection_detail where isactive=1"); 
 		            $rs=mysql_query($sql,$this->link);
@@ -657,7 +669,7 @@ class common
 					$string.=" isactive=1";
 				 
 					 $sql = sprintf($string);
-					// echo $sql;
+					//echo $sql;
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -707,6 +719,7 @@ class common
 			        return $rs;					 
 				}
 				function get_iap_register_details_for_view($ccit_id,$ass_name,$cit_id,$fy,$ao,$pan,$groups,$stat,$sec,$range,$type){
+				//	echo $ao;
 					$string="SELECT registerdet.AssName, registerdet.MastCode,
 					
 					sec1.section_code as ObjSection1, 
@@ -718,14 +731,14 @@ class common
 					
 					registerdet.DOAO1, registerdet.PanNo, registerdet.ScanFile1, registerdet.ScanFile2,assyear.year AS AsstYearCode ,registerdet.BlockAsst,registerdet.BlockAsstPeriod,registerdet.TaxEffect,registerdet.MajorMinor,registerdet.AssGroup,registerdet.GOObjection,registerdet.StatusCode,audit_party.party_name,ao_detail.name,registerdet.ObjType,finyc.year AS FinYearCode ,register_obj.LARIAMNo,audit_party_type.type_name,ccit_charge.ccit_charge,cit_detail.cit_charge_name,range_detail.range_name,usergroupmast.MastName,register_obj.EntryDate from registerdet join register_obj on registerdet.MastCode =register_obj.MastCode Left join audit_party on audit_party.audit_id=registerdet.APCode Left join year_detail assyear on assyear.year_id=registerdet.AssYearCode 
 					
-					Left join section_detail sec1 on sec1.section_id=registerdet.ObjSection1 
-					Left join section_detail sec2 on sec2.section_id=registerdet.ObjSection2 
-					Left join section_detail sec3 on sec3.section_id=registerdet.ObjSection3 
-					Left join section_detail sec4 on sec4.section_id=registerdet.ObjSection4 
-					Left join section_detail sec5 on sec5.section_id=registerdet.ObjSection5 
+					Left join section_detail sec1 on sec1.section_id=registerdet.SectionCode1	 
+					Left join section_detail sec2 on sec2.section_id=registerdet.SectionCode2 
+					Left join section_detail sec3 on sec3.section_id=registerdet.SectionCode3 
+					Left join section_detail sec4 on sec4.section_id=registerdet.SectionCode4 
+					Left join section_detail sec5 on sec5.section_id=registerdet.SectionCode5 
 					
 					Left join year_detail finyc on finyc.year_id=register_obj.FinYearCode Left join ao_detail on ao_detail.ao_id=registerdet.AOCode Left join ccit_charge on ccit_charge.id=register_obj.CCITCode Left join cit_detail on cit_detail.id=register_obj.CITCode Left join range_detail on range_detail.range_id=register_obj.RangeCode Left join usergroupmast on usergroupmast.id=register_obj.UserCode Left join audit_party_type on audit_party_type.id=register_obj.APTypeCode where ";
-				
+				        
 					//--------------------Register_obj ------------------------------
 					if($ccit_id=='...'){}else{ $string.=" register_obj.CCITCode='$ccit_id' and"; }
 					if($fy=='...'){}else{ $string.=" register_obj.FinYearCode=$fy and"; }
@@ -736,17 +749,18 @@ class common
 				    if($ass_name==''){}else{ $string.=" registerdet.AssName='$ass_name' and"; }
 				    if($pan==''){}else{ $string.=" registerdet.PanNo='$pan' and"; }
 					if($groups=='...'){}else{ $string.=" registerdet.AssGroup='$groups' and"; }
-					if($ao='...'){}else{ $string.=" registerdet.AOCode='$ao' and"; }
+					if($ao=='...'){}else{ $string.=" registerdet.AOCode='$ao' and"; }
 					if($type=='...'){}else{ $string.=" registerdet.MajorMinor='$type' and"; }
-					if($sec==''){}else{ 
-					$secs=explode(',',$sec);
-					for($i=0;$i<sizeof($secs);$i++){					
-					$string.=" registerdet.SectionCode1='$secs[$i]' and"; }
-					}
+					if($sec==''){}else{
+						//echo $sec;
+					//$secs=explode(',',$sec);
+					//$sec=array_values($secs);
+					$string.=" registerdet.SectionCode1 in($sec) and"; }
+					
 					$string.=" registerdet.isactive=1 and register_obj.ObjType='IAP'";
-				 
+				   //  echo $ao;
 					 $sql = sprintf($string);
-				//	 echo $sql;
+					 //echo $sql;
 		            $rs=mysql_query($sql,$this->link);
 		            if(!$rs){
 			         echo mysql_error($this->link);
@@ -755,7 +769,7 @@ class common
 					
 					}
 					function get_rap_register_details_for_view($ccit_id,$ass_name,$cit_id,$fy,$ao,$pan,$groups,$stat,$sec,$range,$type){
-					$string="SELECT * FROM register_obj,registerdet where";
+					$string="SELECT * FROM register_obj,registerdet where";// yaha join lagana hai
 					echo $ccit_id;
 					//--------------------Register_obj ------------------------------
 					if($ccit_id=='...'){}else{ $string.=" register_obj.CCITCode='$ccit_id' and"; }
@@ -767,14 +781,13 @@ class common
 				    if($ass_name==''){}else{ $string.=" registerdet.AssName='$ass_name' and"; }
 				    if($pan==''){}else{ $string.=" registerdet.PanNo='$pan' and"; }
 					if($groups=='...'){}else{ $string.=" registerdet.AssGroup='$groups' and"; }
-					if($ao='...'){}else{ $string.=" registerdet.AOCode='$ao' and"; }
+					if($ao=='...'){}else{ $string.=" registerdet.AOCode='$ao' and"; }
 					if($type=='...'){}else{ $string.=" registerdet.MajorMinor='$type' and"; }
 					if($sec==''){}else{ 
-					$secs=explode(',',$sec);
-					for($i=0;$i<sizeof($secs);$i++){					
-					$string.=" registerdet.SectionCode1='$secs[$i]' and"; }
-					}
-					$string.=" registerdet.isactive=1 and register_obj.isactive=1 and registerdet.ObjType='RAP' and register_obj.ObjType='RAP' and registerdet.MASTCode=register_obj.MASTCode ";
+										
+					$string.=" registerdet.SectionCode1 in($sec) and"; }
+					
+					$string.=" registerdet.isactive=1 and register_obj.ObjType='RAP' and registerdet.MASTCode=register_obj.MASTCode ";
 				 
 					 $sql = sprintf($string);
 					// echo $sql;
@@ -788,7 +801,8 @@ class common
 					function get_iap_register_details_for_report($ccit_id,$cit_id,$ap,$apt,$range,$ao,$fy,$lar_date,$objection,$type,$groups,$status,$dos,$user,$txe,$entry,$lar_sd,$lar_ed,$dos_sd,$dos_ed,$tax_st,$tax_ed,$entry_st,$entry_ed){
 					$string="SELECT * FROM register_obj,registerdet where";
 					//echo $ccit_id;
-					//echo $lar_sd;
+				//	echo $lar_sd."oo";
+					//echo $status;
 					//--------------------Register_obj ------------------------------
 					if($ccit_id=='...'){}else{ $string.=" register_obj.CCITCode='$ccit_id' and"; }
 					
@@ -823,12 +837,16 @@ class common
 					//----------------------------Register Details---------------------------
 					if($type=='...'){}else{ $string.=" registerdet.MajorMinor='$type' and"; }
 					if($groups=='...'){}else{ $string.=" registerdet.AssGroup='$groups' and"; }
-					if($status==',,'){}else{ 
-					$secs=explode(',',$status);
-					for($i=0;$i<sizeof($secs);$i++){
-					if($secs[$i]==''){}else
-					 $string.=" registerdet.StatusCode='$secs[$i]' and"; }
-					}
+					if($status==''){}else{ 
+					  $s=explode(",",$status);
+					  $m=array();
+					  for($i=0;$i<sizeof($s);$i++){
+						  $m[$i]='"'.$s[$i].'"';
+						  }
+						 $n=implode(",",$m);
+					  //$ss= "'" . join(', ',$s) . "'";
+					 $string.=" registerdet.StatusCode in($n) and"; }
+					
 					
 				    if($dos=='...'){}else{
 						
@@ -922,12 +940,15 @@ class common
 					//----------------------------Register Details---------------------------
 					if($type=='...'){}else{ $string.=" registerdet.MajorMinor='$type' and"; }
 					if($groups=='...'){}else{ $string.=" registerdet.AssGroup='$groups' and"; }
-					if($status==',,'){}else{ 
-					$secs=explode(',',$status);
-					for($i=0;$i<sizeof($secs);$i++){
-					if($secs[$i]==''){}else
-					 $string.=" registerdet.StatusCode='$secs[$i]' and"; }
-					}
+					if($status==''){}else{ 
+					 $s=explode(",",$status);
+					  $m=array();
+					  for($i=0;$i<sizeof($s);$i++){
+						  $m[$i]='"'.$s[$i].'"';
+						  }
+						 $n=implode(",",$m);
+					 $string.=" registerdet.StatusCode IN ($n) and"; }
+					
 					
 				    if($dos=='...'){}else{
 						

@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 include("../modal/rap_db.php");
 $db=new rap_db();
 $a=array();
@@ -21,11 +21,13 @@ echo "Return Code: " . $_FILES["att1"]["error"] . "<br/><br/>";
 }
 else
 {
-if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php }
+if (file_exists("../../../docs/" . $_FILES["att1"]["name"])) {
+	$num=rand(0,9999);
+$sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
+$targetPath1 = "../../../docs/".$num.'_'.$_FILES['att1']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath1) ; // Moving Uploaded file
+
+	}
 else
 {
 $sourcePath = $_FILES['att1']['tmp_name']; // Storing source path of the file in a variable
@@ -63,11 +65,10 @@ echo "Return Code: " . $_FILES["att2"]["error"] . "<br/><br/>";
 else
 {
 if (file_exists("../../../docs/" . $_FILES["att2"]["name"])) {
-?>
-<script>
-alert("***File Already exists ***");
-</script>
-<?php
+$num=rand(0,9999);
+$sourcePath = $_FILES['att2']['tmp_name']; // Storing source path of the file in a variable
+$targetPath2 = "../../../docs/".$num.'_'.$_FILES['att2']['name']; // Target path where file is to be stored
+move_uploaded_file($sourcePath,$targetPath2) ;
 }
 else
 {
@@ -126,7 +127,7 @@ $sec2=$a['section2'];
 $sec3=$a['section3'];
 $sec4=$a['section4'];
 $obcode=$a['obcode'];
-$objection=['objtxt'];
+$objection=$a['objtxt'];
 $obj_rai_sec1=$a['sec1'];
 $obj_rai_sec2=$a['sec2'];
 $obj_rai_sec3=$a['sec3'];
@@ -157,7 +158,7 @@ $datecomm=$db->get_date_with_dash($_REQUEST['datecomm']);
 $status=$a['status_type'];
 $dateofsettle=$db->get_date_with_dash($_REQUEST['dateofsettle']);
 $remark=$a['remark'];
-echo $att1=$targetPath1;
+$att1=$targetPath1;
 $att2=$targetPath2;
 $corr=$a['corr'];
 /////////////////GET LAST ROW /////////////////
@@ -237,9 +238,9 @@ if($smonth>=1 && $smonth<=3){
 		}else if($smonth>=10 && $smonth<=12){
 		$squarter=3;
 		}
-
+$user=$_SESSION['user_mast'];
 $objShrtCode=0;//short code add krna hai
-$db->update_rap_registe_obj($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rece_date,$entry_date,$id);
+$db->update_rap_registe_obj($last_mast,$last_sno,$last_APMast,$AP_type_code,$fyear,$cur_month,$quater_id,$ap_code,$ap_code,$auo,$ccit_id,$cit_id,$range_code,$lar,$rece_date,$entry_date,$id,$user);
 
 $db->update_objection_regdet_rap($last_mast,$last_sno,$last_APMast,$ap_code,$para,$assess,$pan,$groups,$year,$des_ao,$auo,$rec_date,$rec_date1,$rec_date2,$rec_date3,$rec_date4,$sec,$sec1,$sec2,$sec3,$sec4,$obcode,$objShrtCode,$objection,$tax_effect,$major,$seen,$accp,$dateofi,$rmp,$l_date,$doro,$taxeffectro,$dcrno,$dateofcollection,$datecomm,$status,$dateofsettle,$squarter,$remark,$block,$period,$obj_rai_sec1,$obj_rai_sec2,$obj_rai_sec3,$obj_rai_sec4,$obj_rai_sec5,$att1,$att2,$tax_type,$corr,$id);
 

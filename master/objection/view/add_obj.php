@@ -127,7 +127,10 @@ $column=4;                //  Value For Check Page Permission
     </div>
     <!-- /.container -->
  <?php include("../../../common/master_footer_for_view.php") ?>
-<script src="obj_js.js"></script>
 
+<script src="obj_js.js"></script>
+<script>
+$("#rece_date3").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+</script>
 </body>
 </html>
